@@ -24,6 +24,11 @@ class Station < ActiveRecord::Base
     Station.where(dock_count: Station.minimum(:dock_count))
   end
 
+  def self.newest
+    #Station.group(:).having('installation_date = MAX(installation_date)')
+    p Station.where(installation_date: Station.maximum(:installation_date))
+  end
+
 end
 
 

@@ -32,7 +32,7 @@ describe "Station" do
     it "returns the station with the most bikes" do
       eric = Station.create(name:"eric",dock_count:20,city_id:2,installation_date:'1999-23-23')
       david = Station.create(name:"david",dock_count:30,city_id:3,installation_date:'1999-23-24')
-      nick = Station.create(name:"nick",dock_count:30,city_id:3,installation_date:'1999-23-24')
+      nick = Station.create(name:"nick",dock_count:30,city_id:4,installation_date:'1999-23-24')
 
       expect(Station.station_with_max_bikes.first.id).to eql(2)
       expect(Station.station_with_max_bikes.count).to eql(2)
@@ -52,10 +52,21 @@ describe "Station" do
     it "returns the station with the most bikes" do
       eric = Station.create(name:"eric",dock_count:20,city_id:2,installation_date:'1999-23-23')
       david = Station.create(name:"david",dock_count:20,city_id:3,installation_date:'1999-23-24')
-      nick = Station.create(name:"nick",dock_count:30,city_id:3,installation_date:'1999-23-24')
+      nick = Station.create(name:"nick",dock_count:30,city_id:4,installation_date:'1999-23-24')
 
       expect(Station.station_with_min_bikes.first.id).to eql(1)
       expect(Station.station_with_min_bikes.count).to eql(2)
+    end
+  end
+
+  describe ".newest" do
+    it "returns the most recently installed station" do
+      eric = Station.create(name:"eric",dock_count:20,city_id:2,installation_date:'1990-5-23')
+      david = Station.create(name:"david",dock_count:20,city_id:3,installation_date:'2016-5-24')
+      nick = Station.create(name:"nick",dock_count:30,city_id:4,installation_date:'2016-5-24')
+
+      expect(Station.newest.first.id).to eql(2)
+      expect(Station.newest.count).to eql(2)
     end
   end
 
