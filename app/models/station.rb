@@ -33,13 +33,3 @@ class Station < ActiveRecord::Base
   end
 
 end
-
-
-# Total count of stations
-# Average bikes available per station (based on docks).
-# Most bikes available at a station.
-# Station(s) where the most bikes are available.
-# Fewest bikes available at a station.
-# Station(s) where the fewest bikes are available.
-# Most recently installed station.
-# Oldest station.
