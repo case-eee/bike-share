@@ -9,4 +9,8 @@
   <p><%= station.dock_count %></p>
   <p><%= station.installation_date %></p>
   <p><%= station.city_id %></p>
+  <form action="/stations/<%= station.id %>" method="POST">
+    <input type="hidden" name="_method" value="DELETE">
+    <input type="submit" value="Delete Station : <%= station.name %>">
+  </form>
 <% end %>
