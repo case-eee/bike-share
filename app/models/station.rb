@@ -7,9 +7,13 @@ class Station < ActiveRecord::Base
                 lat: station_details[:lat],
                 long: station_details[:long],
                 dock_count: station_details[:dock_count],
-                city_id: station_details[:city_id],
+                city_id: find_city_id(station_details[:city_name]),
                 installation_date: station_details[:installation_date]
                 )
+  end
+
+  def self.find_city_id(city_name)
+    City.write(name: city_name).id
   end
 
 end
