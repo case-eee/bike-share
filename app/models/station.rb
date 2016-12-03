@@ -25,8 +25,11 @@ class Station < ActiveRecord::Base
   end
 
   def self.newest
-    #Station.group(:).having('installation_date = MAX(installation_date)')
-    p Station.where(installation_date: Station.maximum(:installation_date))
+    Station.where(installation_date: Station.maximum(:installation_date))
+  end
+
+  def self.oldest
+    Station.where(installation_date: Station.minimum(:installation_date))
   end
 
 end

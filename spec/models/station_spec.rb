@@ -70,6 +70,19 @@ describe "Station" do
     end
   end
 
+  describe ".oldest" do
+    it "returns the most recently installed station" do
+      eric = Station.create(name:"eric",dock_count:20,city_id:2,installation_date:'1990-5-23')
+      david = Station.create(name:"david",dock_count:20,city_id:3,installation_date:'1990-5-23')
+      nick = Station.create(name:"nick",dock_count:30,city_id:4,installation_date:'2016-5-24')
+
+      expect(Station.oldest.first.id).to eql(1)
+      expect(Station.oldest.count).to eql(2)
+    end
+  end
+
+
+
 
 
 
