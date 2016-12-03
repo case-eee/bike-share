@@ -21,7 +21,7 @@ describe "when a user visits /stations" do
     visit "/stations"
 
     expect(page).to have_content "hi35"
-    click_on "Delete Station : hi35"
+    first('form:nth-of-type(2)').click_on "Delete Station"
 
     expect(page).to have_current_path "/stations"
     expect(page).not_to have_content "hi35"
@@ -32,7 +32,7 @@ describe "when a user visits /stations" do
     visit "/stations"
 
     expect(page).to have_content "hi35"
-    click_on "Edit Station : hi35"
+    find("a[href='/stations/#{station.id}/edit']").click
 
     expect(page).to have_current_path "/stations/#{station.id}/edit"
     fill_in "station[name]", :with => "Dock_1"
@@ -49,7 +49,7 @@ describe "when a user visits /stations" do
     visit "/stations"
 
     expect(page).to have_content "hi35"
-    click_on "See Station : hi35"
+    find("a[href='/stations/#{station.id}']").click
     expect(page).to have_content "hi35"
     expect(page).to have_current_path "/stations/#{station.id}"
 

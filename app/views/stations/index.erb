@@ -11,8 +11,8 @@
   <p><%= station.city_id %></p>
   <form action="/stations/<%= station.id %>" method="POST">
     <input type="hidden" name="_method" value="DELETE">
-    <input type="submit" value="Delete Station : <%= station.name %>">
+    <input type="submit" value="Delete Station">
   </form>
-  <a href="/stations/<%= station.id %>/edit">Edit Station : <%= station.name %></a>
-  <a href="/stations/<%= station.id %>">See Station : <%= station.name %></a>
+  <a href="/stations/<%= station.id %>/edit">Edit Station</a>
+  <a href="/stations/<%= station.id %>">See Station</a>
 <% end %>
