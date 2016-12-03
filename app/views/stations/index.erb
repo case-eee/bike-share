@@ -1,8 +1,12 @@
 <h1>All Stations</h1>
 
 <form action="/stations/new" method="GET">
-
-
   <input type="submit" value="Create"/>
-
 </form>
+
+<% @stations.each do |station| %>
+  <h1><%= station.name %></h1>
+  <p><%= station.dock_count %></p>
+  <p><%= station.installation_date %></p>
+  <p><%= station.city_id %></p>
+<% end %>

@@ -4,7 +4,7 @@ require File.expand_path("../../config/environment", __FILE__)
 require 'rspec'
 require 'database_cleaner'
 require 'capybara/dsl'
-
+require 'time'
 
 Capybara.app = BikeShareApp
 
@@ -21,4 +21,3 @@ RSpec.configure do |c|
 
   c.include Capybara::DSL
 end
-
