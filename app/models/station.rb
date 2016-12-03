@@ -1,4 +1,5 @@
 class Station < ActiveRecord::Base
+  validates :name, :dock_count, :city_id, :installation_date, presence: true
 
   def self.total_stations
     Station.all.count
