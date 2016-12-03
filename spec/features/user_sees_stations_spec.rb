@@ -8,4 +8,14 @@ describe "when a user visits /stations" do
       expect(page).to have_content("All Stations")
     end
   end
+
+  it "they can click on a create station button" do
+    visit("/stations")
+
+    click_on("Create")
+    expect(age).to have_xpath?("//stations/new")
+
+  end
 end
+
+# describe "when a users visits /stations/new" do
