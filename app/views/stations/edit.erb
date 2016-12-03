@@ -1,0 +1,8 @@
+<form action="/stations/<%= @station.id %>" method="POST">
+  <input type="hidden" name="_method" value="PUT">
+  <input type="text" name="station[name]" value="<%=@station.name%>">
+  <input type="integer" name="station[dock_count]" value="<%=@station.dock_count%>">
+  <input type="integer" name="station[city_id]" value="<%=@station.city_id%>">
+  <input type="date" name="station[installation_date]" value="<%=@station.installation_date%>">
+  <input type="submit" value="Update Station">
+</form>
