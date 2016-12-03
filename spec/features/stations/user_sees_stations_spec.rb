@@ -4,7 +4,7 @@ describe "when a user visits /stations" do
   it "they see stations header" do
     visit "/stations"
 
-    within "h1" do
+    within "h1:nth-of-type(1)" do
       expect(page).to have_content "All Stations"
     end
   end
