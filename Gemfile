@@ -13,5 +13,10 @@ group :development, :test do
   gem 'capybara'
   gem 'launchy'
   gem 'rack-test'
+  gem 'pry'
 end
 
+group :test do
+  gem 'nyan-cat-formatter'
+  gem 'database_cleaner'
+end

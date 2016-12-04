@@ -1,0 +1,22 @@
+<% @title = "All Stations" %>
+
+<div class="all-stations">
+  <h1>All Stations</h1>
+  <% @stations.each do |station| %>
+    <div class="station-summary">
+      <ul>
+        <li><%= station.name %></li>
+        <li>Number of bike docks: <%= station.dock_count %></li>
+        <li>City: <%= station.city.name %></li>
+        <li>Established: <%= station.installation_date %></li>
+      </ul>
+      <form action="/stations/<%= station.id %>/edit" method="GET">
+        <input type="submit" value="Edit">
+      </form>
+      <form action="/stations/<%= station.id %>" method="POST">
+        <input type="hidden" name="_method" value="DELETE">
+        <input type="submit" value="Delete">
+      </form>
+    </div>
+  <% end %>
+</div>

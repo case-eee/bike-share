@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="stylesheet" href="/reset.css">
+    <link href="https://fonts.googleapis.com/css?family=Slabo+27px" rel="stylesheet">
+    <link rel="stylesheet" href="../reset.css" type='text/css'>
+    <link rel="stylesheet" href="../application.css" type='text/css'>
+    <title><%= @title %></title>
+    <link rel="shortcut icon" type="image/png" href="/bike_favicon.ico"/>
+
+  </head>
+  <body>
+    <header>
+      <h1><a href="/">Bike Share</a></h1>
+      <nav>
+        <ul>
+          <a href=""><li></li></a>
+        </ul>
+      </nav>
+    </header>
+    <div class="container">
+      <%= yield %>
+    </div>
+    <footer></footer>
+  </body>
+</html>

@@ -1,0 +1,20 @@
+<h1>Create a New Station</h1>
+
+<form method="POST" action="/stations">
+  <div class="form_field">Name: <input type="text" name="station[name]"></div>
+
+  <select class="form_dropdown" name="station[city_id]">
+    <option selected="selected" value="nil">-Select City-</option>
+
+    
+      <option value="">AURORA</option>
+    
+      <option value="">DENVER</option>
+    
+
+  </select>
+
+  <div class="form_field">Dock Count: <input type="integer" name="station[dock_count]"></div>
+  <div class="form_field">Installation Date: <input type="date" name="station[installation_date]"></div>
+  <div class="form_button"><input type="submit" value="Create Station"></div>
+</form>
