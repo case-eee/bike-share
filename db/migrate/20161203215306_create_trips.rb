@@ -1,11 +1,21 @@
 class CreateTrips < ActiveRecord::Migration[5.0]
-#   def change
-#     create_table :trips do |t|
-#
-#     end
-#   end
+  def change
+    create_table :trips do |t|
+      t.float   :duration
+      t.text      :start_station 
+      t.float   :start_station_id
+      t.text      :end_station
+      t.float   :end_station_id
+      t.datetime  :start_date    
+      t.datetime  :end_date
+      t.float   :bike_id
+      t.text      :subscription_type
+      t.float   :zip_code
+
+      t.timestamps  null:false
+    end
+  end
 end
-#
-#
-# id,duration,start_date,start_station_name,start_station_id,end_date,end_station_name,end_station_id,bike_id,subscription_type,zip_code
-# 4576,63,8/29/2013 14:13,South Van Ness at Market,66,8/29/2013 14:14,South Van Ness at Market,66,520,Subscriber,94127
+
+
+
