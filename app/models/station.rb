@@ -21,4 +21,8 @@ class Station < ActiveRecord::Base
     order(:installation_date).last
   end
 
+  def self.most_recently_installed_station
+    order(:installation_date).first
+  end
+
 end
