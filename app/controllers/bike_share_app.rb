@@ -37,4 +37,29 @@ class BikeShareApp < Sinatra::Base
   get "/station-dashboard" do
     erb :"stations/dashboard"
   end
+
+  get "/trips" do
+    @trips = Trip.all
+    erb :"trips/index"
+  end
+
+  get "/trips/new" do
+    erb :"trips/new"
+  end
+
+  post "/trips" do
+    Trip.create(params[:trip])
+    redirect "/trips"
+  end
+
+  get "/trips/:id" do
+    @trip = Trip.find(params[:id])
+    erb :"trips/show"
+  end
+
+  delete "/trips/:id" do
+    Trip.destroy(params[:id])
+    redirect "/trips"
+  end
+
 end

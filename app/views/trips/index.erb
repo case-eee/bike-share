@@ -1,0 +1,16 @@
+<h1>All Trips</h1>
+
+<form action="/trips/new" method="GET">
+  <input type="submit" value="Create"/>
+</form>
+
+<% @trips.each do |trip| %>
+  <h2><%= trip.start_date %></h2>
+  <h2><%= trip.start_station_id %></h2>
+  <h2><%= trip.end_station_id %></h2>
+  <a href="/trips/<%= trip.id %>">See Trip</a>
+  <form action="/trips/<%= trip.id %>" method="POST">
+    <input type="hidden" name="_method" value="DELETE">
+    <input type="submit" value="Delete Trip">
+  </form>
+<% end %>
