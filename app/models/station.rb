@@ -17,4 +17,8 @@ class Station < ActiveRecord::Base
     City.write(name: city_name).id
   end
 
+  def self.oldest_station
+    order(:installation_date).last
+  end
+
 end
