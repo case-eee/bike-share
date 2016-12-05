@@ -10,30 +10,30 @@ class BikeShareApp < Sinatra::Base
     end
 
     get '/stations/:id' do
-      @station = Station.find(params["id"])
+      @station = Station.find(params[:id])
       erb :"stations/show"
     end
 
     post '/stations' do
       station = Station.create(params[:stations])
-      redirect '/stations'
+      redirect "/stations/#{ station.id }"
     end
 
     get '/stations/:id/edit' do
-      @station = Station.find(id)
+      @station = Station.find(params[:id])
       erb :"stations/edit"
     end
 
     put '/stations/:id' do
-      station = Station.find(id)
+      station = Station.find(params[:id])
       station.update(params[:stations])
       redirect "stations/#{station.id}"
     end
 
     delete '/stations/:id' do
-      station = Station.find(id)
+      station = Station.find(params[:id])
       station.delete(station.id)
-      redirect "stations/#{station.id}"
+      redirect "/stations"
     end
 
 end
