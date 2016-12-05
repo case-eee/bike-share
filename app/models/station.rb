@@ -27,6 +27,18 @@ class Station < ActiveRecord::Base
     Station.all.where(dock_count: fewest_bikes)
   end
 
+  def self.oldest_station
+    order(:installation_date).first
+  end
+
+  def self.most_recently_installed_station
+    order(:installation_date).last
+  end
+
+  def self.average_bikes_per_station
+    average(:dock_count)
+  end
+
   def self.most_bikes
     maximum("dock_count")
   end

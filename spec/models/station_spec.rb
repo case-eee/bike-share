@@ -67,7 +67,77 @@ describe "Station" do
       expect(Station.find(1).city_id).to eq(second_city.id)
     end
   end
-  describe "Iteration3 methods" do
+
+  describe "Iteration 3 methods" do
+    describe "oldest_station" do
+      it "Returns nil if database is empty" do
+        expect(Station.oldest_station).to eq(nil)
+      end
+      it "Returns oldest station saved in database" do
+        Station.write(name: "ThisStation",
+                      lat: 1.1,
+                      long: 1.2,
+                      dock_count: 1,
+                      city_name: "TestCityName1",
+                      installation_date: "2011-11-11")
+        Station.write(name: "ThisOtherStation",
+                      lat: 1.4,
+                      long: 7,
+                      dock_count: 1,
+                      city_name: "TestCityName1",
+                      installation_date: "2012-11-11")
+        oldest = Station.oldest_station
+
+        expect(oldest.name).to eq("ThisStation")
+      end
+
+    end
+
+    describe "most_recently_installed_station" do
+      it "Returns nil if database is empty" do
+        expect(Station.most_recently_installed_station).to eq(nil)
+      end
+      it "Returns newest station in database" do
+        Station.write(name: "ThisStation",
+                      lat: 1.1,
+                      long: 1.2,
+                      dock_count: 1,
+                      city_name: "TestCityName1",
+                      installation_date: "2011-11-11")
+        Station.write(name: "ThisOtherStation",
+                      lat: 1.4,
+                      long: 7,
+                      dock_count: 1,
+                      city_name: "TestCityName1",
+                      installation_date: "2012-11-11")
+        newest = Station.most_recently_installed_station
+
+        expect(newest.name).to eq("ThisOtherStation")
+      end
+    end
+
+    describe "average_bikes_per_station" do
+      it "Returns nil if database is empty" do
+        expect(Station.average_bikes_per_station).to eq(nil)
+      end
+      it "Returns average dock_count of stations" do
+        Station.write(name: "ThisStation",
+                      lat: 1.1,
+                      long: 1.2,
+                      dock_count: 2,
+                      city_name: "TestCityName1",
+                      installation_date: "2011-11-11")
+        Station.write(name: "ThisOtherStation",
+                      lat: 1.4,
+                      long: 7,
+                      dock_count: 3,
+                      city_name: "TestCityName1",
+                      installation_date: "2012-11-11")
+        
+        expect(Station.average_bikes_per_station).to eq(2.5)
+      end 
+    end
+    
     describe "most_bikes method" do
       it "Returns nil when table has NO stations" do
         expect(Station.most_bikes).to eq(nil)
