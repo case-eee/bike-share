@@ -21,6 +21,7 @@ class Station < ActiveRecord::Base
   end
 
   def self.find_by_most_bikes
+    return [] if most_bikes.nil?
     where("dock_count = #{most_bikes}")
   end
 

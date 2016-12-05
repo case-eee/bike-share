@@ -68,34 +68,102 @@ describe "Station" do
     end
   end
   describe "Iteration3 methods" do
-    it "It returns correct value when table has 1 station" do
-      test_station1 = Station.write(name: "TestStation1",
-                                    lat: 1.1,
-                                    long: 1.2,
-                                    dock_count: 1,
-                                    city_name: "TestCityName1",
-                                    installation_date: "2011-11-11"
-                                    )
+    describe "most_bikes method" do
+      it "Returns nil when table has NO stations" do
+        expect(Station.most_bikes).to eq(nil)
+      end
+      it "Returns correct value when table has 1 station" do
+        test_station1 = Station.write(name: "TestStation1",
+                                      lat: 1.1,
+                                      long: 1.2,
+                                      dock_count: 1,
+                                      city_name: "TestCityName1",
+                                      installation_date: "2011-11-11"
+                                      )
 
-      expect(Station.most_bikes).to eq(test_station1.dock_count)
+        expect(Station.most_bikes).to eq(test_station1.dock_count)
+      end
+      it "Returns correct value when table has more than stations" do
+        test_station1 = Station.write(name: "TestStation1",
+                                      lat: 1.1,
+                                      long: 1.2,
+                                      dock_count: 1,
+                                      city_name: "TestCityName1",
+                                      installation_date: "2011-11-11"
+                                      )
+        test_station2 = Station.write(name: "TestStation2",
+                                      lat: 2.1,
+                                      long: 2.2,
+                                      dock_count: 2,
+                                      city_name: "TestCityName2",
+                                      installation_date: "2012-12-22"
+                                      )
+        
+        expect(Station.most_bikes).to eq(test_station2.dock_count)
+      end
     end
-    it "It returns correct value when table has more than stations" do
-      test_station1 = Station.write(name: "TestStation1",
-                                    lat: 1.1,
-                                    long: 1.2,
-                                    dock_count: 1,
-                                    city_name: "TestCityName1",
-                                    installation_date: "2011-11-11"
-                                    )
-      test_station2 = Station.write(name: "TestStation2",
-                                    lat: 2.1,
-                                    long: 2.2,
-                                    dock_count: 2,
-                                    city_name: "TestCityName2",
-                                    installation_date: "2012-12-22"
-                                    )
-      
-      expect(Station.most_bikes).to eq(test_station2.dock_count)
+    describe "find_by_most_bikes method" do
+      it "Returns empty list value when table has NO stations" do
+        expect(Station.find_by_most_bikes.count).to eq(0)
+        expect(Station.find_by_most_bikes).to eq([])
+      end
+      it "Returns correct row when table has 1 station" do
+        test_station1 = Station.write(name: "TestStation1",
+                                      lat: 1.1,
+                                      long: 1.2,
+                                      dock_count: 1,
+                                      city_name: "TestCityName1",
+                                      installation_date: "2011-11-11"
+                                      )
+
+        expect(Station.find_by_most_bikes.count).to eq(1)
+        expect(Station.find_by_most_bikes.first).to eq(test_station1)
+      end
+      it "Returns list with one station when table has more than stations AND only one station's dock_count matches most_bikes value" do
+        test_station1 = Station.write(name: "TestStation1",
+                                      lat: 1.1,
+                                      long: 1.2,
+                                      dock_count: 1,
+                                      city_name: "TestCityName1",
+                                      installation_date: "2011-11-11"
+                                      )
+        test_station2 = Station.write(name: "TestStation2",
+                                      lat: 2.1,
+                                      long: 2.2,
+                                      dock_count: 2,
+                                      city_name: "TestCityName2",
+                                      installation_date: "2012-12-22"
+                                      )
+        
+        expect(Station.find_by_most_bikes.count).to eq(1)
+        expect(Station.find_by_most_bikes.first).to eq(test_station2)
+      end
+      it "Returns list when table has more than stations AND more than one station's dock_count matches most_bikes value" do
+        test_station1 = Station.write(name: "TestStation1",
+                                      lat: 1.1,
+                                      long: 1.2,
+                                      dock_count: 1,
+                                      city_name: "TestCityName1",
+                                      installation_date: "2011-11-11"
+                                      )
+        test_station2 = Station.write(name: "TestStation2",
+                                      lat: 2.1,
+                                      long: 2.2,
+                                      dock_count: 10,
+                                      city_name: "TestCityName2",
+                                      installation_date: "2012-12-22"
+                                      )
+        test_station3 = Station.write(name: "TestStation3",
+                                      lat: 2.1,
+                                      long: 2.2,
+                                      dock_count: 10,
+                                      city_name: "TestCityName3",
+                                      installation_date: "2013-12-23"
+                                      )
+        expect(Station.find_by_most_bikes.count).to eq(2)
+        expect(Station.find_by_most_bikes.first).to eq(test_station2)
+        expect(Station.find_by_most_bikes.last).to eq(test_station3)
+      end
     end
   end
 end
