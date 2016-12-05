@@ -1,3 +1,5 @@
+require_relative '../spec_helper'
+
 describe "When a user visits /trips" do
   it "they see all the stations" do
     visit '/trips'
