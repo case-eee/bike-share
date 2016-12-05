@@ -3,7 +3,6 @@ class Station < ActiveRecord::Base
   validates :name, :dock_count, :city_id, :installation_date, presence: true
 
   def self.write(station_details)
-    puts station_details[:installation_date]
     self.find_or_create_by(name: station_details[:name],
                           lat: station_details[:lat],
                           long: station_details[:long],
@@ -18,11 +17,11 @@ class Station < ActiveRecord::Base
   end
 
   def self.oldest_station
-    order(:installation_date).last
+    order(:installation_date).first
   end
 
   def self.most_recently_installed_station
-    order(:installation_date).first
+    order(:installation_date).last
   end
 
   def self.average_bikes_per_station
