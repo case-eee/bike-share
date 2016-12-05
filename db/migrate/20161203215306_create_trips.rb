@@ -4,7 +4,7 @@ class CreateTrips < ActiveRecord::Migration[5.0]
       t.float     :duration
       t.integer   :start_station_id
       t.integer   :end_station_id
-      t.datetime  :start_date    
+      t.datetime  :start_date
       t.datetime  :end_date
       t.integer   :bike_id
       t.text      :subscription_type
@@ -14,6 +14,3 @@ class CreateTrips < ActiveRecord::Migration[5.0]
     end
   end
 end
-
-
-
