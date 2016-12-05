@@ -2,13 +2,13 @@
 <h1>average bikes available / station : <%= Station.average_bikes_per_station.round(2) %></h1>
 <h1>most bikes available at a station: <%= Station.max_bikes %></h1>
 <h1>fewest bikes available at a station: <%= Station.min_bikes %></h1>
-<h1>station(s) with the most bikes available:
+<h1>station(s) with most available bikes:
   <% Station.station_with_max_bikes.each do |station| %>
     <%= station.name %>
     <span> </span>
   <% end %>
 </h1>
-<h1>station(s) with the fewest bikes available:
+<h1>station(s) with fewest available bikes:
   <% Station.station_with_min_bikes.each do |station| %>
     <%= station.name %>
     <span> </span>

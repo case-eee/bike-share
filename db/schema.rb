@@ -35,7 +35,7 @@ ActiveRecord::Schema.define(version: 20161204060452) do
     t.integer  "start_station_id"
     t.integer  "end_station_id"
     t.datetime "start_date"
-    t.string   "end_date"
+    t.datetime "end_date"
     t.integer  "bike_id"
     t.text     "subscription_type"
     t.integer  "zip_code"
