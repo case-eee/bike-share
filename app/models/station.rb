@@ -16,6 +16,17 @@ class Station < ActiveRecord::Base
     City.write(name: city_name).id
   end
 
+  def self.oldest_station
+    order(:installation_date).first
+  end
+
+  def self.most_recently_installed_station
+    order(:installation_date).last
+  end
+
+  def self.average_bikes_per_station
+    average(:dock_count)
+
   def self.most_bikes
     maximum("dock_count")
   end
@@ -23,6 +34,7 @@ class Station < ActiveRecord::Base
   def self.find_by_most_bikes
     return [] if most_bikes.nil?
     where("dock_count = #{most_bikes}")
+
   end
 
 end
