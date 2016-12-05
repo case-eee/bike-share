@@ -134,8 +134,10 @@ describe "Station" do
                       city_name: "TestCityName1",
                       installation_date: "2012-11-11")
         
-        expect(Station.average_bikes_per_station).to eq(2.5) 
-
+        expect(Station.average_bikes_per_station).to eq(2.5)
+      end 
+    end
+    
     describe "most_bikes method" do
       it "Returns nil when table has NO stations" do
         expect(Station.most_bikes).to eq(nil)
