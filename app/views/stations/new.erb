@@ -1,7 +1,8 @@
+<h1>Create a New Station</h1>
 <form action="/stations" method="POST">
-  <input type="text" name="station[name]">
-  <input type="integer" name="station[dock_count]">
-  <input type="integer" name="station[city_id]">
-  <input type="date" name="station[installation_date]" value="YYYY/MM/DD">
+  <input class="edit_or_new_form" type="text" name="station[name]" placeholder="name"><br>
+  <input class="edit_or_new_form" type="integer" name="station[dock_count]" placeholder="dock_count"><br>
+  <input class="edit_or_new_form" type="integer" name="station[city_id]" placeholder="city_id"><br>
+  <input class="edit_or_new_form" type="date" name="station[installation_date]"><br>
   <input type="submit" value="Create Station">
 </form>

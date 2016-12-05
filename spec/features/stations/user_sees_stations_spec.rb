@@ -21,8 +21,9 @@ describe "when a user visits /stations" do
     visit "/stations"
 
     expect(page).to have_content "hi35"
-    first('form:nth-of-type(2)').click_on "Delete Station"
-
+    within(".delete_station") do
+      click_on "Delete"
+    end
     expect(page).to have_current_path "/stations"
     expect(page).not_to have_content "hi35"
   end

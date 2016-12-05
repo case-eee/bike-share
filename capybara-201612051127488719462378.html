@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Bike-Share</title>
+    <link href="/css/bootstrap.min.css" rel="stylesheet" media="screen">
+    <link href="https://fonts.googleapis.com/css?family=Bungee|Raleway" rel="stylesheet">
+    <link rel="stylesheet" href="/css/font-awesome.min.css">
+    <link href="/css/main.css" rel="stylesheet">
+  </head>
+  <body>
+    <nav class="navbar navbar-default">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <a class="navbar-brand" href="/station-dashboard">Bikes!</a>
+          <a class="navbar-brand" href="/stations">Stations!</a>
+          <a class="navbar-brand" href="/trips">Trips!</a>
+          <a class="navbar-brand" href="/weather">Weather!</a>
+        </div>      
+        <div class="navbar-right">
+          <i class="fa fa-bicycle fa-4x fa-flip-horizontal <!--fa-spinner fa-spin-->"></i>
+        </div>
+      </div>
+    </nav>
+    <div class="titled">
+  <h1>All Trips</h1>
+  <form action="/trips/new" method="GET">
+    <input type="submit" value="Create"/>
+  </form>
+</div>
+
+  <div class="station_object col-md-4">
+    <h1>start_date : 2000-02-11 14:44:00 UTC</h1>
+    <p>start_station_id : 14242</p>
+    <p>end_station_id : 13233</p>
+    <div class="button_row">
+      <form class="col-md-4" action="/trips/23" method="POST">
+        <input type="hidden" name="_method" value="DELETE">
+        <input type="submit" value="Delete">
+      </form>
+      <a class="col-md-4" href="/trips/23/edit">Edit</a>
+      <a class="col-md-4" href="/trips/23">See</a>
+    </div>
+  </div>
+  <div class="station_object col-md-4">
+    <h1>start_date : 2012-03-11 14:44:00 UTC</h1>
+    <p>start_station_id : 14242</p>
+    <p>end_station_id : 13233</p>
+    <div class="button_row">
+      <form class="col-md-4" action="/trips/4" method="POST">
+        <input type="hidden" name="_method" value="DELETE">
+        <input type="submit" value="Delete">
+      </form>
+      <a class="col-md-4" href="/trips/4/edit">Edit</a>
+      <a class="col-md-4" href="/trips/4">See</a>
+    </div>
+  </div>
+  <div class="station_object col-md-4">
+    <h1>start_date : 2013-07-11 14:44:00 UTC</h1>
+    <p>start_station_id : 14242</p>
+    <p>end_station_id : 13233</p>
+    <div class="button_row">
+      <form class="col-md-4" action="/trips/19" method="POST">
+        <input type="hidden" name="_method" value="DELETE">
+        <input type="submit" value="Delete">
+      </form>
+      <a class="col-md-4" href="/trips/19/edit">Edit</a>
+      <a class="col-md-4" href="/trips/19">See</a>
+    </div>
+  </div>
+  <div class="station_object col-md-4">
+    <h1>start_date : 2014-01-11 14:44:00 UTC</h1>
+    <p>start_station_id : 14242</p>
+    <p>end_station_id : 13233</p>
+    <div class="button_row">
+      <form class="col-md-4" action="/trips/20" method="POST">
+        <input type="hidden" name="_method" value="DELETE">
+        <input type="submit" value="Delete">
+      </form>
+      <a class="col-md-4" href="/trips/20/edit">Edit</a>
+      <a class="col-md-4" href="/trips/20">See</a>
+    </div>
+  </div>
+  <div class="station_object col-md-4">
+    <h1>start_date : 2014-02-11 14:44:00 UTC</h1>
+    <p>start_station_id : 14242</p>
+    <p>end_station_id : 13233</p>
+    <div class="button_row">
+      <form class="col-md-4" action="/trips/16" method="POST">
+        <input type="hidden" name="_method" value="DELETE">
+        <input type="submit" value="Delete">
+      </form>
+      <a class="col-md-4" href="/trips/16/edit">Edit</a>
+      <a class="col-md-4" href="/trips/16">See</a>
+    </div>
+  </div>
+  <div class="station_object col-md-4">
+    <h1>start_date : 2014-02-11 14:44:00 UTC</h1>
+    <p>start_station_id : 14242</p>
+    <p>end_station_id : 13233</p>
+    <div class="button_row">
+      <form class="col-md-4" action="/trips/28" method="POST">
+        <input type="hidden" name="_method" value="DELETE">
+        <input type="submit" value="Delete">
+      </form>
+      <a class="col-md-4" href="/trips/28/edit">Edit</a>
+      <a class="col-md-4" href="/trips/28">See</a>
+    </div>
+  </div>
+  <div class="station_object col-md-4">
+    <h1>start_date : 2014-03-11 14:44:00 UTC</h1>
+    <p>start_station_id : 14242</p>
+    <p>end_station_id : 13233</p>
+    <div class="button_row">
+      <form class="col-md-4" action="/trips/10" method="POST">
+        <input type="hidden" name="_method" value="DELETE">
+        <input type="submit" value="Delete">
+      </form>
+      <a class="col-md-4" href="/trips/10/edit">Edit</a>
+      <a class="col-md-4" href="/trips/10">See</a>
+    </div>
+  </div>
+  <div class="station_object col-md-4">
+    <h1>start_date : 2014-03-11 14:44:00 UTC</h1>
+    <p>start_station_id : 14242</p>
+    <p>end_station_id : 13233</p>
+    <div class="button_row">
+      <form class="col-md-4" action="/trips/11" method="POST">
+        <input type="hidden" name="_method" value="DELETE">
+        <input type="submit" value="Delete">
+      </form>
+      <a class="col-md-4" href="/trips/11/edit">Edit</a>
+      <a class="col-md-4" href="/trips/11">See</a>
+    </div>
+  </div>
+  <div class="station_object col-md-4">
+    <h1>start_date : 2014-03-11 14:44:00 UTC</h1>
+    <p>start_station_id : 14242</p>
+    <p>end_station_id : 13233</p>
+    <div class="button_row">
+      <form class="col-md-4" action="/trips/13" method="POST">
+        <input type="hidden" name="_method" value="DELETE">
+        <input type="submit" value="Delete">
+      </form>
+      <a class="col-md-4" href="/trips/13/edit">Edit</a>
+      <a class="col-md-4" href="/trips/13">See</a>
+    </div>
+  </div>
+  <div class="station_object col-md-4">
+    <h1>start_date : 2014-03-11 14:44:00 UTC</h1>
+    <p>start_station_id : 14242</p>
+    <p>end_station_id : 13233</p>
+    <div class="button_row">
+      <form class="col-md-4" action="/trips/14" method="POST">
+        <input type="hidden" name="_method" value="DELETE">
+        <input type="submit" value="Delete">
+      </form>
+      <a class="col-md-4" href="/trips/14/edit">Edit</a>
+      <a class="col-md-4" href="/trips/14">See</a>
+    </div>
+  </div>
+  <div class="station_object col-md-4">
+    <h1>start_date : 2014-03-11 14:44:00 UTC</h1>
+    <p>start_station_id : 14242</p>
+    <p>end_station_id : 13233</p>
+    <div class="button_row">
+      <form class="col-md-4" action="/trips/15" method="POST">
+        <input type="hidden" name="_method" value="DELETE">
+        <input type="submit" value="Delete">
+      </form>
+      <a class="col-md-4" href="/trips/15/edit">Edit</a>
+      <a class="col-md-4" href="/trips/15">See</a>
+    </div>
+  </div>
+  <div class="station_object col-md-4">
+    <h1>start_date : 2014-03-11 14:44:00 UTC</h1>
+    <p>start_station_id : 14242</p>
+    <p>end_station_id : 13233</p>
+    <div class="button_row">
+      <form class="col-md-4" action="/trips/17" method="POST">
+        <input type="hidden" name="_method" value="DELETE">
+        <input type="submit" value="Delete">
+      </form>
+      <a class="col-md-4" href="/trips/17/edit">Edit</a>
+      <a class="col-md-4" href="/trips/17">See</a>
+    </div>
+  </div>
+  <div class="station_object col-md-4">
+    <h1>start_date : 2014-03-11 14:44:00 UTC</h1>
+    <p>start_station_id : 14242</p>
+    <p>end_station_id : 13233</p>
+    <div class="button_row">
+      <form class="col-md-4" action="/trips/18" method="POST">
+        <input type="hidden" name="_method" value="DELETE">
+        <input type="submit" value="Delete">
+      </form>
+      <a class="col-md-4" href="/trips/18/edit">Edit</a>
+      <a class="col-md-4" href="/trips/18">See</a>
+    </div>
+  </div>
+  <div class="station_object col-md-4">
+    <h1>start_date : 2014-03-11 14:44:00 UTC</h1>
+    <p>start_station_id : 14242</p>
+    <p>end_station_id : 13233</p>
+    <div class="button_row">
+      <form class="col-md-4" action="/trips/29" method="POST">
+        <input type="hidden" name="_method" value="DELETE">
+        <input type="submit" value="Delete">
+      </form>
+      <a class="col-md-4" href="/trips/29/edit">Edit</a>
+      <a class="col-md-4" href="/trips/29">See</a>
+    </div>
+  </div>
+  <div class="station_object col-md-4">
+    <h1>start_date : 2014-03-11 14:44:00 UTC</h1>
+    <p>start_station_id : 14242</p>
+    <p>end_station_id : 13233</p>
+    <div class="button_row">
+      <form class="col-md-4" action="/trips/2" method="POST">
+        <input type="hidden" name="_method" value="DELETE">
+        <input type="submit" value="Delete">
+      </form>
+      <a class="col-md-4" href="/trips/2/edit">Edit</a>
+      <a class="col-md-4" href="/trips/2">See</a>
+    </div>
+  </div>
+  <div class="station_object col-md-4">
+    <h1>start_date : 2014-03-11 14:44:00 UTC</h1>
+    <p>start_station_id : 14242</p>
+    <p>end_station_id : 13233</p>
+    <div class="button_row">
+      <form class="col-md-4" action="/trips/3" method="POST">
+        <input type="hidden" name="_method" value="DELETE">
+        <input type="submit" value="Delete">
+      </form>
+      <a class="col-md-4" href="/trips/3/edit">Edit</a>
+      <a class="col-md-4" href="/trips/3">See</a>
+    </div>
+  </div>
+  <div class="station_object col-md-4">
+    <h1>start_date : 2014-03-11 14:44:00 UTC</h1>
+    <p>start_station_id : 14242</p>
+    <p>end_station_id : 13233</p>
+    <div class="button_row">
+      <form class="col-md-4" action="/trips/5" method="POST">
+        <input type="hidden" name="_method" value="DELETE">
+        <input type="submit" value="Delete">
+      </form>
+      <a class="col-md-4" href="/trips/5/edit">Edit</a>
+      <a class="col-md-4" href="/trips/5">See</a>
+    </div>
+  </div>
+  <div class="station_object col-md-4">
+    <h1>start_date : 2014-03-11 14:44:00 UTC</h1>
+    <p>start_station_id : 14242</p>
+    <p>end_station_id : 13233</p>
+    <div class="button_row">
+      <form class="col-md-4" action="/trips/8" method="POST">
+        <input type="hidden" name="_method" value="DELETE">
+        <input type="submit" value="Delete">
+      </form>
+      <a class="col-md-4" href="/trips/8/edit">Edit</a>
+      <a class="col-md-4" href="/trips/8">See</a>
+    </div>
+  </div>
+  <div class="station_object col-md-4">
+    <h1>start_date : 2014-03-11 14:44:00 UTC</h1>
+    <p>start_station_id : 14242</p>
+    <p>end_station_id : 13233</p>
+    <div class="button_row">
+      <form class="col-md-4" action="/trips/9" method="POST">
+        <input type="hidden" name="_method" value="DELETE">
+        <input type="submit" value="Delete">
+      </form>
+      <a class="col-md-4" href="/trips/9/edit">Edit</a>
+      <a class="col-md-4" href="/trips/9">See</a>
+    </div>
+  </div>
+  <div class="station_object col-md-4">
+    <h1>start_date : 2014-03-11 14:44:00 UTC</h1>
+    <p>start_station_id : 14242</p>
+    <p>end_station_id : 13233</p>
+    <div class="button_row">
+      <form class="col-md-4" action="/trips/24" method="POST">
+        <input type="hidden" name="_method" value="DELETE">
+        <input type="submit" value="Delete">
+      </form>
+      <a class="col-md-4" href="/trips/24/edit">Edit</a>
+      <a class="col-md-4" href="/trips/24">See</a>
+    </div>
+  </div>
+  <div class="station_object col-md-4">
+    <h1>start_date : 2014-03-11 14:44:00 UTC</h1>
+    <p>start_station_id : 14242</p>
+    <p>end_station_id : 13233</p>
+    <div class="button_row">
+      <form class="col-md-4" action="/trips/26" method="POST">
+        <input type="hidden" name="_method" value="DELETE">
+        <input type="submit" value="Delete">
+      </form>
+      <a class="col-md-4" href="/trips/26/edit">Edit</a>
+      <a class="col-md-4" href="/trips/26">See</a>
+    </div>
+  </div>
+  <div class="station_object col-md-4">
+    <h1>start_date : 2014-03-11 14:44:00 UTC</h1>
+    <p>start_station_id : 14242</p>
+    <p>end_station_id : 13233</p>
+    <div class="button_row">
+      <form class="col-md-4" action="/trips/27" method="POST">
+        <input type="hidden" name="_method" value="DELETE">
+        <input type="submit" value="Delete">
+      </form>
+      <a class="col-md-4" href="/trips/27/edit">Edit</a>
+      <a class="col-md-4" href="/trips/27">See</a>
+    </div>
+  </div>
+  <div class="station_object col-md-4">
+    <h1>start_date : 2014-03-11 14:44:00 UTC</h1>
+    <p>start_station_id : 14242</p>
+    <p>end_station_id : 13233</p>
+    <div class="button_row">
+      <form class="col-md-4" action="/trips/1" method="POST">
+        <input type="hidden" name="_method" value="DELETE">
+        <input type="submit" value="Delete">
+      </form>
+      <a class="col-md-4" href="/trips/1/edit">Edit</a>
+      <a class="col-md-4" href="/trips/1">See</a>
+    </div>
+  </div>
+  <div class="station_object col-md-4">
+    <h1>start_date : 2014-03-11 14:44:00 UTC</h1>
+    <p>start_station_id : 14242</p>
+    <p>end_station_id : 13233</p>
+    <div class="button_row">
+      <form class="col-md-4" action="/trips/21" method="POST">
+        <input type="hidden" name="_method" value="DELETE">
+        <input type="submit" value="Delete">
+      </form>
+      <a class="col-md-4" href="/trips/21/edit">Edit</a>
+      <a class="col-md-4" href="/trips/21">See</a>
+    </div>
+  </div>
+  <div class="station_object col-md-4">
+    <h1>start_date : 2014-03-11 14:44:00 UTC</h1>
+    <p>start_station_id : 14242</p>
+    <p>end_station_id : 13233</p>
+    <div class="button_row">
+      <form class="col-md-4" action="/trips/22" method="POST">
+        <input type="hidden" name="_method" value="DELETE">
+        <input type="submit" value="Delete">
+      </form>
+      <a class="col-md-4" href="/trips/22/edit">Edit</a>
+      <a class="col-md-4" href="/trips/22">See</a>
+    </div>
+  </div>
+  <div class="station_object col-md-4">
+    <h1>start_date : 2014-04-11 14:44:00 UTC</h1>
+    <p>start_station_id : 14242</p>
+    <p>end_station_id : 13233</p>
+    <div class="button_row">
+      <form class="col-md-4" action="/trips/12" method="POST">
+        <input type="hidden" name="_method" value="DELETE">
+        <input type="submit" value="Delete">
+      </form>
+      <a class="col-md-4" href="/trips/12/edit">Edit</a>
+      <a class="col-md-4" href="/trips/12">See</a>
+    </div>
+  </div>
+  <div class="station_object col-md-4">
+    <h1>start_date : 2014-07-11 14:44:00 UTC</h1>
+    <p>start_station_id : 14242</p>
+    <p>end_station_id : 13233</p>
+    <div class="button_row">
+      <form class="col-md-4" action="/trips/25" method="POST">
+        <input type="hidden" name="_method" value="DELETE">
+        <input type="submit" value="Delete">
+      </form>
+      <a class="col-md-4" href="/trips/25/edit">Edit</a>
+      <a class="col-md-4" href="/trips/25">See</a>
+    </div>
+  </div>
+  <div class="station_object col-md-4">
+    <h1>start_date : 2014-09-11 14:44:00 UTC</h1>
+    <p>start_station_id : 14242</p>
+    <p>end_station_id : 13233</p>
+    <div class="button_row">
+      <form class="col-md-4" action="/trips/7" method="POST">
+        <input type="hidden" name="_method" value="DELETE">
+        <input type="submit" value="Delete">
+      </form>
+      <a class="col-md-4" href="/trips/7/edit">Edit</a>
+      <a class="col-md-4" href="/trips/7">See</a>
+    </div>
+  </div>
+  <div class="station_object col-md-4">
+    <h1>start_date : 2015-03-11 14:44:00 UTC</h1>
+    <p>start_station_id : 14242</p>
+    <p>end_station_id : 89998</p>
+    <div class="button_row">
+      <form class="col-md-4" action="/trips/6" method="POST">
+        <input type="hidden" name="_method" value="DELETE">
+        <input type="submit" value="Delete">
+      </form>
+      <a class="col-md-4" href="/trips/6/edit">Edit</a>
+      <a class="col-md-4" href="/trips/6">See</a>
+    </div>
+  </div>
+
+  <a href="/trips?number= -1"> backward </a>
+
+<a href="/trips?number= 1"> forward </a>
+
+
+
+
+
+
+    <script src="http://code.jquery.com/jquery.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
+  </body>
+</html>

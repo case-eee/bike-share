@@ -48,7 +48,7 @@ describe "when a user visits /station-dashboard" do
 
     visit "/station-dashboard"
 
-    expect(page).to have_content("station(s) with the most bikes available: david nick")
+    expect(page).to have_content("station(s) with most available bikes: david nick")
   end
 
   it "they see stations where the fewest bikes are available" do
@@ -58,7 +58,7 @@ describe "when a user visits /station-dashboard" do
 
     visit "/station-dashboard"
 
-    expect(page).to have_content("station(s) with the fewest bikes available: eric david")
+    expect(page).to have_content("station(s) with fewest available bikes: eric david")
   end
 
   it "they see newest station(s)" do

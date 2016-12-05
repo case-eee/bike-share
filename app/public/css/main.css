@@ -1,0 +1,59 @@
+body {
+  background: lightblue;
+  font-family: 'Raleway', sans-serif;
+  text-align: center;
+}
+
+.titled {
+  text-align: center;
+}
+
+.titled > form > input {
+  background:white;
+  border:none;
+  border-radius: 10px;
+}
+
+h1 {
+  font-family: 'Bungee', cursive;
+}
+
+.button_row {
+  font-family: 'Bungee', cursive;
+  font-weight:900;
+}
+
+input {
+  background:white;
+  text-align: center;
+}
+
+a {
+  border:none;
+  background:none;
+  color:gray;
+}
+
+i {
+  color:lightblue;
+}
+
+.button_row > form > input {
+  border:none;
+  background:none;
+  color:gray;
+  padding:0px;
+}
+
+.station_object {
+  background:radial-gradient(ellipse at center, #ffffff 0%,#add8e6 55%);;
+  padding:10px;
+  border-radius: 50%;
+  text-align: left;
+}
+
+.edit_or_new_form {
+  margin:10px;
+  border-radius:10px;
+  border: 1px solid lightgray;
+}

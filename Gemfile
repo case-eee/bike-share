@@ -16,4 +16,5 @@ group :development, :test do
   gem 'database_cleaner'
   gem 'pry'
   gem 'smarter_csv'
+  gem 'font-awesome-less'
 end

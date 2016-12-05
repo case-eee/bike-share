@@ -37,15 +37,14 @@ describe "when a user visits /trips" do
     Trip.create(duration: 67, start_station_id: 14242, end_station_id: 13233, start_date: "11-3-2014 14:44", end_date: "11-3-2014 14:55", bike_id: 23, subscription_type: "Subcriber", zip_code: 1029)
     Trip.create(duration: 67, start_station_id: 14242, end_station_id: 13233, start_date: "11-2-2014 14:44", end_date: "11-2-2014 14:55", bike_id: 23, subscription_type: "Subcriber", zip_code: 1029)
     Trip.create(duration: 67, start_station_id: 14242, end_station_id: 13233, start_date: "11-3-2014 14:44", end_date: "11-3-2014 14:55", bike_id: 23, subscription_type: "Subcriber", zip_code: 1029)
-    Trip.create(duration: 67, start_station_id: 14242, end_station_id: 13233, start_date: "11-3-2014 14:44", end_date: "11-3-2014 14:55", bike_id: 23, subscription_type: "Subcriber", zip_code: 1029)
+    Trip.create(duration: 67, start_station_id: 14242, end_station_id: 12222, start_date: "11-3-2014 14:44", end_date: "11-3-2014 14:55", bike_id: 23, subscription_type: "Subcriber", zip_code: 1029)
     Trip.create(duration: 67, start_station_id: 14242, end_station_id: 45554, start_date: "11-5-1960 14:44", end_date: "11-5-2014 14:55", bike_id: 23, subscription_type: "Subcriber", zip_code: 1029)
     Trip.create(duration: 67, start_station_id: 14242, end_station_id: 13233, start_date: "11-3-1957 14:44", end_date: "11-3-2014 14:55", bike_id: 23, subscription_type: "Subcriber", zip_code: 1029)
     Trip.create(duration: 67, start_station_id: 14242, end_station_id: 67776, start_date: "01-8-1950 14:44", end_date: "11-3-2014 14:55", bike_id: 23, subscription_type: "Subcriber", zip_code: 1029)
     visit "/trips"
-
     expect(page).to have_content(89998)
-    expect(page).to have_content(45554)
-    expect(page).not_to have_content(13233)
+    expect(page).to have_content(12222)
+    expect(page).not_to have_content(45554)
 
   end
 
@@ -68,11 +67,12 @@ describe "when a user visits /trips" do
 
   it "they can delete an existing trip" do
     Trip.create(duration: 67, start_station_id: 33333, end_station_id: 67776, start_date: "01-8-1950 14:44", end_date: "11-3-2014 14:55", bike_id: 23, subscription_type: "Subcriber", zip_code: 1029)
-    Trip.create(duration: 67, start_station_id: 32222, end_station_id: 67776, start_date: "01-8-1950 14:44", end_date: "11-3-2014 14:55", bike_id: 23, subscription_type: "Subcriber", zip_code: 1029)
     visit "/trips"
 
     expect(page).to have_content 33333
-    first('form:nth-of-type(2)').click_on "Delete Trip"
+    within(".delete_trip") do
+      click_on "Delete"
+    end
 
     expect(page).to have_current_path "/trips"
     expect(page).not_to have_content 33333
