@@ -8,9 +8,12 @@
   <h2><%= trip.start_date %></h2>
   <h2><%= trip.start_station_id %></h2>
   <h2><%= trip.end_station_id %></h2>
-  <a href="/trips/<%= trip.id %>">See Trip</a>
   <form action="/trips/<%= trip.id %>" method="POST">
     <input type="hidden" name="_method" value="DELETE">
     <input type="submit" value="Delete Trip">
   </form>
+  <a href="/trips/<%= trip.id %>/edit">Edit Trip</a>
+  <a href="/trips/<%= trip.id %>">See Trip</a>
 <% end %>
+<a href="/trips/page_backward">Page Backward</a>
+<a href="/trips/page_forward">Page Forward</a>

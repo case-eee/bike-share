@@ -7,7 +7,7 @@ describe "when a user visits /trips" do
     expect(page).to have_content "All Trips"
   end
 
-  it "they see the trips organized by date" do
+  it "they see the 30 per page trips organized by date" do
     Trip.create(duration: 67, start_station_id: 14242, end_station_id: 13233, start_date: "11-3-2014 14:44", end_date: "11-3-2014 14:55", bike_id: 23, subscription_type: "Subcriber", zip_code: 1029)
     Trip.create(duration: 67, start_station_id: 14242, end_station_id: 13233, start_date: "11-3-2014 14:44", end_date: "11-3-2014 14:55", bike_id: 23, subscription_type: "Subcriber", zip_code: 1029)
     Trip.create(duration: 67, start_station_id: 14242, end_station_id: 13233, start_date: "11-3-2014 14:44", end_date: "11-3-2014 14:55", bike_id: 23, subscription_type: "Subcriber", zip_code: 1029)
@@ -42,10 +42,11 @@ describe "when a user visits /trips" do
     Trip.create(duration: 67, start_station_id: 14242, end_station_id: 13233, start_date: "11-3-1957 14:44", end_date: "11-3-2014 14:55", bike_id: 23, subscription_type: "Subcriber", zip_code: 1029)
     Trip.create(duration: 67, start_station_id: 14242, end_station_id: 67776, start_date: "01-8-1950 14:44", end_date: "11-3-2014 14:55", bike_id: 23, subscription_type: "Subcriber", zip_code: 1029)
     visit "/trips"
-    # save_and_open_page
+
     expect(page).to have_content(89998)
     expect(page).to have_content(45554)
-    expect(page).to have_content(13233)
+    expect(page).not_to have_content(13233)
+
   end
 
   it "they can click on a create trip button" do
@@ -76,4 +77,26 @@ describe "when a user visits /trips" do
     expect(page).to have_current_path "/trips"
     expect(page).not_to have_content 33333
   end
+
+  it "they can update an existing trip" do
+    trip = Trip.create(duration: 67, start_station_id: 32222, end_station_id: 67776, start_date: "01-8-1950 14:44", end_date: "11-3-2014 14:55", bike_id: 23, subscription_type: "Subcriber", zip_code: 1029)
+    visit "/trips"
+
+    expect(page).to have_content 67776
+    find("a[href='/trips/#{trip.id}/edit']").click
+
+    expect(page).to have_current_path "/trips/#{trip.id}/edit"
+    fill_in "trip[duration]", :with => 5
+    fill_in "trip[start_station_id]", :with => 4
+    fill_in "trip[end_station_id]", :with => 2738
+    fill_in "trip[start_date]", :with => "11-7-1200 14:44"
+    fill_in "trip[end_date]", :with => "11-7-2014 16:44"
+    fill_in "trip[bike_id]", :with => 2
+    fill_in "trip[subscription_type]", :with => "baller"
+    fill_in "trip[zip_code]", :with => 90210
+    click_on "Update Trip"
+    expect(page).to have_content 2738
+    expect(page).to have_current_path "/trips"
+  end
+
 end
