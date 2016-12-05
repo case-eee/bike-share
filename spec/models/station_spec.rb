@@ -67,4 +67,35 @@ describe "Station" do
       expect(Station.find(1).city_id).to eq(second_city.id)
     end
   end
+  describe "Iteration3 methods" do
+    it "It returns correct value when table has 1 station" do
+      test_station1 = Station.write(name: "TestStation1",
+                                    lat: 1.1,
+                                    long: 1.2,
+                                    dock_count: 1,
+                                    city_name: "TestCityName1",
+                                    installation_date: "2011-11-11"
+                                    )
+
+      expect(Station.most_bikes).to eq(test_station1.dock_count)
+    end
+    it "It returns correct value when table has more than stations" do
+      test_station1 = Station.write(name: "TestStation1",
+                                    lat: 1.1,
+                                    long: 1.2,
+                                    dock_count: 1,
+                                    city_name: "TestCityName1",
+                                    installation_date: "2011-11-11"
+                                    )
+      test_station2 = Station.write(name: "TestStation2",
+                                    lat: 2.1,
+                                    long: 2.2,
+                                    dock_count: 2,
+                                    city_name: "TestCityName2",
+                                    installation_date: "2012-12-22"
+                                    )
+      
+      expect(Station.most_bikes).to eq(test_station2.dock_count)
+    end
+  end
 end
