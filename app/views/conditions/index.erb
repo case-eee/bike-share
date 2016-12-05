@@ -1,0 +1,18 @@
+<h1>Conditions</h1>
+
+  <% @conditions.each do |c|%>
+    <p> ID: <%= c.id %>,
+        Date: <%= c.date %>,
+        Max Temperature: <%= c.max_temperature_f%>,
+        Mean Temperature: <%= c.mean_temperature_f %>,
+        Min Temperature: <%= c.min_temperature_f %>,
+        Mean Humidity: <%= c.mean_humidity %>,
+        Mean Visibility (Miles): <%= c.mean_visibility_miles %>,
+        Mean Wind Speed (mph): <%= c.mean_wind_speed_mph%>,
+        Precipitation (inches): <%= c.precipitation_inches%>
+    </p>
+    <form action="/conditions/<%= c.id %>" method="post">
+      <input type="hidden" name="_method" value="DELETE">
+      <input type="submit" value="Delete"/>
+    </form>
+  <% end %>
