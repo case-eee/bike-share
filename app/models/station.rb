@@ -20,4 +20,8 @@ class Station < ActiveRecord::Base
     maximum("dock_count")
   end
 
+  def self.find_by_most_bikes
+    where("dock_count = #{most_bikes}")
+  end
+
 end
