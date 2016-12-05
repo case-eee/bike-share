@@ -26,6 +26,15 @@ class Station < ActiveRecord::Base
 
   def self.average_bikes_per_station
     average(:dock_count)
+
+  def self.most_bikes
+    maximum("dock_count")
+  end
+
+  def self.find_by_most_bikes
+    return [] if most_bikes.nil?
+    where("dock_count = #{most_bikes}")
+
   end
 
 end
