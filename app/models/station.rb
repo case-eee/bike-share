@@ -16,15 +16,13 @@ class Station < ActiveRecord::Base
     City.write(name: city_name).id
   end
 
-  def self.find_fewest_bikes
-    Station.all.map do |station|
-      station.dock_count
-    end.sort.first
+  def self.fewest_bikes
+    minimum(:dock_count)
   end
 
   def self.find_by_fewest_bikes
-    fewest_bikes = Station.find_fewest_bikes
-    Station.all.where(dock_count: fewest_bikes)
+    return [] if fewest_bikes.nil?
+    where("dock_count = #{fewest_bikes}")
   end
 
   def self.oldest_station
@@ -40,7 +38,7 @@ class Station < ActiveRecord::Base
   end
 
   def self.most_bikes
-    maximum("dock_count")
+    maximum(:dock_count)
   end
 
   def self.find_by_most_bikes
