@@ -16,4 +16,8 @@ class Station < ActiveRecord::Base
     City.write(name: city_name).id
   end
 
+  def self.most_bikes
+    maximum("dock_count")
+  end
+
 end
