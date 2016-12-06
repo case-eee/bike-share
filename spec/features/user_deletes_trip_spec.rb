@@ -1,7 +1,7 @@
 require_relative '../spec_helper'
 
 describe "When a user wants to delete a trip" do
-  it "they press the delete button from the index file" do
+  skip "they press the delete button from the index file" do
     trip = Trip.create(duration: 45,
                       start_date: "2011-3-6 12:00",
                       start_station_id: 1,
