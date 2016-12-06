@@ -7,3 +7,9 @@
 <p>Mean Visibility: <%= @condition.mean_visibility_miles %></p>
 <p>Max wind speed: <%= @condition.max_wind_speed_mph %></p>
 <p>Precipitation: <%= @condition.precipitation_inches %></p>
+<p><a href = "/conditions">Conditions Index page</a></p>
+<p><a href = "/conditions/<%= @condition.id %>/edit">Edit</a></p>
+<form action = "/conditions/<%= @condition.id %>" method = "POST">
+  <input type = "hidden" name = "_method" value = "DELETE" />
+  <input type = "submit" value = "Delete" />
+</form>

@@ -15,7 +15,7 @@
     </tr>
     <tr>
       <td><%= condition.id %></td>
-      <td><%= condition.date %></td>
+      <td><a href = "/conditions/<%= condition.id %>"><%= condition.date %></a></td>
       <td><%= condition.max_temperature_f %></td>
       <td><%= condition.mean_temperature_f %></td>
       <td><%= condition.min_temperature_f %></td>
