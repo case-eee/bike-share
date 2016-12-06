@@ -15,6 +15,10 @@ class BikeShareApp < Sinatra::Base
     redirect "/trips/#{ trip.id }"
   end
 
+  get '/trips-dashboard' do
+    erb :'/trips/dashboard'
+  end
+
   get '/trips/:id/edit' do
     @trip = Trip.find(params[:id])
     @subscription_type = Subscription.find(@trip.subscription_id)
