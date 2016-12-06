@@ -21,6 +21,7 @@ end
 
 #create_weathers
 SmarterCSV.process('db/csv/weather.csv').each do |row|
+  row[:date] = Date.strptime(row[:date], '%m/%d/%Y')
   Condition.create(row)
 end
 
