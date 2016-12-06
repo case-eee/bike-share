@@ -28,7 +28,6 @@ describe "When a user wants to delete a trip" do
                       subscription_id: 1,
                       zipcode: 80211)
     visit "/trips/#{ trip.id }"
-    save_and_open_page
     click_on("Delete")
 
     expect(current_path).to eq("/trips")

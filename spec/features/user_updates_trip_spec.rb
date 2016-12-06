@@ -3,6 +3,7 @@ require_relative '../spec_helper'
 describe "When a user visits the edit trip page" do
 
   it "they see the update form" do
+    Subscription.create(name: "Subcriber")
     trip = Trip.create(duration: 45,
                       start_date: "2011-3-6 12:00",
                       start_station_id: 1,
