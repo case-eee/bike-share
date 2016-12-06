@@ -36,6 +36,9 @@ class BikeShareApp < Sinatra::Base
     end
 
     delete '/stations/:id' do
+      # binding.pry
+      puts params[:id]
+      puts "***********************"
       Station.delete(params[:id])
       redirect "/stations"
     end
