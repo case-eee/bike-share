@@ -1,0 +1,63 @@
+/*h1 {
+  background-color: #545252;
+  text-align: center;
+}
+
+body {
+  background-color: #545252;
+}
+
+h3 {
+  text-align: center;
+}
+
+p {
+  text-align: center;
+}
+
+div.nav.nav-pills {
+  margin: auto;
+  margin-top: 10px;
+  text-align: center;
+  width: 25%;
+}
+
+div.btn-group {
+  margin: auto;
+  margin-top: 10px;
+  text-align: center;
+  width: 50%;
+}
+
+form {
+  text-align: center;
+}
+
+form textarea {
+  margin-top: 10px;
+}
+
+li.active a {
+  color: #f28484;
+}
+
+.btn-primary a {
+  color: #f28484;
+}
+li.p {
+    color: #f28484;
+}
+
+button.btn.btn-primary {
+  width: auto;
+}
+
+div.btn-group a {
+  color: #f28484;
+  width: auto;
+}*/
+thead {
+    display: table-header-group;
+    vertical-align: middle;
+    border-color: inherit;
+}

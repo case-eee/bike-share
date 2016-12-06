@@ -1,0 +1,8 @@
+<h1>All Stations</h1>
+<% @stations.each do |station| %>
+  <%= station.name %>
+  <form action="/stations/<%= station.id %>" method="POST">
+    <input type="hidden" name="_method" value="DELETE">
+    <input type='submit' value="Delete">
+  </form>
+<% end %>
