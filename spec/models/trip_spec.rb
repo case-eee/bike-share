@@ -230,7 +230,7 @@ describe "Trip" do
     end
   end
 
-  describe '.lest_trips' do
+  describe '.least_trips' do
     it "returns a single date with the lowest number of trips with a count of those trips" do
       Trip.create(duration: 20, start_station_id: 2, end_station_id: 2, start_date: "1-3-2014 14:44", end_date: "11-1-2014 14:55", bike_id: 23, subscription_type: "Subscriber", zip_code: 1029)
       Trip.create(duration: 20, start_station_id: 2, end_station_id: 2, start_date: "1-3-2014 14:44", end_date: "11-1-2014 14:55", bike_id: 23, subscription_type: "Subscriber", zip_code: 1029)
@@ -239,7 +239,7 @@ describe "Trip" do
       Trip.create(duration: 67, start_station_id: 1, end_station_id: 1, start_date: "12-3-2013 14:44", end_date: "11-3-2014 14:55", bike_id: 25, subscription_type: "Baller", zip_code: 1029)
       Trip.create(duration: 67, start_station_id: 1, end_station_id: 1, start_date: "12-3-2013 14:44", end_date: "11-3-2014 14:55", bike_id: 25, subscription_type: "OG", zip_code: 1029)
 
-      expect(Trip.least_trips.to_s).to eql("[Thu, 06 Mar 2014, 1]")
+      expect(Trip.least_trips.to_s).to eql("[Wed, 12 Mar 2014, 1]")
     end
   end
 

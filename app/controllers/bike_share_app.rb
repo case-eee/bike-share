@@ -90,6 +90,11 @@ class BikeShareApp < Sinatra::Base
     erb :"conditions/new"
   end
 
+  get "/conditions/:id" do
+    @condition = Condition.find(params[:id])
+    erb :"conditions/show"
+  end
+
   post "/conditions" do
     Condition.create(params[:condition])
     redirect "/conditions"
@@ -110,8 +115,4 @@ class BikeShareApp < Sinatra::Base
     redirect "/conditions"
   end
 
-  get "/conditions/:id" do
-    @condition = Condition.find(params[:id])
-    erb :"conditions/show"
-  end
 end
