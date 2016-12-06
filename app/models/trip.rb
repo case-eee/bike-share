@@ -57,7 +57,6 @@ class Trip < ActiveRecord::Base
   def self.number_of_rides_by_month(year)
     trips_per_year = where("extract (year from start_date) = ?", year)
     trips_per_year.map { |e| e.start_date }
-    
     # [year_total, jan # trips, feb]
   end
 end

@@ -115,7 +115,7 @@ describe "Trip" do
       Trip.create(duration: 20, start_station_id: 14242, end_station_id: 13233, start_date: "11-3-2014 14:44", end_date: "11-3-2014 14:55", bike_id: 23, subscription_type: "Subscriber", zip_code: 1029)
       Trip.create(duration: 40, start_station_id: 14242, end_station_id: 13233, start_date: "11-3-2014 14:44", end_date: "11-3-2014 14:55", bike_id: 23, subscription_type: "Subscriber", zip_code: 1029)
 
-      expect(Trip.longest_ride).to eql(40.0)
+      expect(Trip.longest_ride).to eql(40)
     end
   end
 
@@ -124,7 +124,7 @@ describe "Trip" do
       Trip.create(duration: 20, start_station_id: 14242, end_station_id: 13233, start_date: "11-3-2014 14:44", end_date: "11-3-2014 14:55", bike_id: 23, subscription_type: "Subscriber", zip_code: 1029)
       Trip.create(duration: 40, start_station_id: 14242, end_station_id: 13233, start_date: "11-3-2014 14:44", end_date: "11-3-2014 14:55", bike_id: 23, subscription_type: "Subscriber", zip_code: 1029)
 
-      expect(Trip.shortest_ride).to eql(20.0)
+      expect(Trip.shortest_ride).to eql(20)
     end
   end
 
@@ -156,20 +156,20 @@ describe "Trip" do
     end
   end
 
-  describe ".number_of_rides_by_month" do
-    it "returns month by month breakdown of number of rides with subtotals of each year" do
-      Trip.create(duration: 20, start_station_id: 2, end_station_id: 2, start_date: "1-3-2014 14:44", end_date: "11-1-2014 14:55", bike_id: 23, subscription_type: "Subscriber", zip_code: 1029)
-      Trip.create(duration: 20, start_station_id: 2, end_station_id: 2, start_date: "1-3-2014 14:44", end_date: "11-1-2014 14:55", bike_id: 23, subscription_type: "Subscriber", zip_code: 1029)
-      Trip.create(duration: 40, start_station_id: 3, end_station_id: 3, start_date: "6-3-2014 14:44", end_date: "11-3-2014 14:55", bike_id: 23, subscription_type: "Subscriber", zip_code: 1029)
-      Trip.create(duration: 67, start_station_id: 1, end_station_id: 1, start_date: "12-3-2014 14:44", end_date: "11-3-2014 14:55", bike_id: 23, subscription_type: "Subscriber", zip_code: 1029)
-      Trip.create(duration: 67, start_station_id: 1, end_station_id: 1, start_date: "12-3-2013 14:44", end_date: "11-3-2014 14:55", bike_id: 23, subscription_type: "Subscriber", zip_code: 1029)
+  # describe ".number_of_rides_by_month" do
+  #   it "returns month by month breakdown of number of rides with subtotals of each year" do
+  #     Trip.create(duration: 20, start_station_id: 2, end_station_id: 2, start_date_time: "1-3-2014 14:44", end_date: "11-1-2014 14:55", bike_id: 23, subscription_type: "Subscriber", zip_code: 1029)
+  #     Trip.create(duration: 20, start_station_id: 2, end_station_id: 2, start_date_time: "1-3-2014 14:44", end_date: "11-1-2014 14:55", bike_id: 23, subscription_type: "Subscriber", zip_code: 1029)
+  #     Trip.create(duration: 40, start_station_id: 3, end_station_id: 3, start_date_time: "6-3-2014 14:44", end_date: "11-3-2014 14:55", bike_id: 23, subscription_type: "Subscriber", zip_code: 1029)
+  #     Trip.create(duration: 67, start_station_id: 1, end_station_id: 1, start_date_time: "12-3-2014 14:44", end_date: "11-3-2014 14:55", bike_id: 23, subscription_type: "Subscriber", zip_code: 1029)
+  #     Trip.create(duration: 67, start_station_id: 1, end_station_id: 1, start_date_time: "12-3-2013 14:44", end_date: "11-3-2014 14:55", bike_id: 23, subscription_type: "Subscriber", zip_code: 1029)
 
-      expect(Trip.number_of_rides_by_month(2014).count).to eql(4)
-      expect(Trip.number_of_rides_by_month(2014).last).to eql(1)
-      expect(Trip.number_of_rides_by_month(2014)[1]).to eql(2)
+  #     expect(Trip.number_of_rides_by_month(2014).count).to eql(4)
+  #     expect(Trip.number_of_rides_by_month(2014).last).to eql(1)
+  #     expect(Trip.number_of_rides_by_month(2014)[1]).to eql(2)
 
-    end
-  end
+  #   end
+  # end
 
   describe ".most_ridden_bike" do
     it "returns the most ridden bike with the total number of rides for that bike" do
@@ -216,13 +216,6 @@ describe "Trip" do
   end
 
 
-  describe '.most_frequent_zip '
-    it 'returns the most frequent zip code for users starting trips at this station.'
-
-
-# Date with the highest number of trips started at this station.
-# Most frequent zip code for users starting trips at this station.
-# Bike ID most frequently starting a trip at this station.
 
 end
 

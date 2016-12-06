@@ -27,8 +27,10 @@ end
 #create_trips
 SmarterCSV.process('db/csv/trip.csv').each do |row|
   Trip.create(duration: row[:duration],
+              start_date_time: row[:start_date],
               start_date: row[:start_date],
               start_station_id: row[:start_station_id],
+              end_date_time: row[:end_date],
               end_date: row[:end_date],
               end_station_id: row[:end_station_id],
               bike_id: row[:bike_id],
