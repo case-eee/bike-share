@@ -1,11 +1,37 @@
-<form class="form-group" action="/trips" method="post">
-  <input class="form-control" type="integer" name="trips[duration]">
-  <input class="form-control" type="datetime" name="trips[start_date]">
-  <input class="form-control" type="integer" name="trips[start_station_id]">
-  <input class="form-control" type="datetime" name="trips[end_date]">
-  <input class="form-control" type="integer" name="trips[end_station_id]">
-  <input class="form-control" type="integer" name="trips[bike_id]">
-  <input class="form-control" type="integer" name="trips[subscription_id]">
-  <input class="form-control" type="integer" name="trips[zipcode]">
-  <input type="submit" value="Submit">
+<h1>Add New Trip</h1>
+
+<form class="form-group" action="/trips" method="POST">
+    <div class="form-group">
+    <label>Duration</label>
+    <input class="form-control" type="integer" name="trips[duration]">
+  </div>
+  <div class="form-group">
+    <label>Start Date and Time</label>
+    <input class="form-control" type="datetime" name="trips[start_date]">
+  </div>
+  <div class="form-group">
+    <label>Starting Station</label>
+    <input class="form-control" type="integer" name="trips[start_station_id]">
+  </div>
+  <div class="form-group">
+    <label>End Date and Time</label>
+    <input class="form-control" type="datetime" name="trips[end_date]">
+  </div>
+  <div class="form-group">
+    <label>Ending Station</label>
+    <input class="form-control" type="integer" name="trips[end_station_id]">
+  </div>
+  <div class="form-group">
+    <label>Bike ID</label>
+    <input class="form-control" type="integer" name="trips[bike_id]">
+  </div>
+  <div class="form-group">
+    <label>Subscription Type</label>
+    <input class="form-control" type="integer" name="trips[subscription_type]">
+  </div>
+  <div class="form-group">
+    <label>User's Zipcode</label>
+    <input class="form-control" type="integer" name="trips[zipcode]">
+  </div>
+  <input class="btn btn-primary" type="submit" value="Submit">
 </form>

@@ -10,7 +10,7 @@ describe "When a user visits the new trip path" do
     fill_in 'trips[end_date]', with: "2013-6-6 7:30"
     fill_in 'trips[end_station_id]', with: 4
     fill_in 'trips[bike_id]', with: 3
-    fill_in 'trips[subscription_id]', with: 1
+    fill_in 'trips[subscription_type]', with: "Subscriber"
     fill_in 'trips[zipcode]', with: 80211
     click_on 'Submit'
 
@@ -19,4 +19,5 @@ describe "When a user visits the new trip path" do
     expect(current_path).to eq("/trips/#{ new_trip.id }")
     expect(page).to have_content("Duration: 45") 
   end
+
 end

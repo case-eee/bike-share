@@ -14,4 +14,5 @@ describe "When a user visits a single trip page" do
 
     expect(page).to have_content("Duration: 45")
   end
+
 end

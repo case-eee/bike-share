@@ -1,1 +1,38 @@
 <h1>All Trips</h1>
+<h3>Total Trips: <%= @trips.count %></h3>
+
+<table class="table table-striped">
+  <tr>
+    <th>Id</th>
+    <th>Duration</th>
+    <th>Start Station</th>
+    <th>Start Date and Time</th>
+    <th>End Station</th>
+    <th>End Date and Time</th>
+    <th>Bike ID</th>
+    <th>Subscription Type</th>
+    <th>User Zipcode</th>
+    <th>Edit</th>
+    <th>Delete</th>
+  </tr>
+  <% @trips.each do |trip| %>
+  <tr>
+    <th><%= trip.id %></th>
+    <th><%= trip.duration %></th>
+    <th><%= trip.start_station_id %></th>
+    <th><%= trip.start_date %></th>
+    <th><%= trip.end_station_id %></th>
+    <th><%= trip.end_date %></th>
+    <th><%= trip.bike_id %></th>
+    <th><%= trip.subscription_id %></th>
+    <th><%= trip.zipcode %></th>
+    <th><a class="btn btn-warning" href="/trips/<%= trip.id %>/edit">Edit</a></th>
+    <th>
+      <form action="/trips/<%= trip.id %>" method="POST">
+        <input type="hidden" name="_method" value="DELETE">
+        <input class="btn btn-danger" type="submit" value="Delete">
+      </form>
+    </th>
+  </tr>
+  <% end %>
+</table>
