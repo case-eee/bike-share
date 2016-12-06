@@ -58,12 +58,16 @@ require_relative '../spec_helper'
   end
 
   describe "When a user deletes an id path" do
-    it "will delete the id" do
+    it "will delete the station object" do
 
       station1 = Station.write(name: "StationTest1", dock_count: 1, city_name: "San Diego", installation_date: "2011-11-11")
+      visit "/stations/1"
 
-      station.delete(station1.id)
-      expect(find_field('stations[name]').value).to eq(nil)
+      click_on 'Delete'
+      save_and_open_page
+
+      expect(page).not_to have_content("StationTest1")
       expect(current_path).to eq("/stations")
+
     end
   end

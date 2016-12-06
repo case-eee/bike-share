@@ -1,3 +1,4 @@
+require 'pry'
 class BikeShareApp < Sinatra::Base
 
     get '/stations' do
@@ -31,8 +32,7 @@ class BikeShareApp < Sinatra::Base
     end
 
     delete '/stations/:id' do
-      station = Station.find(params[:id])
-      station.delete(station.id)
+      Station.delete(params[:id])
       redirect "/stations"
     end
 
