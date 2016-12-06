@@ -37,6 +37,24 @@ describe "Condition feature test" do
 
       expect(page).to have_content(test_condition.max_temperature_f)
     end
+    it "Can navigate to EDIT page" do
+      test_condition = Condition.write(date: "2011-01-01",
+                      max_temperature_f: 90,
+                      mean_temperature_f: 45,
+                      min_temperature_f: 0,
+                      mean_humidity: 50,
+                      mean_visibility_miles: 10,
+                      max_wind_speed_mph: 2,
+                      precipitation_inches: 0
+                      )
+      visit("/conditions/#{test_condition.id}")
+
+      click_on "Edit"
+
+      expect(page).to have_content("Edit")
+      expect(current_path).to eq("/conditions/#{test_condition.id}/edit")
+      expect(find_field('conditions[max_temperature_f]').value).to eq(test_condition.max_temperature_f.to_s)
+    end
   end
   describe "Add new conditions: GET /conditions/new" do
     it "Page loads with correct content" do
@@ -71,9 +89,23 @@ describe "Condition feature test" do
       expected_condition = Condition.find_by(max_temperature_f: test_condition.max_temperature_f)
 
       expect(page).to have_content("90")
-      save_and_open_page
       expect(current_path).to eq("/conditions/#{expected_condition.id}")
+    end
+  end
+  describe "Can edit condition details:  GET /conditions/:id" do
+    it "Page loads with condition details in entry fields" do
+      test_condition = Condition.write(date: "2011-01-01",
+                      max_temperature_f: 90,
+                      mean_temperature_f: 45,
+                      min_temperature_f: 0,
+                      mean_humidity: 50,
+                      mean_visibility_miles: 10,
+                      max_wind_speed_mph: 2,
+                      precipitation_inches: 0
+                      )
+      visit("/conditions/#{test_condition.id}/edit")
 
+      expect(find_field('conditions[date]').value).to eq(test_condition.date.to_s)
     end
   end
 
