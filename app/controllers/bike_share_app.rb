@@ -81,4 +81,8 @@ class BikeShareApp < Sinatra::Base
     redirect "/trips"
   end
 
+  get "/conditions/new" do
+    erb :"conditions/new"
+  end
+
 end

@@ -53,8 +53,6 @@ describe "when a user visits /stations" do
     find("a[href='/stations/#{station.id}']").click
     expect(page).to have_content "hi35"
     expect(page).to have_current_path "/stations/#{station.id}"
-
   end
-
 
 end
