@@ -108,4 +108,69 @@ describe "Station" do
     end
   end
 
+  describe ".ride_starts" do
+    it "returns number of rides started at this station" do
+      eric = Station.create(name:"eric",dock_count:20,city_id:2,installation_date:'1990-5-23')
+      david = Station.create(name:"david",dock_count:20,city_id:3,installation_date:'1990-5-23')
+      nick = Station.create(name:"nick",dock_count:30,city_id:4,installation_date:'2016-5-24')
+      Trip.create(duration: 20, start_station_id: 1, end_station_id: 13233, start_date: "11-3-2014 14:44", end_date: "11-3-2014 14:55", bike_id: 23, subscription_type: "Subcriber", zip_code: 1029)
+      Trip.create(duration: 40, start_station_id: 3, end_station_id: 13233, start_date: "11-3-2014 14:44", end_date: "11-3-2014 14:55", bike_id: 23, subscription_type: "Subcriber", zip_code: 1029)
+      Trip.create(duration: 67, start_station_id: 1, end_station_id: 13233, start_date: "11-3-2012 14:44", end_date: "11-3-2014 14:55", bike_id: 23, subscription_type: "Subcriber", zip_code: 1029)
+      Trip.create(duration: 67, start_station_id: 1, end_station_id: 13233, start_date: "11-3-2014 14:44", end_date: "11-3-2014 14:55", bike_id: 23, subscription_type: "Subcriber", zip_code: 1029)
+  
+      expect(Station.ride_starts(1)).to eql(3)
+    end
+  end
+
+  describe ".ride_ends" do
+    it "returns number of rides ended at this station" do
+      eric = Station.create(name:"eric",dock_count:20,city_id:2,installation_date:'1990-5-23')
+      david = Station.create(name:"david",dock_count:20,city_id:3,installation_date:'1990-5-23')
+      nick = Station.create(name:"nick",dock_count:30,city_id:4,installation_date:'2016-5-24')
+      Trip.create(duration: 20, start_station_id: 1, end_station_id: 1, start_date: "11-3-2014 14:44", end_date: "11-3-2014 14:55", bike_id: 23, subscription_type: "Subcriber", zip_code: 1029)
+      Trip.create(duration: 40, start_station_id: 3, end_station_id: 2, start_date: "11-3-2014 14:44", end_date: "11-3-2014 14:55", bike_id: 23, subscription_type: "Subcriber", zip_code: 1029)
+      Trip.create(duration: 67, start_station_id: 1, end_station_id: 1, start_date: "11-3-2012 14:44", end_date: "11-3-2014 14:55", bike_id: 23, subscription_type: "Subcriber", zip_code: 1029)
+      Trip.create(duration: 67, start_station_id: 1, end_station_id: 3, start_date: "11-3-2014 14:44", end_date: "11-3-2014 14:55", bike_id: 23, subscription_type: "Subcriber", zip_code: 1029)
+  
+      expect(Station.ride_ends(1)).to eql(2)
+    end
+  end
+
+  describe ".most_frequent_destination" do
+    it "returns most frequent destination station (for rides that began at this station)" do
+      eric = Station.create(name:"eric",dock_count:20,city_id:2,installation_date:'1990-5-23')
+      david = Station.create(name:"david",dock_count:20,city_id:3,installation_date:'1990-5-23')
+      nick = Station.create(name:"nick",dock_count:30,city_id:4,installation_date:'2016-5-24')
+      Trip.create(duration: 20, start_station_id: 1, end_station_id: 3, start_date: "11-3-2014 14:44", end_date: "11-3-2014 14:55", bike_id: 23, subscription_type: "Subcriber", zip_code: 1029)
+      Trip.create(duration: 40, start_station_id: 1, end_station_id: 2, start_date: "11-3-2014 14:44", end_date: "11-3-2014 14:55", bike_id: 23, subscription_type: "Subcriber", zip_code: 1029)
+      Trip.create(duration: 67, start_station_id: 1, end_station_id: 2, start_date: "11-3-2012 14:44", end_date: "11-3-2014 14:55", bike_id: 23, subscription_type: "Subcriber", zip_code: 1029)
+      Trip.create(duration: 67, start_station_id: 1, end_station_id: 3, start_date: "11-3-2014 14:44", end_date: "11-3-2014 14:55", bike_id: 23, subscription_type: "Subcriber", zip_code: 1029)
+      Trip.create(duration: 67, start_station_id: 1, end_station_id: 2, start_date: "11-3-2014 14:44", end_date: "11-3-2014 14:55", bike_id: 23, subscription_type: "Subcriber", zip_code: 1029)
+      
+      expect(Station.most_frequent_destination(1)).to eql(2)
+    end
+  end
+
+  describe ".most_frequent_orgin" do
+    it "returns most frequent origination station (for rides that ended at this station)" do
+      eric = Station.create(name:"eric",dock_count:20,city_id:2,installation_date:'1990-5-23')
+      david = Station.create(name:"david",dock_count:20,city_id:3,installation_date:'1990-5-23')
+      nick = Station.create(name:"nick",dock_count:30,city_id:4,installation_date:'2016-5-24')
+      Trip.create(duration: 20, start_station_id: 3, end_station_id: 1, start_date: "11-3-2014 14:44", end_date: "11-3-2014 14:55", bike_id: 23, subscription_type: "Subcriber", zip_code: 1029)
+      Trip.create(duration: 40, start_station_id: 2, end_station_id: 1, start_date: "11-3-2014 14:44", end_date: "11-3-2014 14:55", bike_id: 23, subscription_type: "Subcriber", zip_code: 1029)
+      Trip.create(duration: 67, start_station_id: 2, end_station_id: 1, start_date: "11-3-2012 14:44", end_date: "11-3-2014 14:55", bike_id: 23, subscription_type: "Subcriber", zip_code: 1029)
+      Trip.create(duration: 67, start_station_id: 3, end_station_id: 1, start_date: "11-3-2014 14:44", end_date: "11-3-2014 14:55", bike_id: 23, subscription_type: "Subcriber", zip_code: 1029)
+      Trip.create(duration: 67, start_station_id: 2, end_station_id: 1, start_date: "11-3-2014 14:44", end_date: "11-3-2014 14:55", bike_id: 23, subscription_type: "Subcriber", zip_code: 1029)
+      
+      expect(Station.most_frequent_origin(1)).to eql(2)
+    end
+  end
+
+  
+
 end
+
+
+# Date with the highest number of trips started at this station.
+# Most frequent zip code for users starting trips at this station.
+# Bike ID most frequently starting a trip at this station.

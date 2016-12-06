@@ -43,7 +43,6 @@ class Trip < ActiveRecord::Base
   end
 
   def self.user_count
-    #[{subscriber_type => [# of trips, percent]}
     subscribers = group(:subscription_type).count
     total = subscribers.values.reduce(:+).to_f
     subscribers.each do |subscriber|
@@ -62,3 +61,4 @@ class Trip < ActiveRecord::Base
     # [year_total, jan # trips, feb]
   end
 end
+
