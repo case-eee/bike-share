@@ -1,0 +1,14 @@
+<h1> Edit a Condition </h1>
+<form action="/conditions/<%= @condition.id %>" method="POST" style="text-align:right;width:60%;">
+  <input class="edit_or_new_form" type="hidden" name="_method" value="PUT"><br>
+  Date : <input class="edit_or_new_form" type="date" name="condition[date]" value="<%=@condition.date%>"><br>
+  Max Temperature : <input class="edit_or_new_form" type="float" name="condition[max_temperature_f]" value="<%=@condition.max_temperature_f%>"><br>
+  Mean Temperature : <input class="edit_or_new_form" type="float" name="condition[mean_temperature_f]" value="<%=@condition.mean_temperature_f%>"><br>
+  Min Temperature : <input class="edit_or_new_form" type="float" name="condition[min_temperature_f]" value="<%=@condition.min_temperature_f%>"><br>
+  Mean Humidity : <input class="edit_or_new_form" type="float" name="condition[mean_humidity]" value="<%=@condition.mean_humidity%>"><br>
+  Mean Visibility : <input class="edit_or_new_form" type="float" name="condition[mean_visibility_miles]" value="<%=@condition.mean_visibility_miles%>"><br>
+  Max Wind Speed : <input class="edit_or_new_form" type="float" name="condition[max_wind_speed_mph]" value="<%=@condition.max_wind_speed_mph%>"><br>
+  Precipitation : <input class="edit_or_new_form" type="float" name="condition[precipitation_inches]" value="<%=@condition.precipitation_inches%>"><br>
+
+  <input class="edit_or_new_form" type="submit" value="Update Condition">
+</form>
