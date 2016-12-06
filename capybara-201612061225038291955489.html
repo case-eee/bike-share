@@ -1,0 +1,59 @@
+<h1>All Trips</h1>
+<h3>Total Trips: 32</h3>
+
+<table class="table table-striped">
+  <tr>
+    <th>Id</th>
+    <th>Duration</th>
+    <th>Start Station</th>
+    <th>Start Date and Time</th>
+    <th>End Station</th>
+    <th>End Date and Time</th>
+    <th>Bike ID</th>
+    <th>Subscription Type</th>
+    <th>User Zipcode</th>
+    <th>Edit</th>
+    <th>Delete</th>
+  </tr>
+  
+  <tr>
+    <td>31</td>
+    <td>31</td>
+    <td>1</td>
+    <td>2011-03-06 12:00:00 UTC</td>
+    <td>3</td>
+    <td>2011-03-06 12:00:00 UTC</td>
+    <td>3</td>
+    <td>1</td>
+    <td>80211</td>
+    <td><a class="btn btn-warning" href="/trips/31/edit">Update</a></td>
+    <td>
+      <form action="/trips/31" metdod="POST">
+        <input type="hidden" name="_method" value="DELETE">
+        <input class="btn btn-danger" type="submit" value="Delete">
+      </form>
+    </td>
+  </tr>
+  
+  <tr>
+    <td>32</td>
+    <td>32</td>
+    <td>1</td>
+    <td>2011-03-06 12:00:00 UTC</td>
+    <td>3</td>
+    <td>2011-03-06 12:00:00 UTC</td>
+    <td>3</td>
+    <td>1</td>
+    <td>80211</td>
+    <td><a class="btn btn-warning" href="/trips/32/edit">Update</a></td>
+    <td>
+      <form action="/trips/32" metdod="POST">
+        <input type="hidden" name="_method" value="DELETE">
+        <input class="btn btn-danger" type="submit" value="Delete">
+      </form>
+    </td>
+  </tr>
+  
+</table>
+
+<div class="pagination"><a class="previous_page" rel="prev" href="/trips?page=1">&#8592; Previous</a> <a rel="prev" href="/trips?page=1">1</a> <em class="current">2</em> <span class="next_page disabled">Next &#8594;</span></div>
