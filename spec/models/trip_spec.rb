@@ -215,6 +215,11 @@ describe "Trip" do
     end
   end
 
+  describe '.most_frequent_zip '
+    it 'returns the most frequent zip code for users starting trips at this station.'
+
+
+
   # describe ".station_with_max_bikes" do
   #   it "returns the station with the most bikes" do
   #     eric = Station.create(name:"eric",dock_count:20,city_id:2,installation_date:'1999-10-23')
@@ -287,6 +292,10 @@ end
 # Number of rides ended at this station.
 # Most frequent destination station (for rides that began at this station).
 # Most freuqnet origination station (for rides that ended at this station).
+# Date with the highest number of trips started at this station.
+# Most frequent zip code for users starting trips at this station.
+# Bike ID most frequently starting a trip at this station.
+
 # Date with the highest number of trips started at this station.
 # Most frequent zip code for users starting trips at this station.
 # Bike ID most frequently starting a trip at this station.

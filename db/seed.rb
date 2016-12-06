@@ -11,7 +11,12 @@ require 'pry'
 CSV.foreach('db/csv/station.csv', :headers=> true) do |row|
   City.create(name: row[5]) unless City.find_by(name: row[5])
   city = City.find_by(name: row[5])
-  Station.create({name: row[1], dock_count: row[4], installation_date: row[6], city_id: city.id})
+  Station.create({name: row[1],
+                  lat: row[2],
+                  long: row[3],
+                  dock_count: row[4], 
+                  installation_date: row[6], 
+                  city_id: city.id})
 end
 
 #create_weathers

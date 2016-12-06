@@ -23,6 +23,8 @@ ActiveRecord::Schema.define(version: 20161204235511) do
 
   create_table "stations", force: :cascade do |t|
     t.text     "name"
+    t.bigint   "lat"
+    t.bigint   "long"
     t.integer  "dock_count"
     t.date     "installation_date"
     t.integer  "city_id"
