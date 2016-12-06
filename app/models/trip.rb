@@ -1,4 +1,4 @@
-require_relative "station"
+require 'pry'
 class Trip < ActiveRecord::Base
   validates :duration, :start_station_id, :end_station_id, :start_date, :end_date, :bike_id, :subscription_type, :zip_code, presence: true
   belongs_to :trip_start, :class_name => 'Station', :foreign_key => 'start_station_id'
@@ -55,7 +55,10 @@ class Trip < ActiveRecord::Base
   end
 
   def self.number_of_rides_by_month(year)
+    trips_per_year = where("extract (year from start_date) = ?", year)
+    trips_per_year.map { |e| e.start_date }
+    
+    # [year_total, jan # trips, feb]
   end
-
 end
 
