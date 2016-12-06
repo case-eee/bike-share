@@ -56,9 +56,20 @@ class Trip < ActiveRecord::Base
   end
 
   def self.number_of_rides_by_month(year)
+    trips_per_month = Hash.new(0)
     trips_per_year = where("extract (year from start_date) = ?", year)
-    trips_per_year.map { |e| e.start_date }
-    # [year_total, jan # trips, feb]
+    trips_per_year.each do |e|  
+      trips_per_month[e.start_date.month] += 1
+    end
+    [trips_per_year.count, trips_per_month]
+  end
+
+  def self.most_trips
+    group(:start_date.to_s).count.max_by{|k, v| v}
+  end
+
+  def self.least_trips
+    group(:start_date.to_s).count.min_by{|k, v| v}
   end
 end
 
