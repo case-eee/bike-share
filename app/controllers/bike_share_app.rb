@@ -7,7 +7,11 @@ class BikeShareApp < Sinatra::Base
     end
 
     get '/stations/new' do
-      erb :"stations/new"
+      erb :"/stations/new"
+    end
+
+    get '/stations-dashboard' do
+      erb :"/stations/dashboard"
     end
 
     get '/stations/:id' do

@@ -235,5 +235,99 @@ describe "Station" do
         expect(Station.find_by_most_bikes.last).to eq(test_station3)
       end
     end
+    describe "fewest_bikes" do
+      it "Returns nil when table has NO stations" do
+        expect(Station.fewest_bikes).to eq(nil)
+      end
+      it "Returns correct value when table has 1 station" do
+        ts1 = Station.write(name: "Test Station",
+                            lat: 1.1,
+                            long: 1.2,
+                            dock_count: 3,
+                            city_name: "Test City",
+                            installation_date: "2000-12-12"
+                            )
+        expect(Station.fewest_bikes).to eq(ts1.dock_count)
+      end
+      it "Returns correct value when table has more than 1 stations" do
+        Station.write(name: "Test1",
+                      lat: 1.0,
+                      long: 2.0,
+                      dock_count: 3,
+                      city_name: "Test City",
+                      installation_date: "2001-11-11"
+                      )
+        Station.write(name: "Test2",
+                      lat: 1.0,
+                      long: 2.0,
+                      dock_count: 1,
+                      city_name: "Test Town",
+                      installation_date: "2001-11-20"
+                      )
+                              
+        expect(Station.fewest_bikes).to eq(1)
+      end
+    end
+    describe "find_by_fewest_bikes" do
+      it "Returns empty list value when table has NO stations"  do
+        expect(Station.find_by_fewest_bikes.empty?).to eq(true)
+        expect(Station.find_by_fewest_bikes).to eq([])
+      end
+      it "Returns correct row when table has 1 station" do
+        test = Station.write(name: "Test Town",
+                      lat: 2.0,
+                      long: 3.0,
+                      dock_count: 10,
+                      city_name: "Test City",
+                      installation_date: "2012-09-23"
+                      )
+
+        expect(Station.find_by_fewest_bikes[0]).to eq(test)
+      end
+      it "Returns list with one station when table has more than one station AND only one station matching criteria" do
+        test = Station.write(name: "Test Town",
+                      lat: 2.0,
+                      long: 3.0,
+                      dock_count: 10,
+                      city_name: "Test City",
+                      installation_date: "2012-09-23"
+                      )
+                Station.write(name: "Test Town",
+                      lat: 2.0,
+                      long: 3.0,
+                      dock_count: 30,
+                      city_name: "Test City",
+                      installation_date: "2012-09-23"
+                      )
+
+        expect(Station.find_by_fewest_bikes[0]).to eq(test)
+        expect(Station.find_by_fewest_bikes.count).to eq(1)
+      end
+      it "Returns list with more than one station when there are multiple matching stations matching criteria" do
+        Station.write(name: "Test Town",
+                      lat: 2.0,
+                      long: 3.0,
+                      dock_count: 10,
+                      city_name: "Test City",
+                      installation_date: "2012-09-23"
+                      )
+        Station.write(name: "Test Townvil",
+                      lat: 2.0,
+                      long: 4.0,
+                      dock_count: 30,
+                      city_name: "Test Village",
+                      installation_date: "2012-03-23"
+                      )
+        Station.write(name: "Test",
+                      lat: 1.0,
+                      long: 2.0,
+                      dock_count: 10,
+                      city_name: "City",
+                      installation_date: "2012-04-23"
+                      )
+
+        expect(Station.find_by_fewest_bikes.count).to eq(2)
+      end
+    end
   end
 end

@@ -65,9 +65,10 @@ require_relative '../spec_helper'
       visit "/stations/#{station1.id}"
       puts Station.count
       find("input[name=submit]").click
-      save_and_open_page
+
       # expect(Station.count).to eq(0)
       # expect(page).not_to have_content("StationTest1")
+
       expect(current_path).to eq("/stations")
 
     end
