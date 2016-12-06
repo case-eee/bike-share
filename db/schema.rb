@@ -21,35 +21,7 @@ ActiveRecord::Schema.define(version: 20161204235511) do
     t.datetime "updated_at", null: false
   end
 
-<<<<<<< HEAD
   create_table "conditions", force: :cascade do |t|
-=======
-  create_table "stations", force: :cascade do |t|
-    t.text     "name"
-    t.bigint   "lat"
-    t.bigint   "long"
-    t.integer  "dock_count"
-    t.date     "installation_date"
-    t.integer  "city_id"
-    t.datetime "created_at",        null: false
-    t.datetime "updated_at",        null: false
-  end
-
-  create_table "trips", force: :cascade do |t|
-    t.float    "duration"
-    t.integer  "start_station_id"
-    t.integer  "end_station_id"
-    t.datetime "start_date"
-    t.datetime "end_date"
-    t.integer  "bike_id"
-    t.text     "subscription_type"
-    t.integer  "zip_code"
-    t.datetime "created_at",        null: false
-    t.datetime "updated_at",        null: false
-  end
-
-  create_table "weathers", force: :cascade do |t|
->>>>>>> 839c07a0877bac58a8160e333aa5e3a168722072
     t.date     "date"
     t.float    "max_temperature_f"
     t.float    "mean_temperature_f"
@@ -80,6 +52,8 @@ ActiveRecord::Schema.define(version: 20161204235511) do
 
   create_table "stations", force: :cascade do |t|
     t.text     "name"
+    t.bigint   "lat"
+    t.bigint   "long"
     t.integer  "dock_count"
     t.date     "installation_date"
     t.integer  "city_id"
