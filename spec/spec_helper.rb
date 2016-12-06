@@ -14,11 +14,11 @@ RSpec.configure do |c|
   c.before(:all) do
     DatabaseCleaner.clean
   end
+  
+  c.include Capybara::DSL
 
   c.after(:each) do
     DatabaseCleaner.clean
   end
-
-  c.include Capybara::DSL
 
 end
