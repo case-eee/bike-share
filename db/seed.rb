@@ -7,17 +7,17 @@ require './app/models/trip'
 require './app/models/weather'
 require 'pry'
 
-# #create_stations
-# CSV.foreach('db/csv/station.csv', :headers=> true) do |row|
-#   City.create(name: row[5]) unless City.find_by(name: row[5])
-#   city = City.find_by(name: row[5])
-#   Station.create({name: row[1], dock_count: row[4], installation_date: row[6], city_id: city.id})
-# end
+#create_stations
+CSV.foreach('db/csv/station.csv', :headers=> true) do |row|
+  City.create(name: row[5]) unless City.find_by(name: row[5])
+  city = City.find_by(name: row[5])
+  Station.create({name: row[1], dock_count: row[4], installation_date: row[6], city_id: city.id})
+end
 
-# #create_weathers
-# SmarterCSV.process('db/csv/weather.csv').each do |row|
-#   Weather.create(row)
-# end
+#create_weathers
+SmarterCSV.process('db/csv/weather.csv').each do |row|
+  Weather.create(row)
+end
 
 #create_trips
 SmarterCSV.process('db/csv/trip.csv').each do |row|

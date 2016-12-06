@@ -1,25 +1,61 @@
+require_relative "station"
 class Trip < ActiveRecord::Base
   validates :duration, :start_station_id, :end_station_id, :start_date, :end_date, :bike_id, :subscription_type, :zip_code, presence: true
   belongs_to :trip_start, :class_name => 'Station', :foreign_key => 'start_station_id'
   belongs_to :trip_end, :class_name => 'Station', :foreign_key => 'end_station_id'
 
-  # attr_reader   :current_page,
-  #               :trips_order
+  def self.average_trip_duration
+    average(:duration)
+  end
 
-  # def self.page_forward
-  #   @trips_order = self.order(:start_date)
-  #   @current_page ||= 0
-  #   @current_page += 1
-  #   count = current_page * 30
-  #   trips_order[(count-30)...count]
-  # end
+  def self.longest_ride
+    maximum(:duration)
+  end
 
-  # def self.page_backward
-  #   @current_page -= 1
-  #   count = current_page * 30
-  #   trips_order(:start_date)[(count-30)...count]
-  # end
+  def self.shortest_ride
+    minimum(:duration)
+  end
 
+  def self.most_starting_rides_station
+    station_id = group(:start_station_id).count.max_by{|k, v| v}.first
+    Station.find(station_id)
+  end
 
+  def self.most_ending_rides_station
+    station_id = group(:end_station_id).count.max_by{|k, v| v}.first
+    Station.find(station_id)
+  end
+
+  def self.most_ridden_bike
+    # [[bike_id, # of rides], [bike_id, # of rides]]
+    bikes = group(:bike_id).count
+    bikes.find_all do |bike|
+      bike[1] == bikes.values.max
+    end
+  end
+
+  def self.least_ridden_bike
+    # [[bike_id, # of rides], [bike_id, # of rides]]
+    bikes = group(:bike_id).count
+    bikes.find_all do |bike|
+      bike[1] == bikes.values.min
+    end
+  end
+
+  def self.user_count
+    #[{subscriber_type => [# of trips, percent]}
+    subscribers = group(:subscription_type).count
+    total = subscribers.values.reduce(:+).to_f
+    subscribers.each do |subscriber|
+      subscribers[subscriber[0]] = [subscriber[1], percent(subscriber[1] / total)]
+    end
+  end
+
+  def self.percent(num)
+    (num * 100).round(2)
+  end
+
+  def self.number_of_rides_by_month(year)
+  end
 
 end

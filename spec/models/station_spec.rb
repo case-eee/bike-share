@@ -27,6 +27,7 @@ describe "Station" do
     end
 
   end
+  
   describe ".total_stations" do
     it "returns the total number of stations" do
       Station.create(name:"hi35",dock_count:23,city_id:2,installation_date:'1999-10-23')
