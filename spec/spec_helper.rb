@@ -5,6 +5,7 @@ require 'rspec'
 require 'capybara/dsl'
 require 'database_cleaner'
 
+DatabaseCleaner.strategy = :truncation
 Capybara.app = BikeShareApp
 
 DatabaseCleaner.strategy = :truncation
@@ -19,4 +20,5 @@ RSpec.configure do |c|
   end
 
   c.include Capybara::DSL
+
 end
