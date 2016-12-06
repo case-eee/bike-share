@@ -49,7 +49,19 @@ class Station < ActiveRecord::Base
     find(station_id).trip_starts.group(:end_station_id).count.max_by{|k, v| v}.first
   end
 
-   def self.most_frequent_origin(station_id)
+  def self.most_frequent_origin(station_id)
     find(station_id).trip_ends.group(:start_station_id).count.max_by{|k, v| v}.first
+  end
+
+  def self.most_frequent_zip(station_id)
+    find(station_id).trip_starts.group(:zip_code).count.max_by{|k, v| v}.first
+  end
+
+  def self.most_frequent_bike_id(station_id)
+    find(station_id).trip_starts.group(:bike_id).count.max_by{|k, v| v}.first    
+  end
+
+  def self.most_trips(station_id)
+    find(station_id).trip_starts.group(:start_date).count.max_by{|k, v| v}.first  
   end
 end
