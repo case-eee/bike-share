@@ -15,6 +15,7 @@ group :development, :test do
   gem 'rack-test'
   gem 'database_cleaner'
   gem 'pry'
+  gem "rb-readline"
   gem 'smarter_csv'
   gem 'font-awesome-less'
 end
