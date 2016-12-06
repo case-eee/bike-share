@@ -1,0 +1,38 @@
+<% @title = "All Stations" %>
+
+<div class="all-stations">
+  <h1>All Stations</h1>
+  <form action="/stations/new" method="GET">
+    <input type="submit" value="Create New">
+  </form>
+  <% @stations.each do |station| %>
+    <div class="station-summary">
+      <ul>
+        <li><a href="/stations/<%= station.id %>"><%= station.name %></a></li>
+        <li>Number of bike docks: <%= station.dock_count %></li>
+        <li>City: <%= station.city.name %></li>
+        <li>Latitude: <%= station.lat %></li>
+        <li>Longitude: <%= station.long %></li>
+        <li>Established: <%= station.installation_date %></li>
+      </ul>
+      <form action="/stations/<%= station.id %>/edit" method="GET">
+        <input type="submit" value="Edit">
+      </form>
+      <form action="/stations/<%= station.id %>" method="POST">
+        <input type="hidden" name="_method" value="DELETE">
+        <input type="submit" value="Delete">
+      </form>
+    </div>
+  <% end %>
+</div>
+
+
+<div id="map" style="height:100%";></div>
+
+<% @stations.each do |station| %>
+  addMarker(<%= station.lat %>, <%= station.long %>);
+<% end %>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script type="text/javascript" src="station_map.js"></script>
+<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBY5e6y9BV-anVv_aKGrlgMd_uxwi71PSQ&v=3&callback=initMap"></script>

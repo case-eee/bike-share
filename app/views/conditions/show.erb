@@ -1,0 +1,21 @@
+<% @title = "#{@condition.name}" %>
+
+<div class="show-condition">
+  <h1><%= @condition.date %></h1>
+  <ul>
+    <li>Max Temperature (F): <%= condition.max_temperature_f %></li>
+    <li>Min Temperature (F): <%= condition.min_temperature_f %></li>
+    <li>Mean Temperature (F): <%= condition.mean_temperature_f %></li>
+    <li>Mean Humidity: <%= condition.mean_humidity %></li>
+    <li>Mean Visibility (miles): <%= condition.mean_visibility_miles %></li>
+    <li>Mean Wind Speed (mph): <%= condition.mean_wind_speed_mph %></li>
+    <li>Precipitation (inches): <%= condition.precipitation_inches %></li>
+  </ul>
+  <form action="/stations/<%= @condition.id %>/edit" method="GET">
+    <input type="submit" value="Edit">
+  </form>
+  <form action="/stations/<%= @condition.id %>" method="POST">
+    <input type="hidden" name="_method" value="DELETE">
+    <input type="submit" value="Delete">
+  </form>
+</div>

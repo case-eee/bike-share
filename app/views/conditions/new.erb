@@ -1,0 +1,18 @@
+<% @title = "Add Weather Information" %>
+
+<div class="form">
+  <h1>Add Weather Information</h1>
+  <form method="POST" action="/stations">
+    <input type="hidden" name="_method" value="PUT" />
+    <input type="date" name="condition[date]" value="Date" /><br/>
+    <input type="integer" name="condition[max_temperature_f]" value="Max Temperature (F)" onclick='this.value = "";'/><br/>
+    <input type="integer" step="any" name="condition[min_temperature_f]" value="Min Temperature (F)" onclick='this.value = "";'><br/>
+    <input type="integer" step="any" name="condition[mean_temperature_f]" value="Mean Temperature (F)" onclick='this.value = "";'><br/>
+    <input type="integer" step="any" name="condition[mean_humidity]" value="Mean Humidity" onclick='this.value = "";'><br/>
+    <input type="integer" step="any" name="condition[mean_visibility_miles]" value="Mean Visibility (miles)" onclick='this.value = "";'><br/>
+    <input type="integer" step="any" name="condition[mean_wind_speed_mph]" value="Mean Wind Speed (mph)" onclick='this.value = "";'><br/>
+    <input type="integer" step="any" name="condition[precipitation_inches]" value="Precipitation (in)" onclick='this.value = "";'><br/>
+    <input type="submit" value="Submit Conditions">
+  </form>
+</div>
+

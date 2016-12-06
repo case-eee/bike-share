@@ -1,0 +1,19 @@
+<% @title = "Edit Weather Info" %>
+
+<div class="form">
+  <h1>Edit Weather Information</h1>
+  <form action="/conditions/<%= @condition.id %>" method="POST">
+    <input type="hidden" name="_method" value="PUT" />
+    <input type="date" name="condition[date]" value="<%= @condition.date %>" /><br/>
+    <input type="integer" name="condition[max_temperature_f]" value="<%= @condition.max_temperature_f %>" onclick='this.value = "";'/><br/>
+    <input type="integer" step="any" name="condition[min_temperature_f]" value="<%= @condition.min_temperature_f %>" onclick='this.value = "";'><br/>
+    <input type="integer" step="any" name="condition[mean_temperature_f]" value="<%= @condition.mean_temperature_f %>" onclick='this.value = "";'><br/>
+    <input type="integer" step="any" name="condition[mean_humidity]" value="<%= @condition.mean_humidity %>" onclick='this.value = "";'><br/>
+    <input type="integer" step="any" name="condition[mean_visibility_miles]" value="<%= @condition.mean_visibility_miles %>" onclick='this.value = "";'><br/>
+    <input type="integer" step="any" name="condition[mean_wind_speed_mph]" value="<%= @condition.mean_wind_speed_mph %>" onclick='this.value = "";'><br/>
+    <input type="integer" step="any" name="condition[precipitation_inches]" value="<%= @condition.precipitation_inches %>" onclick='this.value = "";'><br/>
+    <input type="submit" value="Edit"/>
+  </form>
+</div>
+
+    

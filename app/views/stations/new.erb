@@ -1,0 +1,21 @@
+<% @title = "Create New Station" %>
+
+<div class="form">
+  <h1>Create a New Station</h1>
+  <form method="POST" action="/stations">
+    <input type="text" name="station[name]" value="Name" onclick='this.value = "";'><br/>
+    <input type="integer" name="station[dock_count]" value="Dock Count" onclick='this.value = "";'><br/>
+    <input type="integer" step="any" name="station[lat]" value="Latitude" onclick='this.value = "";'><br/>
+    <input type="integer" step="any" name="station[long]" value="Longitude" onclick='this.value = "";'><br/>
+    <select class="form_dropdown" name="station[city_id]">
+      <option selected="selected" value="">-Select City-</option>
+      <% @cities.sort_by(&:name).each do |city| %>
+        <option value="<%= city.id %>"><%= city.name.upcase %></option>
+      <% end %>
+    </select><br/>
+    <input type="date" name="station[installation_date]" value="Installation Date" onclick='this.value = "";'><br/>
+    <input type="submit" value="Create Station">
+  </form>
+</div>
+
+<a href="../../cities/new.erb">Add a New City</a>

@@ -1,0 +1,24 @@
+<h1>Station Dashboard</h2>
+
+<p>Total count of stations: <%= Station.count %></p>
+<p>Average bikes available per station: <%= Station.average(:dock_count).to_i %></p>
+<p>Most bikes available at a station: <%= Station.maximum(:dock_count)%></p>
+<p>Station(s) where the most bikes are available:
+
+</p>
+<p>Fewest bikes available at a station: <%= Station.minimum(:dock_count) %></p>
+<p>Station(s) where the fewest bikes are available:
+
+</p>
+<p>Most recently installed station: <%= Station.order(:installation_date).first.name %></p>
+<p>Oldest station: <%= Station.order(:installation_date).last.name %></p>
+
+<h2>Station-Trip data</h2>
+
+<p>Number of rides started at this station: <%= %></p>
+<p>Number of rides ended at this station: <%= %></p>
+<p>Most frequent destination station (for rides that began at this station): <%= %></p>
+<p>Most freuqnet origination station (for rides that ended at this station): <%= %></p>
+<p>Date with the highest number of trips started at this station: <%= %></p>
+<p>Most frequent zip code for users starting trips at this station: <%= %></p>
+<p>Bike ID most frequently starting a trip at this station: <%= %></p>
