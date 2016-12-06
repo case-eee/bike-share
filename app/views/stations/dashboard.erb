@@ -1,0 +1,24 @@
+<div class="header-image jumbotron">
+  <h1>Stations Overview</h1>
+  <p><a class="btn btn-primary" href="/stations">All Stations</a></p>
+</div>
+
+<h3>Total count of stations: <%= Station.count %></h3>
+<h3>Average bikes avaiable per station: <%= Station.average_bikes_per_station %>
+<h3>Stations where the most bikes are available: <%= Station.most_bikes %></h3>
+<h3>Most bikes available at a station:
+  <ul>
+   <% Station.find_by_most_bikes.each do |station| %>
+    <li><%= station.name %>: <%= station.dock_count %></li>
+  <% end %> 
+  </ul> 
+</h3>
+<h3>Fewest bikes available at a station: <%= Station.fewest_bikes %></h3>
+<h3>Stations where the fewest bikes are available:
+  <ul>
+   <% Station.find_by_fewest_bikes.each do |station| %>
+    <li><%= station.name %>: <%= station.dock_count %></li>
+  <% end %> 
+  </ul>
+<h3>Most recently installed station: <%= Station.most_recently_installed_station.name %></h3>
+<h3>Oldest station: <%= Station.oldest_station.name %></h3>
