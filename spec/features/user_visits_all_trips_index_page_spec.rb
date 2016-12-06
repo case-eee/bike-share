@@ -73,7 +73,7 @@ describe "When a user visits /trips" do
     expect(page).to have_content("30")
     expect(page).to_not have_content("31")
     click_on("Next")
-    save_and_open_page
+  
     expect(page).to have_content("31")
     click_on("Previous")
 
