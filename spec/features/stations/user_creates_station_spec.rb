@@ -14,4 +14,5 @@ describe "when a user visits station/new" do
     expect(current_path).to eql "/stations"
     expect(page).to have_content "Dock_1"
   end
+  
 end

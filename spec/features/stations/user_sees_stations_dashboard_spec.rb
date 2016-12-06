@@ -81,5 +81,4 @@ describe "when a user visits /station-dashboard" do
     expect(page).to have_content("oldest station(s): eric david")
   end
 
-
 end

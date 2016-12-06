@@ -4,7 +4,7 @@ require "sinatra/activerecord"
 require './app/models/station'
 require './app/models/city'
 require './app/models/trip'
-require './app/models/weather'
+require './app/models/condition'
 require 'pry'
 
 #create_stations
@@ -21,7 +21,7 @@ end
 
 #create_weathers
 SmarterCSV.process('db/csv/weather.csv').each do |row|
-  Weather.create(row)
+  Condition.create(row)
 end
 
 #create_trips
