@@ -1,0 +1,13 @@
+<h1>Add new weather condition</h1>
+
+<form action = "/conditions" method = "POST">
+  Date: <input type = "text" name = "conditions[date]" id = "conditions-date"/>
+  Max Temp: <input type = "text" name = "conditions[max_temperature_f]" id = "conditions-max-temperature-f" />
+  Mean Temp: <input type = "text" name = "conditions[mean_temperature_f]" id = "conditions-mean-temperature-f" />
+  Min Temp: <input type = "text" name = "conditions[min_temperature_f]" id = "conditions-min-temperature-f" />
+  Mean Humidity: <input type = "text" name = "conditions[mean_humidity]" id = "conditions-mean-humidity" />
+  Mean visibility: <input type = "text" name = "conditions[mean_visibility_miles]" id = "conditions-mean_visibility_miles" />
+  Max wind speed: <input type = "text" name = "conditions[max_wind_speed_mph]" id = "max_wind_speed_mph" />
+  Precipitation: <input type = "text" name = "conditions[precipitation_inches]" id = "precipitation_inches" />
+  <input type = "submit" value = "Submit" />
+</form>
