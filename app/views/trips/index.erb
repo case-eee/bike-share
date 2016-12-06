@@ -17,22 +17,22 @@
   </tr>
   <% @trips.each do |trip| %>
   <tr>
-    <th><%= trip.id %></th>
-    <th><%= trip.duration %></th>
-    <th><%= trip.start_station_id %></th>
-    <th><%= trip.start_date %></th>
-    <th><%= trip.end_station_id %></th>
-    <th><%= trip.end_date %></th>
-    <th><%= trip.bike_id %></th>
-    <th><%= trip.subscription_id %></th>
-    <th><%= trip.zipcode %></th>
-    <th><a class="btn btn-warning" href="/trips/<%= trip.id %>/edit">Edit</a></th>
-    <th>
-      <form action="/trips/<%= trip.id %>" method="POST">
+    <td><%= trip.id %></td>
+    <td><%= trip.duration %></td>
+    <td><%= trip.start_station_id %></td>
+    <td><%= trip.start_date %></td>
+    <td><%= trip.end_station_id %></td>
+    <td><%= trip.end_date %></td>
+    <td><%= trip.bike_id %></td>
+    <td><%= trip.subscription_id %></td>
+    <td><%= trip.zipcode %></td>
+    <td><a class="btn btn-warning" href="/trips/<%= trip.id %>/edit">Update</a></td>
+    <td>
+      <form action="/trips/<%= trip.id %>" metdod="POST">
         <input type="hidden" name="_method" value="DELETE">
         <input class="btn btn-danger" type="submit" value="Delete">
       </form>
-    </th>
+    </td>
   </tr>
   <% end %>
 </table>

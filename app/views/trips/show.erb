@@ -1,5 +1,9 @@
 <h1>Trip Details</1>
 <h2>Duration: <%= @trip.duration %></h2>
+<h3>Bike ID: <%= @trip.bike_id %></h3>
+<h3>Subscription Type: <%= @subscription_type %></h3>
+<h3>User Zipcode: <%= @trip.zipcode %></h3>
+
 
 <div class="row">
   <div class="col-md-6 col-sm-12">
@@ -10,4 +14,14 @@
     <h2>End Date: <%= @trip.end_date %></h2>
     <h2>End Station: <%= @trip.end_station_id %></h2>
   </div>
+</div>
+
+<div class="row">
+  <div class="col-md-4 col-offset-md-4 col-sm-12">
+    <form action="/trips/<%= @trip.id %>" method="POST">
+      <input type="hidden" name="_method" value="DELETE">
+      <input class="btn btn-danger" type="submit" value="Delete">
+    </form>
+    <a class="btn btn-warning" href="/trips/<%= @trip.id %>/edit">Edit</a>
+  </div> 
 </div>
