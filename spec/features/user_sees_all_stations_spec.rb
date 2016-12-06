@@ -64,7 +64,7 @@ require_relative '../spec_helper'
       visit "/stations/1"
 
       click_on 'Delete'
-      save_and_open_page
+      # save_and_open_page
 
       expect(page).not_to have_content("StationTest1")
       expect(current_path).to eq("/stations")
