@@ -214,4 +214,15 @@ describe "Trip" do
 
     end
   end
+
+
+  describe '.most_frequent_zip '
+    it 'returns the most frequent zip code for users starting trips at this station.'
+
+
+# Date with the highest number of trips started at this station.
+# Most frequent zip code for users starting trips at this station.
+# Bike ID most frequently starting a trip at this station.
+
 end
+
