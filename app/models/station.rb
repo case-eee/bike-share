@@ -37,4 +37,19 @@ class Station < ActiveRecord::Base
     where(installation_date: minimum(:installation_date))
   end
 
+  def self.ride_starts(station_id)
+    find(station_id).trip_starts.count
+  end
+
+  def self.ride_ends(station_id)
+    find(station_id).trip_ends.count
+  end
+
+  def self.most_frequent_destination(station_id)
+    find(station_id).trip_starts.group(:end_station_id).count.max_by{|k, v| v}.first
+  end
+
+   def self.most_frequent_origin(station_id)
+    find(station_id).trip_ends.group(:start_station_id).count.max_by{|k, v| v}.first
+  end
 end
