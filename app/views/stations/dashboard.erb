@@ -1,0 +1,10 @@
+<h1>Stations Dashboard</h1>
+
+<h3>Total count of stations: <%= Station.count %></h3>
+<h3>Average bikes avaiable per station: <%= Station.average_bikes_per_station %>
+<h3>Most bikes available at a station: <%= Station.find_by_most_bikes %></h3>
+<h3>Stations where the most bikes are available: <%= Station.most_bikes %></h3>
+<h3>Fewest bikes available at a station: <%= Station.find_by_fewest_bikes %></h3>
+<h3>Stations where the fewest bikes are available: <%= Station.fewest_bikes %></h3>
+<h3>Most recently installed station: <%= Station.most_recently_installed_station %></h3>
+<h3>Oldest station: <%= Station.oldest_station %></h3>
