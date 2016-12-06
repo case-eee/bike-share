@@ -1,0 +1,27 @@
+<h1>Trip Details</1>
+<h2>Duration: 45</h2>
+<h3>Bike ID: 3</h3>
+<h3>Subscription Type: </h3>
+<h3>User Zipcode: 80211</h3>
+
+
+<div class="row">
+  <div class="col-md-6 col-sm-12">
+    <h2>Start Date: 2011-03-06 12:00:00 UTC</h2>
+    <h2>Start Station: 1</h2>
+  </div>
+  <div class="col-md-6 col-sm-12">
+    <h2>End Date: 2011-03-06 12:00:00 UTC</h2>
+    <h2>End Station: 3</h2>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-4 col-offset-md-4 col-sm-12">
+    <form action="/trips/1" method="POST">
+      <input type="hidden" name="_method" value="DELETE">
+      <input class="btn btn-danger" type="submit" value="Delete">
+    </form>
+    <a class="btn btn-warning" href="/trips/1/edit">Edit</a>
+  </div> 
+</div>
