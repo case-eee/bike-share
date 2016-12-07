@@ -66,15 +66,20 @@ class Trip < ActiveRecord::Base
   end
 
   def self.shortest_ride
-    where(duration: minimum(:duration))
+    minimum(:duration)
   end
 
   def self.rides_started_here(station)
     where(start_station_id: station).count
   end
 
-  def monthly_rides
-  require 'pry', binding.pry
-    Trip.group(:start_date)
+  # def self.monthly_rides
+  #   total = Trip.group(:start_date month, :start_date year).order("count_start_station_id DESC").count(:start_station_id)
+  #   require 'pry'; binding.pry
+  # end
+
+  def most_used_bike(station_id)
+    station = Station.find(station_id)
+    Trip.group(:bike_id).order(count_trip)
   end
 end

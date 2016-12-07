@@ -190,6 +190,80 @@ describe "Trip" do
         expect(Trip.most_ridden_bike_with_total_number_of_rides_for_that_bike[:total_number_of_rides]).to eq(2)
       end
     end
+    describe "Shortest duration of a ride" do
+      it "Returns nil when no trips are in database" do
+        expect(Trip.shortest_ride).to eq(nil)
+      end
+      it "Returns proper value with one entry in database" do
+        Trip.write(duration: 90,
+                   start_date: "2011-3-6 12:00",
+                   start_station_id: 1,
+                   end_date: "2011-3-6 12:00",
+                   end_station_id: 3,
+                   bike_id: 3,
+                   subscription_type: "Subscriber", 
+                   zipcode: 80211)
+        
+        expect(Trip.shortest_ride).to eq(90)
+      end
+      it "Returns proper value with more than one entry" do
+        Trip.write(duration: 90,
+                   start_date: "2011-3-6 12:00",
+                   start_station_id: 1,
+                   end_date: "2011-3-6 12:00",
+                   end_station_id: 3,
+                   bike_id: 3,
+                   subscription_type: "Subscriber", 
+                   zipcode: 80211)
+        Trip.write(duration: 40,
+                   start_date: "2011-3-6 12:00",
+                   start_station_id: 1,
+                   end_date: "2011-3-6 12:00",
+                   end_station_id: 3,
+                   bike_id: 3,
+                   subscription_type: "Subscriber", 
+                   zipcode: 80211)
+
+        expect(Trip.shortest_ride).to eq(40)
+      end
+    end
+    describe "Rides started at specific Station" do
+      it "Returns 0 when no trips are started from that Station" do
+        expect(Trip.rides_started_here(1)).to eq(0)
+      end
+      it "Returns proper value with one entry in database" do
+        Trip.write(duration: 90,
+                   start_date: "2011-3-6 12:00",
+                   start_station_id: 1,
+                   end_date: "2011-3-6 12:00",
+                   end_station_id: 3,
+                   bike_id: 3,
+                   subscription_type: "Subscriber", 
+                   zipcode: 80211)
+        
+        expect(Trip.rides_started_here(1)).to eq(1)
+      end
+      it "Returns proper value with more than one entry" do
+        Trip.write(duration: 90,
+                   start_date: "2011-3-6 12:00",
+                   start_station_id: 1,
+                   end_date: "2011-3-6 12:00",
+                   end_station_id: 3,
+                   bike_id: 3,
+                   subscription_type: "Subscriber", 
+                   zipcode: 80211)
+        Trip.write(duration: 40,
+                   start_date: "2011-3-6 12:00",
+                   start_station_id: 1,
+                   end_date: "2011-3-6 12:00",
+                   end_station_id: 3,
+                   bike_id: 3,
+                   subscription_type: "Subscriber", 
+                   zipcode: 80211)
+
+        expect(Trip.rides_started_here(1)).to eq(2)
+      end
+    end
 
   end
 
