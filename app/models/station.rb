@@ -57,4 +57,8 @@ class Station < ActiveRecord::Base
     where("dock_count = #{most_bikes}")
   end
 
+  def most_frequent_user_zipcode_as_start_station
+    start_trips.group(:zipcode).order("count_id DESC").limit(1).count(:id).keys.first
+  end
+
 end

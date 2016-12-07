@@ -260,18 +260,6 @@ describe "Trip" do
       it "Returns nil when no trips are in database" do
         expect(Trip.shortest_ride).to eq(nil)
       end
-      it "Returns proper value with one entry in database" do
-        Trip.write(duration: 90,
-                   start_date: "2011-3-6 12:00",
-                   start_station_id: 1,
-                   end_date: "2011-3-6 12:00",
-                   end_station_id: 3,
-                   bike_id: 3,
-                   subscription_type: "Subscriber", 
-                   zipcode: 80211)
-        
-        expect(Trip.shortest_ride).to eq(90)
-      end
       it "Returns proper value with more than one entry" do
         Trip.write(duration: 90,
                    start_date: "2011-3-6 12:00",
@@ -293,44 +281,6 @@ describe "Trip" do
         expect(Trip.shortest_ride).to eq(40)
       end
     end
-    describe "Rides started at specific Station" do
-      it "Returns 0 when no trips are started from that Station" do
-        expect(Trip.rides_started_here(1)).to eq(0)
-      end
-      it "Returns proper value with one entry in database" do
-        Trip.write(duration: 90,
-                   start_date: "2011-3-6 12:00",
-                   start_station_id: 1,
-                   end_date: "2011-3-6 12:00",
-                   end_station_id: 3,
-                   bike_id: 3,
-                   subscription_type: "Subscriber", 
-                   zipcode: 80211)
-        
-        expect(Trip.rides_started_here(1)).to eq(1)
-      end
-      it "Returns proper value with more than one entry" do
-        Trip.write(duration: 90,
-                   start_date: "2011-3-6 12:00",
-                   start_station_id: 1,
-                   end_date: "2011-3-6 12:00",
-                   end_station_id: 3,
-                   bike_id: 3,
-                   subscription_type: "Subscriber", 
-                   zipcode: 80211)
-        Trip.write(duration: 40,
-                   start_date: "2011-3-6 12:00",
-                   start_station_id: 1,
-                   end_date: "2011-3-6 12:00",
-                   end_station_id: 3,
-                   bike_id: 3,
-                   subscription_type: "Subscriber", 
-                   zipcode: 80211)
-
-        expect(Trip.rides_started_here(1)).to eq(2)
-      end
-    end
-
   end
 
   describe "Database relations" do
@@ -486,6 +436,89 @@ describe "Trip" do
       expect(Trip.trips_by_bike(Trip.least_ridden_bike)).to eq(1)
     end
 
+    it "find the day with fewest rides" do
+            Station.write(name: "StartStation", 
+                    dock_count: 7,
+                    city_name: "City",
+                    installation_date: "2013-11-11")
+      Station.write(name: "EndStation", 
+                    dock_count: 7,
+                    city_name: "City",
+                    installation_date: "2013-11-11")
+      trip1 = Trip.write(duration: 45,
+                          start_date: "2011-3-6",
+                          start_station_name: "StartStation",
+                          end_date: "2011-3-6 12:00",
+                          end_station_name: "EndStation",
+                          bike_id: 2,
+                          subscription_name: "Subscriber",
+                          zipcode: 80211)
+      trip2 = Trip.write(duration: 47,
+                          start_date: "2011-3-7",
+                          start_station_name: "StartStation",
+                          end_date: "2011-3-6 12:00",
+                          end_station_name: "EndStation",
+                          subscription_name: "Subscriber",
+                          bike_id: 3,
+                          zipcode: 80211)
+      trip3 = Trip.write(duration: 47,
+                          start_date: "2011-3-6",
+                          start_station_name: "StartStation",
+                          end_date: "2011-3-6 12:00",
+                          end_station_name: "EndStation",
+                          subscription_name: "Subscriber",
+                          bike_id: 3,
+                          zipcode: 80211)
+
+      expect(DateFormat.parse(Trip.day_with_lowest_number_of_trips)).to eq("Mon, 07 Mar 2011")
+    end
+  end
+
+  it "find most frequent destination station" do
+    test_start_station = Station.write(name: "TestStation1",
+                                      lat: 1.1,
+                                      long: 1.2,
+                                      dock_count: 1,
+                                      city_name: "TestCityName1",
+                                      installation_date: "2011-11-11")
+    test_end_station1 = Station.write(name: "TestStation3",
+                                      lat: 3.1,
+                                      long: 3.2,
+                                      dock_count: 3,
+                                      city_name: "TestCityName3",
+                                      installation_date: "2011-11-11")
+    test_end_station2 = Station.write(name: "TestStation2",
+                                      lat: 3.1,
+                                      long: 3.2,
+                                      dock_count: 3,
+                                      city_name: "TestCityName3",
+                                      installation_date: "2011-11-11")
+    test_trip1 = Trip.write(duration: 90,
+                              start_date: "2011-3-6 12:00",
+                              start_station_name: "TestStation1",
+                              end_date: "2011-3-6 12:00",
+                              end_station_name: "TestStation3",
+                              bike_id: 3,
+                              subscription_name: "Subscriber", 
+                              zipcode: 80211)
+    test_trip2 = Trip.write(duration: 100,
+                              start_date: "2012-2-2 12:00",
+                              start_station_name: "TestStation1",
+                              end_date: "2012-2-6 12:00",
+                              end_station_name: "TestStation3",
+                              bike_id: 6,
+                              subscription_type: "Subscriber", 
+                              zipcode: 80222)
+    test_trip3 = Trip.write(duration: 100,
+                              start_date: "2012-2-2 12:00",
+                              start_station_name: "TestStation3",
+                              end_date: "2012-2-6 12:00",
+                              end_station_name: "TestStation2",
+                              bike_id: 6,
+                              subscription_type: "Subscriber", 
+                              zipcode: 80222)
+
+    expect(Trip.most_frequent_destination_station.name).to eq("TestStation3")
   end
 
 end
