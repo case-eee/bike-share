@@ -93,21 +93,29 @@ class Trip < ActiveRecord::Base
     minimum(:duration)
   end
 
-  def self.rides_started_here(station)
-
-    # require 'pry'; binding.pry
-    where(start_station_id: station).count
-  end
-
   def self.monthly_rides
-    Trip.group("DATE_TRUNC('month', start_date)").order("count_start_station_id DESC").count(:start_station_id)  
+    Trip.group("DATE_TRUNC('month', start_date)").order("count_start_station_id DESC").count(:start_station_id)
   end
 
-  # def most_used_bike(station_id)
-  #   
-  # end
+  def self.monthly_breakdown_of_rides
+    breakout = monthly_rides
+    {
+      :monthly_breakdown => 
+      [(Date.parse breakout.keys.each {|date| date.to_s}.join), 
+                   breakout.values.each {|trip| trip}.flatten]
+    }  
+  end
 
   def self.subscription_types
-    Trip.group(:subscription_id).order('count_subscription_id DESC').count(:subscription_id)
+    subs = Trip.group(:subscription_id).order('count_subscription_id DESC').count(:subscription_id)
+    if subs.count == 1
+      total = subs[1]
+    elsif subs.count == 2
+      total = subs[1] + subs[2]
+    end
+    {
+      (Subscription.find(subs.keys[0]).name) => [subs[1], subs[1]/total.to_f * 100],
+      (Subscription.find(subs.keys[1]).name) => [subs[2], subs[2]/total.to_f * 100]
+    }
   end
 end
