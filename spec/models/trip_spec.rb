@@ -239,11 +239,18 @@ describe "Trip" do
         expect(Trip.rides_started_here(1)).to eq(0)
       end
       it "Returns proper value with one entry in database" do
+        test_station1 = Station.write(name: "TestStation1",
+                                      lat: 1.1,
+                                      long: 1.2,
+                                      dock_count: 1,
+                                      city_name: "TestCityName1",
+                                      installation_date: "2011-11-11",
+                                      )
         Trip.write(duration: 90,
                    start_date: "2011-3-6 12:00",
-                   start_station_id: 1,
+                   start_station_name: "TestStation1",
                    end_date: "2011-3-6 12:00",
-                   end_station_id: 3,
+                   end_station_id: "test_station10",
                    bike_id: 3,
                    subscription_type: "Subscriber", 
                    zipcode: 80211)
@@ -251,24 +258,51 @@ describe "Trip" do
         expect(Trip.rides_started_here(1)).to eq(1)
       end
       it "Returns proper value with more than one entry" do
+        test_station1 = Station.write(name: "TestStation1",
+                                      lat: 1.1,
+                                      long: 1.2,
+                                      dock_count: 1,
+                                      city_name: "TestCityName1",
+                                      installation_date: "2011-11-11",
+                                      )
+        test_station10 = Station.write(name: "TestStation10",
+                                        lat: 1.1,
+                                        long: 1.2,
+                                        dock_count: 10,
+                                        city_name: "TestCityName10",
+                                        installation_date: "2011-11-11",
+                                        )
         Trip.write(duration: 90,
-                   start_date: "2011-3-6 12:00",
-                   start_station_id: 1,
+                   start_date: "2011-4-9",
+                   start_station_name: "TestStation1",
                    end_date: "2011-3-6 12:00",
-                   end_station_id: 3,
+                   end_station_name: "TestStation10",
                    bike_id: 3,
                    subscription_type: "Subscriber", 
                    zipcode: 80211)
         Trip.write(duration: 40,
                    start_date: "2011-3-6 12:00",
-                   start_station_id: 1,
+                   start_station_name: "TestStation1",
                    end_date: "2011-3-6 12:00",
-                   end_station_id: 3,
+                   end_station_name: "TestStation10",
                    bike_id: 3,
                    subscription_type: "Subscriber", 
                    zipcode: 80211)
-
+          
         expect(Trip.rides_started_here(1)).to eq(2)
+      end
+    end
+    describe "Monthly rides" do
+      it "Returns data with rides broken up by month/year" do
+        Trip.write(duration: 90,
+                   start_date: "2011-3-6 12:00",
+                   start_station_name: "TestStation1",
+                   end_date: "2011-3-6 12:00",
+                   end_station_name: "TestStation3",
+                   bike_id: 3,
+                   subscription_type: "Subscriber", 
+                   zipcode: 80211)
+        expect(Trip.monthly_rides).to eq(1)
       end
     end
 

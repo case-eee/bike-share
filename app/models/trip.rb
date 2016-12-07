@@ -94,20 +94,20 @@ class Trip < ActiveRecord::Base
   end
 
   def self.rides_started_here(station)
+
+    # require 'pry'; binding.pry
     where(start_station_id: station).count
   end
 
   def self.monthly_rides
-    Trip.group(:start_date).order("count_start_station_id DESC").count(:start_station_id)
+    Trip.group("DATE_TRUNC('month', start_date)").order("count_start_station_id DESC").count(:start_station_id)  
   end
 
   # def most_used_bike(station_id)
-  #   station = Station.find(station_id)
-  #   Trip.group(:bike_id).order(count_trip)
+  #   
   # end
 
   def self.subscription_types
-    test = Trip.group(:subscription_id).order('count_subscription_id DESC').count(:subscription_id)
-    require 'pry'; binding.pry
+    Trip.group(:subscription_id).order('count_subscription_id DESC').count(:subscription_id)
   end
 end
