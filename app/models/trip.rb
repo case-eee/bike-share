@@ -1,4 +1,4 @@
-require_relative 'subscriptions'
+require_relative 'subscription'
 
 class Trip < ActiveRecord::Base
   validates :duration,
@@ -60,7 +60,8 @@ class Trip < ActiveRecord::Base
   end
 
   def self.day_with_lowest_number_of_trips
-    
+    least_common = Trip.group(:start_date).order("count_id ASC").limit(1).count(:id)
+    binding.pry
   end
 
   def self.find_station_id(station_name)
