@@ -403,6 +403,78 @@ describe "Station" do
       expect(test_end_station.end_trips.first.duration).to eq(test_trip1.duration)
       expect(test_end_station.end_trips.last.duration).to eq(test_trip2.duration)
     end
+    it "Returns date on which the most trips started from the station" do
+      test_start_station = Station.write(name: "StartStation",
+                                        lat: 1.1,
+                                        long: 1.2,
+                                        dock_count: 1,
+                                        city_name: "TestCityName1",
+                                        installation_date: "2011-11-11",
+                                        )
+      test_trip1 = Trip.write(duration: 90,
+                              start_date: "2011-3-6 12:00",
+                              start_station_name: "StartStation",
+                              end_date: "2011-3-6 12:00",
+                              end_station_name: "EndStation",
+                              bike_id: 3,
+                              subscription_type: "Subscriber", 
+                              zipcode: 80211)
+      test_trip2 = Trip.write(duration: 100,
+                              start_date: "2012-2-2 12:00",
+                              start_station_name: "StartStation",
+                              end_date: "2012-2-6 12:00",
+                              end_station_name: "EndStation",
+                              bike_id: 6,
+                              subscription_type: "Subscriber", 
+                              zipcode: 80222)
+      test_trip3 = Trip.write(duration: 190,
+                              start_date: "2011-3-6 12:00",
+                              start_station_name: "StartStation",
+                              end_date: "2011-3-7 12:00",
+                              end_station_name: "EndStation",
+                              bike_id: 5,
+                              subscription_type: "Subscriber", 
+                              zipcode: 80233)
+
+      expect(test_start_station.start_trips.count).to eq(3)
+      expect(test_start_station.start_trips.date_of_highest_number_of_trips).to eq(test_trip1.start_date.to_s)
+    end
+    it "Returns date on which the most trips started from the station" do
+      test_start_station = Station.write(name: "StartStation",
+                                        lat: 1.1,
+                                        long: 1.2,
+                                        dock_count: 1,
+                                        city_name: "TestCityName1",
+                                        installation_date: "2011-11-11",
+                                        )
+      test_trip1 = Trip.write(duration: 90,
+                              start_date: "2011-3-6 12:00",
+                              start_station_name: "StartStation",
+                              end_date: "2011-3-6 12:00",
+                              end_station_name: "EndStation",
+                              bike_id: 3,
+                              subscription_type: "Subscriber", 
+                              zipcode: 80211)
+      test_trip2 = Trip.write(duration: 100,
+                              start_date: "2012-2-2 12:00",
+                              start_station_name: "StartStation",
+                              end_date: "2012-2-6 12:00",
+                              end_station_name: "EndStation",
+                              bike_id: 6,
+                              subscription_type: "Subscriber", 
+                              zipcode: 80222)
+      test_trip3 = Trip.write(duration: 190,
+                              start_date: "2011-3-6 12:00",
+                              start_station_name: "StartStation",
+                              end_date: "2011-3-7 12:00",
+                              end_station_name: "EndStation",
+                              bike_id: 5,
+                              subscription_type: "Subscriber", 
+                              zipcode: 80233)
+
+      expect(test_start_station.start_trips.count).to eq(3)
+      expect(test_start_station.start_trips.trip_count_of_highest_number_of_trips).to eq(2)
+    end
 
   end
 

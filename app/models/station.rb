@@ -1,10 +1,17 @@
 class Station < ActiveRecord::Base 
 
-  has_many :start_trips , class_name: "Trip", foreign_key: "start_station_id"
+  has_many :start_trips , class_name: "Trip", foreign_key: "start_station_id" do
+    def date_of_highest_number_of_trips
+      group(:start_date).order("count_start_date DESC").count(:start_date).first.first.to_s
+    end
+    def trip_count_of_highest_number_of_trips
+      group(:start_date).order("count_start_date DESC").count(:start_date).first.last
+    end
+  end
+
   has_many :end_trips , class_name: "Trip", foreign_key: "end_station_id"
 
   validates :name, :dock_count, :city_id, :installation_date, presence: true
-
 
   def self.write(station_details)
     self.find_or_create_by(name: station_details[:name],
