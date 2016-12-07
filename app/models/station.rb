@@ -1,6 +1,12 @@
 class Station < ActiveRecord::Base
-  belongs_to :city
-  validates :name, :dock_count, :city_id, :installation_date, presence: true
+  validates :name,
+            :dock_count,
+            :city_id,
+            :installation_date,
+              presence: true
+  belongs_to :city_id
+  has_many :trips, foreign_key: "start_station_id"
+  has_many :trips, foreign_key: "end_station_id"
 
   def self.write(station_details)
     self.find_or_create_by(name: station_details[:name],

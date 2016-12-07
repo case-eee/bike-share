@@ -78,4 +78,56 @@ describe "Trip" do
 
   end
 
+  describe "Dashboard Methods" do
+    it "find the longest ride" do
+      trip1 = Trip.write(duration: 45,
+                          start_date: "2011-3-6 12:00",
+                          start_station_id: 1,
+                          end_date: "2011-3-6 12:00",
+                          end_station_id: 3,
+                          bike_id: 3,
+                          subscription_name: "Subscriber",
+                          zipcode: 80211)
+      trip2 = Trip.write(duration: 47,
+                          start_date: "2011-3-6 12:00",
+                          start_station_id: 1,
+                          end_date: "2011-3-6 12:00",
+                          end_station_id: 3,
+                          subscription_name: "Subscriber",
+                          bike_id: 3,
+                          zipcode: 80211)
+
+      expect(Trip.longest_ride).to eq(47)
+    end
+
+    it "find the station with the most rides as a starting place" do
+      trip1 = Trip.write(duration: 45,
+                          start_date: "2011-3-6 12:00",
+                          start_station_id: 1,
+                          end_date: "2011-3-6 12:00",
+                          end_station_id: 3,
+                          bike_id: 3,
+                          subscription_name: "Subscriber",
+                          zipcode: 80211)
+      trip2 = Trip.write(duration: 47,
+                          start_date: "2011-3-6 12:00",
+                          start_station_id: 1,
+                          end_date: "2011-3-6 12:00",
+                          end_station_id: 3,
+                          subscription_name: "Subscriber",
+                          bike_id: 3,
+                          zipcode: 80211)
+      trip3 = Trip.write(duration: 47,
+                          start_date: "2011-3-6 12:00",
+                          start_station_id: 2,
+                          end_date: "2011-3-6 12:00",
+                          end_station_id: 3,
+                          subscription_name: "Subscriber",
+                          bike_id: 3,
+                          zipcode: 80211)
+
+      expect(Trip.station_with_most_starting_rides).to eq("Station1")
+    end
+  end
+
 end
