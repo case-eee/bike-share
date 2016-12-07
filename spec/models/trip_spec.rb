@@ -75,7 +75,46 @@ describe "Trip" do
                                 zipcode: 80211)
       expect(invalid_trip).to_not be_valid
     end
+  end
 
+  describe "Methods" do
+    describe "average duration of a ride" do
+      it "returns nil when no trips are in database table" do
+        expect(Trip.rides_average_duration).to eq(nil)
+      end
+      it "returns proper value with one entry in database table" do
+        test_trip = Trip.write(duration: 90,
+                                  start_date: "2011-3-6 12:00",
+                                  start_station_id: 1,
+                                  end_date: "2011-3-6 12:00",
+                                  end_station_id: 3,
+                                  bike_id: 3,
+                                  subscription_type: "Subscriber", 
+                                  zipcode: 80211)
+                                  
+        expect(Trip.rides_average_duration).to eq(90)
+      end
+      it "returns proper value with more than one entry in database table" do
+        test_trip1 = Trip.write(duration: 90,
+                                  start_date: "2011-3-6 12:00",
+                                  start_station_id: 1,
+                                  end_date: "2011-3-6 12:00",
+                                  end_station_id: 3,
+                                  bike_id: 3,
+                                  subscription_type: "Subscriber", 
+                                  zipcode: 80211)
+        test_trip2 = Trip.write(duration: 45,
+                                  start_date: "2011-6-6 12:00",
+                                  start_station_id: 1,
+                                  end_date: "2011-6-6 12:00",
+                                  end_station_id: 3,
+                                  bike_id: 3,
+                                  subscription_type: "Subscriber", 
+                                  zipcode: 80211)
+                                  
+        expect(Trip.rides_average_duration).to eq(67.5)
+      end
+    end
   end
 
 end

@@ -26,4 +26,10 @@ class Trip < ActiveRecord::Base
     Subscription.write(name: subscription_type).id
   end
 
+  def self.rides_average_duration
+    average(:duration)
+  end
+
+
+
 end
