@@ -3,14 +3,6 @@
   font-family: 'Muli', sans-serif;
 }
 
-html { 
-  background: url("/images/bike_share_header.jpg") no-repeat center center fixed; 
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
-  background-size: cover;
-}
-
 #bike-icon {
   height: 50px;
   width: 50px;
