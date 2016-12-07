@@ -333,7 +333,7 @@ describe "Trip" do
                           subscription_name: "Subscriber",
                           zipcode: 80211)
       trip2 = Trip.write(duration: 47,
-                          start_date: "2011-3-6 12:00",
+                          start_date: "2011-3-7 12:00",
                           start_station_name: "StartStation",
                           end_date: "2011-3-6 12:00",
                           end_station_name: "EndStation",
@@ -351,36 +351,6 @@ describe "Trip" do
 
       expect(Trip.least_ridden_bike).to eq(2)
       expect(Trip.trips_by_bike(Trip.least_ridden_bike)).to eq(1)
-    end
-
-    it "find the day with least bike rides" do
-      trip1 = Trip.write(duration: 45,
-                          start_date: "2011-4-6 12:00",
-                          start_station_id: 1,
-                          end_date: "2011-3-6 12:00",
-                          end_station_id: 1,
-                          bike_id: 3,
-                          subscription_name: "Subscriber",
-                          zipcode: 80211)
-      trip2 = Trip.write(duration: 47,
-                          start_date: "2011-4-6 12:00",
-                          start_station_id: 1,
-                          end_date: "2011-3-6 12:00",
-                          end_station_id: 3,
-                          subscription_name: "Subscriber",
-                          bike_id: 3,
-                          zipcode: 80211)
-      trip3 = Trip.write(duration: 47,
-                          start_date: "2011-3-6 12:00",
-                          start_station_id: 2,
-                          end_date: "2011-3-6 12:00",
-                          end_station_id: 3,
-                          subscription_name: "Subscriber",
-                          bike_id: 3,
-                          zipcode: 80211)
-      
-      expect(Trip.day_with_lowest_number_of_trips).to eq("2011-3-6")
-      expect(Trip.day_with_lowest_number_of_trips_number).to eq(1)
     end
 
   end

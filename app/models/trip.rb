@@ -57,10 +57,6 @@ class Trip < ActiveRecord::Base
     where(bike_id: given_bike_id).count
   end
 
-  def self.day_with_lowest_number_of_trips
-  
-  end
-
   def self.find_station_id(station_name)
     return "This station has not been added to the database yet" if Station.find_by(name: station_name).nil?
     Station.find_by(name: station_name).id
