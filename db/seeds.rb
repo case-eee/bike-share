@@ -12,8 +12,6 @@ end
 
 def import_station_csv
   CSV.foreach('db/csv/station.csv', :headers=> true) do |row|
-
-
     Station.write({name: row["name"],
                    lat: row["lat"],
                    long: row["long"],

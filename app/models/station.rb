@@ -1,6 +1,10 @@
-class Station < ActiveRecord::Base
+class Station < ActiveRecord::Base 
+  validates :name,
+            :dock_count,
+            :city_id,
+            :installation_date,
+              presence: true
   belongs_to :city
-  validates :name, :dock_count, :city_id, :installation_date, presence: true
 
   def self.write(station_details)
     self.find_or_create_by(name: station_details[:name],
