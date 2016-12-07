@@ -1,9 +1,10 @@
-class Station < ActiveRecord::Base
-  belongs_to :city
-  has_many :start_trips , class_name: "Trip", primary_key: "csv_id", foreign_key: "start_station_id"
-  has_many :end_trips , class_name: "Trip", primary_key: "csv_id", foreign_key: "end_station_id"
+class Station < ActiveRecord::Base 
+
+  has_many :start_trips , class_name: "Trip", foreign_key: "start_station_id"
+  has_many :end_trips , class_name: "Trip", foreign_key: "end_station_id"
 
   validates :name, :dock_count, :city_id, :installation_date, presence: true
+
 
   def self.write(station_details)
     self.find_or_create_by(name: station_details[:name],
