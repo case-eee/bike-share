@@ -25,7 +25,7 @@ class Trip < ActiveRecord::Base
   end
   
   def self.write(trip_details)
-    self.create(subscription_id: find_subscription_id(trip_details[:subscription_name]),
+    self.find_or_create_by(subscription_id: find_subscription_id(trip_details[:subscription_name]),
                           duration: trip_details[:duration],
                           start_date: trip_details[:start_date],
                           start_station_id: trip_details[:start_station_id],
