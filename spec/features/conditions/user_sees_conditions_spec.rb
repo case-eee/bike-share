@@ -29,15 +29,15 @@ describe "when a user visits /conditions" do
     expect(page).not_to have_content 23
   end
 
-  xit "they can update an existing condition" do
-    condition = Condition.create(date:"8/29/2013",max_temperature_f:23,mean_temperature_f:433,mean_humidity:12,mean_visibility_miles:123,max_wind_speed_mph:12,precipitation_inches:1)
+  it "they can update an existing condition" do
+    date = Date.strptime("8/30/2013", '%m/%d/%Y')
+    condition = Condition.create(date:date ,max_temperature_f:23,mean_temperature_f:433,min_temperature_f:432,mean_humidity:12,mean_visibility_miles:123,max_wind_speed_mph:12,precipitation_inches:1)
     visit "/conditions"
-
+    save_and_open_page
     expect(page).to have_content 23
     find("a[href='/conditions/#{condition.id}/edit']").click
 
     expect(page).to have_current_path "/conditions/#{condition.id}/edit"
-    date = Date.strptime("8/30/2013", '%m/%d/%Y')
     fill_in "condition[date]", :with => date
     fill_in "condition[max_temperature_f]", :with => 74.0
     fill_in "condition[mean_temperature_f]", :with => 68.0

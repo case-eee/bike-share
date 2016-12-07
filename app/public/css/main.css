@@ -1,5 +1,6 @@
 body {
-  background: lightblue;
+  background-image: url("./bicycle.jpg");
+  background-size:cover;
   font-family: 'Raleway', sans-serif;
   text-align: center;
 }
@@ -14,8 +15,25 @@ body {
   border-radius: 10px;
 }
 
+.navbar {
+  background:none;
+  border: none;
+}
+
+.navbar-text {
+  font-size: 25px;
+  margin-top: 15px;
+  font-weight: bold;
+  padding-left: 10px;
+}
+
 h1 {
   font-family: 'Bungee', cursive;
+  color: white;
+}
+
+h3 {
+  color:white;
 }
 
 .button_row {
@@ -35,7 +53,18 @@ a {
 }
 
 i {
-  color:lightblue;
+  color: lightgrey;
+  opacity: 0.5;
+  margin-right: 10px;
+}
+
+.splash {
+  color: white;
+  text-align: left;
+  margin-left: 5%;
+  margin-top: 15%;
+  font-size: 50px;
+  width: 30%;
 }
 
 .button_row > form > input {
@@ -46,14 +75,27 @@ i {
 }
 
 .station_object {
-  background:radial-gradient(ellipse at center, #ffffff 0%,#add8e6 55%);;
+  /*background:radial-gradient(ellipse at center, #ffffff 0%,#add8e6 55%);;*/
   padding:10px;
   border-radius: 50%;
-  text-align: left;
+  color: white;
 }
 
 .edit_or_new_form {
   margin:10px;
   border-radius:10px;
   border: 1px solid lightgray;
+}
+
+.station_title { 
+  width:80%;
+  margin-left:auto;
+  margin-right:auto;
+  font-size:25px;
+  padding:5px;
+  font-weight:bold;
+  background:white;
+  opacity: 0.9;
+  border-radius:10px;
+  color: grey;
 }

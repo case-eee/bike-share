@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Bike-Share</title>
+    <link href="/css/bootstrap.min.css" rel="stylesheet" media="screen">
+    <link href="https://fonts.googleapis.com/css?family=Bungee|Raleway" rel="stylesheet">
+    <link rel="stylesheet" href="/css/font-awesome.min.css">
+    <link href="/css/main.css" rel="stylesheet">
+  </head>
+  <body>
+    <nav class="navbar navbar-default">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <a class="navbar-brand" href="/station-dashboard">Stations!</a>
+          <a class="navbar-brand" href="/trip-dashboard">Trips!</a>
+          <a class="navbar-brand" href="/condition-dashboard">Conditions!</a>
+        </div>
+        <div class="navbar-right">
+          <i class="fa fa-bicycle fa-4x fa-flip-horizontal <!--fa-spinner fa-spin-->"></i>
+        </div>
+      </div>
+    </nav>
+    <div class="titled">
+  <h1>All Conditions</h1>
+
+  <form action="/conditions/new" method="GET">
+    <input type="submit" value="Create a new condition"/>
+  </form>
+</div>
+<br>
+  <div class="condition_object col-md-4">
+    <h1>2013-08-30</h1>
+    <p>Date : 2013-08-30</p>
+    <p>Max Temperature : 23.0</p>
+    <p>Mean Temperature : 433.0</p>
+    <p>Min Temperature : 432.0</p>
+    <p>Mean Humidity : 12.0</p>
+    <p>Mean Visibility : 123.0</p>
+    <p>Max Wind Speed : 12.0</p>
+    <div class="button_row">
+      <a class="col-md-4" href="/conditions/2013-08-30">Details</a>
+      <a class="col-md-4" href="/conditions/2013-08-30/edit">Edit</a>
+      <form class="col-md-4 delete_condition" action="/conditions/2013-08-30" method="POST">
+        <input type="hidden" name="_method" value="DELETE">
+        <input type="submit" value="Delete">
+      </form>
+    </div>
+  </div>
+
+    <script src="http://code.jquery.com/jquery.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
+  </body>
+</html>
