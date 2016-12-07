@@ -1,4 +1,3 @@
-require 'pry'
 class Trip < ActiveRecord::Base
   validates :duration, :start_station_id, :end_station_id, :start_date, :end_date, :bike_id, :subscription_type, :zip_code, presence: true
   belongs_to :trip_start, :class_name => 'Station', :foreign_key => 'start_station_id'
@@ -71,5 +70,14 @@ class Trip < ActiveRecord::Base
   def self.least_trips
     group(:start_date.to_s).count.min_by{|k, v| v}
   end
-end
 
+  def self.condition_on_day_with_most_rides
+    most_date = group(:start_date).count.max_by{|k, v| v}.first.strftime('%Y-%m-%d')
+    Condition.where(date: most_date)
+  end
+
+  def self.condition_on_day_with_least_rides
+    least_date = group(:start_date).count.min_by{|k, v| v}.first.strftime('%Y-%m-%d')
+    Condition.where(date: least_date)
+  end
+end

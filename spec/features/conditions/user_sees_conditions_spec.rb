@@ -52,8 +52,10 @@ describe "when a user visits /conditions" do
   end
 
   it "they can see an individual condition" do
-    date = Date.strptime("8/29/2013", '%m/%d/%Y')
-    condition = Condition.create(date: date,max_temperature_f:23,mean_temperature_f:433,min_temperature_f:34,mean_humidity:12,mean_visibility_miles:123,max_wind_speed_mph:12,precipitation_inches:1)
+
+    date =  Date.strptime("8/29/2013", '%m/%d/%Y')  
+    condition = Condition.create(date: date,max_temperature_f:23,mean_temperature_f:433,mean_humidity:12,mean_visibility_miles:123,max_wind_speed_mph:12,precipitation_inches:1)
+
     visit "/conditions"
 
     expect(page).to have_content 23.0

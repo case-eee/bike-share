@@ -1,55 +1,72 @@
 class Condition < ActiveRecord::Base
   self.primary_key = 'date'
-  
+
   validates :date, :max_temperature_f, :mean_temperature_f, :min_temperature_f, :mean_humidity, :mean_visibility_miles, :max_wind_speed_mph, presence: true
   has_many :trips, :foreign_key => 'start_date'
 
-  def self.make_temperature_range
-    floor = minimum(:max_temperature_f)
-    ceiling = maximum(:max_temperature_f)
+  def self.make_range(attribute, increment)
+    floor = minimum(attribute)
+    ceiling = maximum(attribute)
     range = []
 
-    until floor >= (ceiling - 10)  
-      range << [floor, floor + 9]
-      floor += 10
+    until floor >= (ceiling - increment)
+      range << [floor, floor + increment]
+      floor += increment
     end
 
     range << [floor, ceiling]
-
   end
 
-  def self.chunk
+  def self.chunk(attribute, increment)
     chunked = {}
-    make_temperature_range.each do |range|
-      chunked[range] = select(:max_temperature_f).group(:max_temperature_f).having("max_temperature_f >= #{range[0]} AND max_temperature_f <= #{range[1]}")
+    make_range(attribute, increment).each do |range|
+      chunked[range] = where(attribute => range[0]...range[1])
     end
     chunked
   end
 
-  def self.results_hash 
+  def self.connect_condition_with_trips(attribute, increment)
+    trips_in_range = {}
+    chunk(attribute, increment).each do |range, conditions|
+      trips_in_range[range] = conditions.joins(:trips).group(:start_date).count.values
+    end
+    trips_in_range
+  end
+
+  def self.ranges_with_trips(attribute, increment)
     final = {}
-    chunk.each do |k, v|
-      final[k] = [v,"average_rides(v)", "high(v)", "low(v)"] 
+    connect_condition_with_trips(attribute, increment).each do |k, v|
+      v.empty? ? final[k] = [0, 0, 0] : final[k] = [average_daily(v), maximum_daily(v), minimum_daily(v)]
     end
     final
   end
 
-  def self.average_rides(v)
-    arr = v.pluck(:max_temperature_f)
-    all_trips = []
-    arr.each do |x|
-      unless x.nil?
-        all_trips << Trip.where("max_temperature_f = #{x}").count
-      end
-    end
+  def self.rides_by_temperature
+    ranges_with_trips(:max_temperature_f, 10)
   end
 
-  def self.high(v)
-    "high"
+  def self.rides_by_precipitation
+    ranges_with_trips(:precipitation_inches, 0.5)
   end
 
-  def self.low(v)
-    "low"
+  def self.rides_by_mean_wind_speed
+    ranges_with_trips(:mean_wind_speed_mph, 4)
+  end
+
+  def self.rides_by_mean_visibility
+    ranges_with_trips(:mean_visibility_miles, 4)
+  end
+
+  def self.average_daily(rides)
+    rides.reduce(:+)/(rides.length.to_f)
+  end
+
+  def self.maximum_daily(rides)
+    rides.max
+  end
+
+  def self.minimum_daily(rides)
+    rides.min
   end
 
 end

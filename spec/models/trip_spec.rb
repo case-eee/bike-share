@@ -239,13 +239,52 @@ describe "Trip" do
       Trip.create(duration: 67, start_station_id: 1, end_station_id: 1, start_date: "12-3-2013 14:44", end_date: "11-3-2014 14:55", bike_id: 25, subscription_type: "Baller", zip_code: 1029)
       Trip.create(duration: 67, start_station_id: 1, end_station_id: 1, start_date: "12-3-2013 14:44", end_date: "11-3-2014 14:55", bike_id: 25, subscription_type: "OG", zip_code: 1029)
 
-      expect(Trip.least_trips.to_s).to eql("[Wed, 12 Mar 2014, 1]")
+      expect(Trip.least_trips.to_s).to eql("[Thu, 06 Mar 2014, 1]")
     end
   end
+
+  describe '.condition_on_day_with_most_rides' do
+    it "returns the weather on the day with the highest rides" do
+      Condition.create(date:"17-03-2012", max_temperature_f:102, mean_temperature_f:75, min_temperature_f:44, max_dew_point_f:5, mean_dew_point_f:3, min_dew_point_f:1, max_humidity:46, mean_humidity:42, min_humidity:24, max_sea_level_pressure_inches:33, mean_sea_level_pressure_inches:25, min_sea_level_pressure_inches:20, max_visibility_miles:2.4, mean_visibility_miles:27, min_visibility_miles:27, max_wind_speed_mph:40, mean_wind_speed_mph:27, max_gust_speed_mph:500, precipitation_inches:2, cloud_cover:6.0, events:"rainy", wind_dir_degrees:43, zip_code:90210)
+      Condition.create(date:"13-03-2012", max_temperature_f:91, mean_temperature_f:75, min_temperature_f:44, max_dew_point_f:5, mean_dew_point_f:3, min_dew_point_f:1, max_humidity:46, mean_humidity:42, min_humidity:24, max_sea_level_pressure_inches:33, mean_sea_level_pressure_inches:25, min_sea_level_pressure_inches:20, max_visibility_miles:2.4, mean_visibility_miles:29, min_visibility_miles:29, max_wind_speed_mph:40, mean_wind_speed_mph:29, max_gust_speed_mph:500, precipitation_inches:3, cloud_cover:6.0, events:"rainy", wind_dir_degrees:43, zip_code:90210)
+      Condition.create(date:"11-03-2012", max_temperature_f:85, mean_temperature_f:75, min_temperature_f:44, max_dew_point_f:5, mean_dew_point_f:3, min_dew_point_f:1, max_humidity:46, mean_humidity:42, min_humidity:24, max_sea_level_pressure_inches:33, mean_sea_level_pressure_inches:25, min_sea_level_pressure_inches:20, max_visibility_miles:2.4, mean_visibility_miles:20, min_visibility_miles:20, max_wind_speed_mph:40, mean_wind_speed_mph:20, max_gust_speed_mph:500, precipitation_inches:0, cloud_cover:6.0, events:"rainy", wind_dir_degrees:43, zip_code:90210)
+      Condition.create(date:"10-03-2012", max_temperature_f:20, mean_temperature_f:75, min_temperature_f:44, max_dew_point_f:5, mean_dew_point_f:3, min_dew_point_f:1, max_humidity:46, mean_humidity:42, min_humidity:24, max_sea_level_pressure_inches:33, mean_sea_level_pressure_inches:25, min_sea_level_pressure_inches:20, max_visibility_miles:2.4, mean_visibility_miles:23, min_visibility_miles:23, max_wind_speed_mph:40, mean_wind_speed_mph:23, max_gust_speed_mph:500, precipitation_inches:1, cloud_cover:6.0, events:"rainy", wind_dir_degrees:43, zip_code:90210)
+      Condition.create(date:"15-03-2012", max_temperature_f:86, mean_temperature_f:75, min_temperature_f:44, max_dew_point_f:5, mean_dew_point_f:3, min_dew_point_f:1, max_humidity:46, mean_humidity:42, min_humidity:24, max_sea_level_pressure_inches:33, mean_sea_level_pressure_inches:25, min_sea_level_pressure_inches:20, max_visibility_miles:2.4, mean_visibility_miles:23, min_visibility_miles:23, max_wind_speed_mph:40, mean_wind_speed_mph:23, max_gust_speed_mph:500, precipitation_inches:1, cloud_cover:6.0, events:"rainy", wind_dir_degrees:43, zip_code:90210)
+      Condition.create(date:"12-03-2012", max_temperature_f:86, mean_temperature_f:75, min_temperature_f:44, max_dew_point_f:5, mean_dew_point_f:3, min_dew_point_f:1, max_humidity:46, mean_humidity:42, min_humidity:24, max_sea_level_pressure_inches:33, mean_sea_level_pressure_inches:25, min_sea_level_pressure_inches:20, max_visibility_miles:2.4, mean_visibility_miles:20, min_visibility_miles:20, max_wind_speed_mph:40, mean_wind_speed_mph:20, max_gust_speed_mph:500, precipitation_inches:0, cloud_cover:6.0, events:"rainy", wind_dir_degrees:43, zip_code:90210)
+
+      Trip.create(duration: 20, start_station_id: 2, end_station_id: 2, start_date: "12-03-2012 14:44", end_date: "11-1-2014 14:55", bike_id: 23, subscription_type: "Subscriber", zip_code: 1029)
+      Trip.create(duration: 20, start_station_id: 2, end_station_id: 2, start_date: "11-03-2012 14:44", end_date: "11-1-2014 14:55", bike_id: 23, subscription_type: "Subscriber", zip_code: 1029)
+      Trip.create(duration: 40, start_station_id: 3, end_station_id: 3, start_date: "12-03-2012 14:44", end_date: "11-3-2014 14:55", bike_id: 24, subscription_type: "Subscriber", zip_code: 1029)
+      Trip.create(duration: 67, start_station_id: 1, end_station_id: 1, start_date: "12-03-2012 14:44", end_date: "11-3-2014 14:55", bike_id: 24, subscription_type: "Subscriber", zip_code: 1029)
+      Trip.create(duration: 67, start_station_id: 1, end_station_id: 1, start_date: "12-03-2012 14:44", end_date: "11-3-2014 14:55", bike_id: 25, subscription_type: "Subscriber", zip_code: 1029)
+      Trip.create(duration: 20, start_station_id: 2, end_station_id: 2, start_date: "10-03-2012 14:44", end_date: "11-1-2014 14:55", bike_id: 23, subscription_type: "Subscriber", zip_code: 1029)
+      Trip.create(duration: 20, start_station_id: 2, end_station_id: 2, start_date: "17-03-2012 14:44", end_date: "11-1-2014 14:55", bike_id: 23, subscription_type: "Subscriber", zip_code: 1029)
+
+      expect(Trip.condition_on_day_with_most_rides.first.id.to_s).to eql("2012-03-12")
+    end
+  end
+
+    describe '.condition_on_day_with_least_rides' do
+      it "returns the weather on the day with the lowest rides" do
+      Condition.create(date:"17-03-2012", max_temperature_f:102, mean_temperature_f:75, min_temperature_f:44, max_dew_point_f:5, mean_dew_point_f:3, min_dew_point_f:1, max_humidity:46, mean_humidity:42, min_humidity:24, max_sea_level_pressure_inches:33, mean_sea_level_pressure_inches:25, min_sea_level_pressure_inches:20, max_visibility_miles:2.4, mean_visibility_miles:27, min_visibility_miles:27, max_wind_speed_mph:40, mean_wind_speed_mph:27, max_gust_speed_mph:500, precipitation_inches:2, cloud_cover:6.0, events:"rainy", wind_dir_degrees:43, zip_code:90210)
+      Condition.create(date:"13-03-2012", max_temperature_f:91, mean_temperature_f:75, min_temperature_f:44, max_dew_point_f:5, mean_dew_point_f:3, min_dew_point_f:1, max_humidity:46, mean_humidity:42, min_humidity:24, max_sea_level_pressure_inches:33, mean_sea_level_pressure_inches:25, min_sea_level_pressure_inches:20, max_visibility_miles:2.4, mean_visibility_miles:29, min_visibility_miles:29, max_wind_speed_mph:40, mean_wind_speed_mph:29, max_gust_speed_mph:500, precipitation_inches:3, cloud_cover:6.0, events:"rainy", wind_dir_degrees:43, zip_code:90210)
+      Condition.create(date:"11-03-2012", max_temperature_f:85, mean_temperature_f:75, min_temperature_f:44, max_dew_point_f:5, mean_dew_point_f:3, min_dew_point_f:1, max_humidity:46, mean_humidity:42, min_humidity:24, max_sea_level_pressure_inches:33, mean_sea_level_pressure_inches:25, min_sea_level_pressure_inches:20, max_visibility_miles:2.4, mean_visibility_miles:20, min_visibility_miles:20, max_wind_speed_mph:40, mean_wind_speed_mph:20, max_gust_speed_mph:500, precipitation_inches:0, cloud_cover:6.0, events:"rainy", wind_dir_degrees:43, zip_code:90210)
+      Condition.create(date:"10-03-2012", max_temperature_f:20, mean_temperature_f:75, min_temperature_f:44, max_dew_point_f:5, mean_dew_point_f:3, min_dew_point_f:1, max_humidity:46, mean_humidity:42, min_humidity:24, max_sea_level_pressure_inches:33, mean_sea_level_pressure_inches:25, min_sea_level_pressure_inches:20, max_visibility_miles:2.4, mean_visibility_miles:23, min_visibility_miles:23, max_wind_speed_mph:40, mean_wind_speed_mph:23, max_gust_speed_mph:500, precipitation_inches:1, cloud_cover:6.0, events:"rainy", wind_dir_degrees:43, zip_code:90210)
+      Condition.create(date:"15-03-2012", max_temperature_f:86, mean_temperature_f:75, min_temperature_f:44, max_dew_point_f:5, mean_dew_point_f:3, min_dew_point_f:1, max_humidity:46, mean_humidity:42, min_humidity:24, max_sea_level_pressure_inches:33, mean_sea_level_pressure_inches:25, min_sea_level_pressure_inches:20, max_visibility_miles:2.4, mean_visibility_miles:23, min_visibility_miles:23, max_wind_speed_mph:40, mean_wind_speed_mph:23, max_gust_speed_mph:500, precipitation_inches:1, cloud_cover:6.0, events:"rainy", wind_dir_degrees:43, zip_code:90210)
+      Condition.create(date:"12-03-2012", max_temperature_f:86, mean_temperature_f:75, min_temperature_f:44, max_dew_point_f:5, mean_dew_point_f:3, min_dew_point_f:1, max_humidity:46, mean_humidity:42, min_humidity:24, max_sea_level_pressure_inches:33, mean_sea_level_pressure_inches:25, min_sea_level_pressure_inches:20, max_visibility_miles:2.4, mean_visibility_miles:20, min_visibility_miles:20, max_wind_speed_mph:40, mean_wind_speed_mph:20, max_gust_speed_mph:500, precipitation_inches:0, cloud_cover:6.0, events:"rainy", wind_dir_degrees:43, zip_code:90210)
+
+      Trip.create(duration: 20, start_station_id: 2, end_station_id: 2, start_date: "12-03-2012 14:44", end_date: "11-1-2014 14:55", bike_id: 23, subscription_type: "Subscriber", zip_code: 1029)
+      Trip.create(duration: 20, start_station_id: 2, end_station_id: 2, start_date: "11-03-2012 14:44", end_date: "11-1-2014 14:55", bike_id: 23, subscription_type: "Subscriber", zip_code: 1029)
+      Trip.create(duration: 40, start_station_id: 3, end_station_id: 3, start_date: "12-03-2012 14:44", end_date: "11-3-2014 14:55", bike_id: 24, subscription_type: "Subscriber", zip_code: 1029)
+      Trip.create(duration: 67, start_station_id: 1, end_station_id: 1, start_date: "12-03-2012 14:44", end_date: "11-3-2014 14:55", bike_id: 24, subscription_type: "Subscriber", zip_code: 1029)
+      Trip.create(duration: 67, start_station_id: 1, end_station_id: 1, start_date: "12-03-2012 14:44", end_date: "11-3-2014 14:55", bike_id: 25, subscription_type: "Subscriber", zip_code: 1029)
+      Trip.create(duration: 20, start_station_id: 2, end_station_id: 2, start_date: "10-03-2012 14:44", end_date: "11-1-2014 14:55", bike_id: 23, subscription_type: "Subscriber", zip_code: 1029)
+      Trip.create(duration: 20, start_station_id: 2, end_station_id: 2, start_date: "17-03-2012 14:44", end_date: "11-1-2014 14:55", bike_id: 23, subscription_type: "Subscriber", zip_code: 1029)
+
+      expect(Trip.condition_on_day_with_least_rides.first.id.to_s).to eql("2012-03-10")      
+      end
+    end
 
 
 
 end
-
-# Single date with the highest number of trips with a count of those trips.
-# Single date with the lowest number of trips with a count of those trips.

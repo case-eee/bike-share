@@ -22,7 +22,7 @@ end
 #create_weathers
 SmarterCSV.process('db/csv/weather.csv').each do |row|
   row[:date] = Date.strptime(row[:date], '%m/%d/%Y')
-  Condition.create(row)
+  Condition.create(row) if row[:zip_code] == 94107
 end
 
 #create_trips
@@ -39,6 +39,3 @@ SmarterCSV.process('db/csv/trip.csv').each do |row|
               zip_code: row[:zip_code])
 end
 
-# def format(time)
-#   DateTime.strptime(time, '%m/%d/%Y').strftime('%Y-%m-%d').to_s
-# end
