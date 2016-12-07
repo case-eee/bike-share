@@ -1,3 +1,5 @@
+require_relative 'subscriptions'
+
 class Trip < ActiveRecord::Base
   validates :duration,
             :start_date,
