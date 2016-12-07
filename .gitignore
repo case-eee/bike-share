@@ -1,4 +1,4 @@
 db/csv/*.csv
 db/csv/*.sqlite
-capybara*
 .DS_Store
+capybara*

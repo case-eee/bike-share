@@ -1,0 +1,39 @@
+<h1>Daily weather list</h1>
+
+<% @conditions.each do |condition|%>
+  <table>
+    <tr>
+      <th>DB ID</th>
+      <th>Date</th>
+      <th>Max Temp</th>
+      <th>Mean Temp</th>
+      <th>Min Temp</th>
+      <th>Mean Humidity</th>
+      <th>Mean Visibility</th>
+      <th>Max wind speed</th>
+      <th>Precipitation</th>
+      <th></th>
+      <th></th>
+    </tr>
+    <tr>
+      <td><%= condition.id %></td>
+      <td><a href = "/conditions/<%= condition.id %>"><%= condition.date %></a></td>
+      <td><%= condition.max_temperature_f %></td>
+      <td><%= condition.mean_temperature_f %></td>
+      <td><%= condition.min_temperature_f %></td>
+      <td><%= condition.mean_humidity %></td>
+      <td><%= condition.mean_visibility_miles %></td>
+      <td><%= condition.max_wind_speed_mph %></td>
+      <td><%= condition.precipitation_inches %></td>
+      <td>
+        <a href = "/conditions/<%= condition.id %>/edit">Edit</a></p>
+      </td>
+      <td>
+        <form action = "/conditions/<%= condition.id %>" method = "POST">
+          <input type = "hidden" name = "_method" value = "DELETE" />
+          <input type = "submit" value = "Delete" />
+        </form>
+      </td>
+    </tr>
+  </table>
+<% end %>
