@@ -1,4 +1,5 @@
-require_relative '../models/subscription'
+require_relative 'subscriptions'
+
 class Trip < ActiveRecord::Base
   validates :duration,
             :start_date,
@@ -38,6 +39,24 @@ class Trip < ActiveRecord::Base
 
   def self.find_subscription_id(subscription_type)
     Subscription.write(name: subscription_type).id
+  end
+
+  def self.longest_ride
+    Trip.maximum(:duration)
+  end
+
+  def self.station_with_most_starting_rides
+    most_common = Trip.group(:start_station_id).order('count_id DESC').limit(1).count(:id)
+    Station.find(most_common.keys.first)
+  end
+
+  def self.least_ridden_bike 
+    least_common = Trip.group(:bike_id).order('count_id ASC').limit(1).count(:id)
+    least_common.keys.first
+  end
+
+  def self.trips_by_bike(given_bike_id)
+    where(bike_id: given_bike_id).count
   end
 
   def self.find_station_id(station_name)
