@@ -12,8 +12,8 @@
     <th>Bike ID</th>
     <th>Subscription Type</th>
     <th>User Zipcode</th>
-    <th>Edit</th>
-    <th>Delete</th>
+    <th></th>
+    <th></th>
   </tr>
   <% @trips.each do |trip| %>
   <tr>
@@ -28,7 +28,7 @@
     <td><%= trip.zipcode %></td>
     <td><a class="btn btn-warning" href="/trips/<%= trip.id %>/edit">Update</a></td>
     <td>
-      <form action="/trips/<%= trip.id %>" metdod="POST">
+      <form action="/trips/<%= trip.id %>" method="POST">
         <input type="hidden" name="_method" value="DELETE">
         <input class="btn btn-danger" type="submit" value="Delete">
       </form>
