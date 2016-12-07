@@ -1,14 +1,46 @@
-<h1>Edit weather condition</h1>
+<h1>Edit Weather Details</h1>
 
-<form action = "/conditions/<%= @condition.id %>" method = "POST">
-  <input type = "hidden" name = "_method" value = "PUT" />
-  Date: <input type = "text" name = "conditions[date]" value = "<%= @condition.date %>" id = "conditions-date"/>
-  Max Temp: <input type = "text" name = "conditions[max_temperature_f]" value = "<%= @condition.max_temperature_f %>" id = "conditions-max_temperature_f" />
-  Mean Temp: <input type = "text" name = "conditions[mean_temperature_f]" value = "<%= @condition.mean_temperature_f %>" id = "conditions-mean_temperature_f" />
-  Min Temp: <input type = "text" name = "conditions[min_temperature_f]" value = "<%= @condition.min_temperature_f %>" id = "conditions-min_temperature_f" />
-  Mean Humidity: <input type = "text" name = "conditions[mean_humidity]" value = "<%= @condition.mean_humidity %>" id = "conditions-mean_humidity" />
-  Mean visibility: <input type = "text" name = "conditions[mean_visibility_miles]" value = "<%= @condition.mean_visibility_miles %>" id = "conditions-mean_visibility_miles" />
-  Max wind speed: <input type = "text" name = "conditions[max_wind_speed_mph]" value = "<%= @condition.max_wind_speed_mph %>" id = "max_wind_speed_mph" />
-  Precipitation: <input type = "text" name = "conditions[precipitation_inches]" value = "<%= @condition.precipitation_inches %>" id = "precipitation_inches" />
-  <input type = "submit" value = "Save" />
+<form action="/conditions/<%= @condition.id %>" method="POST">
+  <input type="hidden" name="_method" value="PUT">
+  <div class="form-group">
+    <label>Date</label>
+    <input class="form-control" type="datetime" name="conditions[date]" value="<%= @condition.date %>">
+
+  </div>
+  <div class="form-group">
+    <label>Max Temp (F)</label>
+    <input class="form-control" type = "integer" name = "conditions[max_temperature_f]" value = "<%= @condition.max_temperature_f %>" id = "conditions-max_temperature_f" />
+  </div>
+
+
+  <div class="form-group">
+    <label>Mean Temperature (F)</label>
+    <input class="form-control" type = "integer" name = "conditions[mean_temperature_f]" value = "<%= @condition.mean_temperature_f %>" id = "conditions-mean_temperature_f" />
+  </div>
+
+  <div class="form-group">
+    <label>Min Temp (F)</label>
+    <input class="form-control" type = "integer" name = "conditions[min_temperature_f]" value = "<%= @condition.min_temperature_f %>" id = "conditions-min_temperature_f" />
+  </div>
+
+  <div class="form-group">
+    <label>Mean Humidity</label>
+    <input class="form-control"type = "integer" name = "conditions[mean_humidity]" value = "<%= @condition.mean_humidity %>" id = "conditions-mean_humidity" />
+  </div>
+
+  <div class="form-group">
+    <label>Mean Visibility (miles)</label>
+    <input class="form-control" = "integer" name = "conditions[mean_visibility_miles]" value = "<%= @condition.mean_visibility_miles %>" id = "conditions-mean_visibility_miles" />
+  </div>
+
+  <div class="form-group">
+    <label>Max Wind Speed (mph)</label>
+    <input class="form-control" = "integer" name = "conditions[max_wind_speed_mph]" value = "<%= @condition.max_wind_speed_mph %>" id = "max_wind_speed_mph" />
+  </div>
+
+  <div class="form-group">
+    <label>Precipation (inches)</label>
+    <input class="form-control" type = "integer" name = "conditions[precipitation_inches]" value = "<%= @condition.precipitation_inches %>" id = "precipitation_inches" />
+  </div>
+  <input class="btn btn-warning" type="submit" value="Update">
 </form>

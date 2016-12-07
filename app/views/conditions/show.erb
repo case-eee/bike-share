@@ -1,15 +1,38 @@
-<p>DB ID: <%= @condition.id %></p>
-<p>Date <%= @condition.date %></p>
-<p>Max Temp: <%= @condition.max_temperature_f %></p>
-<p>Mean Temp: <%= @condition.mean_temperature_f %></p>
-<p>Min Temp: <%= @condition.min_temperature_f %></p>
-<p>Mean Humidity: <%= @condition.mean_humidity %></p>
-<p>Mean Visibility: <%= @condition.mean_visibility_miles %></p>
-<p>Max wind speed: <%= @condition.max_wind_speed_mph %></p>
-<p>Precipitation: <%= @condition.precipitation_inches %></p>
-<p><a href = "/conditions">Conditions Index page</a></p>
-<p><a href = "/conditions/<%= @condition.id %>/edit">Edit</a></p>
-<form action = "/conditions/<%= @condition.id %>" method = "POST">
-  <input type = "hidden" name = "_method" value = "DELETE" />
-  <input type = "submit" value = "Delete" />
-</form>
+
+<h1> Weather Details </h1>
+<table class="table table-hover">
+
+<tr>
+  <th class = "bold"> Id </th>
+  <th class = "bold"> Date </th>
+  <th class = "bold"> Max Temp (F) </th>
+  <th class = "bold"> Mean Temp (F) </th>
+  <th class = "bold"> Min Temp (F) </th>
+  <th class = "bold"> Mean Humidity </th>
+  <th class = "bold"> Mean Visibility (miles) </th>
+  <th class = "bold"> Max Wind Speed (mph) </th>
+  <th class = "bold"> Precipatation (inches) </th>
+  <th> </th>
+  <th> </th>
+</tr>
+<tr>
+  <td><%= @condition.id %></td>
+  <td><%= @condition.date %></td>
+  <td><%= @condition.max_temperature_f %></td>
+  <td><%= @condition.mean_temperature_f %></td>
+  <td><%= @condition.min_temperature_f %></td>
+  <td><%= @condition.mean_humidity %></td>
+  <td><%= @condition.mean_visibility_miles%></td>
+  <td><%= @condition.max_wind_speed_mph %></td>
+  <td><%= @condition.precipitation_inches %></td>
+  <td><a class="btn btn-warning" href='/conditions/<%=@condition.id%>/edit'>Update</a></td>
+
+  <td>
+    <form action="/conditions/<%= @condition.id %>" method="POST">
+      <input type="hidden" name="_method" value="DELETE">
+      <input class="btn btn-danger" type="submit" value="Delete">
+    </form>
+  </td>
+  </tr>
+
+</table>

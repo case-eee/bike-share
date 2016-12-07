@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 
 <h1>All Stations</h1>
+<a class="btn btn-primary" href="/stations/new">New Station</a>
+
 <table class="table table-striped table-hover">
 
 <tr>
@@ -12,14 +14,15 @@
 </tr>
 <% @stations.each do |station| %>
 <tr>
-  <td><%= station.name %></td>
+  <td><a href="/stations/<%=station.id%>"><%=station.name %></a></td>
   <td><%= station.dock_count %></td>
   <td><%= station.installation_date %></td>
   <td><a class="btn btn-warning" href='/stations/<%=station.id%>/edit'>Update</a></td>
+
   <td><form action="/stations/<%= station.id %>" method = "POST"/>
   <input type="hidden" name="_method" value="DELETE"/>
   <input class="btn btn-danger" type="submit" value = "Delete"></form></td>
-  </tr>
+</tr>
 <% end %>
 
 
