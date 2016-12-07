@@ -50,4 +50,8 @@ class Station < ActiveRecord::Base
     where("dock_count = #{most_bikes}")
   end
 
+  def self.number_of_rides_ended_at_this_station
+    end_trips.count
+  end
+
 end

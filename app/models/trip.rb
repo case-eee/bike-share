@@ -13,8 +13,25 @@ class Trip < ActiveRecord::Base
   belongs_to :start_station , class_name: "Station", primary_key: "csv_id", foreign_key: "start_station_id"
   belongs_to :end_station , class_name: "Station", primary_key: "csv_id", foreign_key: "end_station_id"
 
+
+def self.db_date_matcher(input_date)
+  Time.new(input_date)
+end
+
+def self.start_date_clean
+  db_date_matcher(self.start_date)
+end
+
   def self.write(trip_details)
-    self.find_or_create_by(subscription_id: find_subscription_id(trip_details[:subscription_name]),
+    # self.find_or_create_by(subscription_id: find_subscription_id(trip_details[:subscription_name]),
+    #                       duration: trip_details[:duration],
+    #                       start_date: trip_details[:start_date],
+    #                       start_station_id: trip_details[:start_station_id],
+    #                       end_station_id: trip_details[:end_station_id],
+    #                       end_date: trip_details[:end_date],
+    #                       bike_id: trip_details[:bike_id],
+    #                       zipcode: trip_details[:zipcode])
+    self.create(subscription_id: find_subscription_id(trip_details[:subscription_name]),
                           duration: trip_details[:duration],
                           start_date: trip_details[:start_date],
                           start_station_id: trip_details[:start_station_id],
@@ -51,6 +68,18 @@ class Trip < ActiveRecord::Base
     {
       :most_ridden_bike_id => bike_ridden_id_count_list.first.first,
       :total_number_of_rides => bike_ridden_id_count_list.first.last
+    }
+  end
+
+  def self.date_with_highest_number_of_trips_with_count_of_those_trips_all
+    Trip.group(:start_date).order("count_start_date desc").count("start_date")
+  end
+
+  def self.date_with_highest_number_of_trips_with_count_of_those_trips
+    per_date_ride_count_list = date_with_highest_number_of_trips_with_count_of_those_trips_all
+    {
+      :date_with_most_trips => per_date_ride_count_list.first.first,
+      :total_number_of_rides => per_date_ride_count_list.first.last
     }
   end
 

@@ -190,7 +190,64 @@ describe "Trip" do
         expect(Trip.most_ridden_bike_with_total_number_of_rides_for_that_bike[:total_number_of_rides]).to eq(2)
       end
     end
+    describe "Date with highest number of trips" do
+      it "Returns date" do
+        test_trip1 = Trip.write(duration: 90,
+                                  start_date: "2011-3-6 12:00",
+                                  start_station_id: 1,
+                                  end_date: "2011-3-6 12:00",
+                                  end_station_id: 3,
+                                  bike_id: 3,
+                                  subscription_type: "Subscriber", 
+                                  zipcode: 80211)
+        test_trip2 = Trip.write(duration: 100,
+                                  start_date: "2011-3-6 12:00",
+                                  start_station_id: 10,
+                                  end_date: "2012-2-6 12:00",
+                                  end_station_id: 3,
+                                  bike_id: 6,
+                                  subscription_type: "Subscriber", 
+                                  zipcode: 80222)
+        test_trip3 = Trip.write(duration: 200,
+                                  start_date: "2013-3-3 12:00",
+                                  start_station_id: 10,
+                                  end_date: "2013-3-6 12:00",
+                                  end_station_id: 15,
+                                  bike_id: 3,
+                                  subscription_type: "Subscriber", 
+                                  zipcode: 80333)
 
+        expect(Trip.date_with_highest_number_of_trips_with_count_of_those_trips[:date_with_most_trips]).to eq("2011-3-6")
+      end
+      it "Returns count" do
+        test_trip1 = Trip.write(duration: 90,
+                                  start_date: "2011-3-6 12:00",
+                                  start_station_id: 1,
+                                  end_date: "2011-3-6 12:00",
+                                  end_station_id: 3,
+                                  bike_id: 3,
+                                  subscription_type: "Subscriber", 
+                                  zipcode: 80211)
+        test_trip2 = Trip.write(duration: 100,
+                                  start_date: "2011-3-6 12:00",
+                                  start_station_id: 10,
+                                  end_date: "2012-2-6 12:00",
+                                  end_station_id: 3,
+                                  bike_id: 6,
+                                  subscription_type: "Subscriber", 
+                                  zipcode: 80222)
+        test_trip3 = Trip.write(duration: 200,
+                                  start_date: "2013-3-3 12:00",
+                                  start_station_id: 10,
+                                  end_date: "2013-3-6 12:00",
+                                  end_station_id: 15,
+                                  bike_id: 3,
+                                  subscription_type: "Subscriber", 
+                                  zipcode: 80333)
+
+        expect(Trip.date_with_highest_number_of_trips_with_count_of_those_trips[:total_number_of_rides]).to eq(2)
+      end
+    end
   end
 
   describe "Database relations" do
