@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+
+<h1>All Stations</h1>
+<table class="table table-hover">
+
+<tr>
+  <th class = "bold"> Station Name </th>
+  <th class = "bold"> Dock Count </th>
+  <th class = "bold"> Installation Date </th>
+  <th> </th>
+  <th> </th>
+</tr>
+<% @stations.each do |station| %>
+<tr>
+  <td><%= station.name %></td>
+  <td><%= station.dock_count %></td>
+  <td><%= station.installation_date %></td>
+  <td><a href='/stations/<%=station.id%>/edit'>Edit</a></td>
+  <td><form action = "/stations/<%=station.id%>" method = "post"/>
+  <input type = "hidden" name = "_method" value = "delete"/>
+  <input type = "submit" value = "Delete"></form></td>
+  </tr>
+<% end %>
+
+</table>
