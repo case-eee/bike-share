@@ -5,7 +5,7 @@ class BikeShareApp < Sinatra::Base
 include WillPaginate::Sinatra::Helpers
 
   get '/' do
-    erb :"homepage"
+    erb :homepage
   end
 
   get '/stations' do
