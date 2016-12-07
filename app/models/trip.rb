@@ -42,4 +42,16 @@ class Trip < ActiveRecord::Base
     Station.find_by(csv_id: start_station_id)
   end
 
+  def self.most_ridden_bike_with_total_number_of_rides_for_that_bike_all
+    Trip.group(:bike_id).order("count_bike_id desc").count("bike_id")
+  end
+
+  def self.most_ridden_bike_with_total_number_of_rides_for_that_bike
+    bike_ridden_id_count_list = most_ridden_bike_with_total_number_of_rides_for_that_bike_all
+    {
+      :most_ridden_bike_id => bike_ridden_id_count_list.first.first,
+      :total_number_of_rides => bike_ridden_id_count_list.first.last
+    }
+  end
+
 end

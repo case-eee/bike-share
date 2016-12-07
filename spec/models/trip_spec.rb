@@ -78,11 +78,11 @@ describe "Trip" do
   end
 
   describe "Methods" do
-    describe "average duration of a ride" do
-      it "returns nil when no trips are in database table" do
+    describe "Average duration of a ride" do
+      it "Returns nil when no trips are in database table" do
         expect(Trip.average_duration_of_a_ride).to eq(nil)
       end
-      it "returns proper value with one entry in database table" do
+      it "Returns proper value with one entry in database table" do
         test_trip = Trip.write(duration: 90,
                                   start_date: "2011-3-6 12:00",
                                   start_station_id: 1,
@@ -94,7 +94,7 @@ describe "Trip" do
                                   
         expect(Trip.average_duration_of_a_ride).to eq(90)
       end
-      it "returns proper value with more than one entry in database table" do
+      it "Returns proper value with more than one entry in database table" do
         test_trip1 = Trip.write(duration: 90,
                                   start_date: "2011-3-6 12:00",
                                   start_station_id: 1,
@@ -115,7 +115,7 @@ describe "Trip" do
         expect(Trip.average_duration_of_a_ride).to eq(67.5)
       end
     end
-    describe "stations with most rides as starting place" do
+    describe "Stations with most rides as starting place" do
       it "Return Station object from which most rides started from" do
         test_trip1 = Trip.write(duration: 90,
                                   start_date: "2011-3-6 12:00",
@@ -159,6 +159,38 @@ describe "Trip" do
         expect(Trip.station_with_most_rides_as_starting_place.name).to eq(test_station10.name)
       end
     end
+    describe "Most ridden bike with total number of rides for that bike" do
+      it "Returns hash with bike_id and number of rides" do
+        test_trip1 = Trip.write(duration: 90,
+                                  start_date: "2011-3-6 12:00",
+                                  start_station_id: 1,
+                                  end_date: "2011-3-6 12:00",
+                                  end_station_id: 3,
+                                  bike_id: 3,
+                                  subscription_type: "Subscriber", 
+                                  zipcode: 80211)
+        test_trip2 = Trip.write(duration: 100,
+                                  start_date: "2012-2-2 12:00",
+                                  start_station_id: 10,
+                                  end_date: "2012-2-6 12:00",
+                                  end_station_id: 3,
+                                  bike_id: 6,
+                                  subscription_type: "Subscriber", 
+                                  zipcode: 80222)
+        test_trip3 = Trip.write(duration: 200,
+                                  start_date: "2013-3-3 12:00",
+                                  start_station_id: 10,
+                                  end_date: "2013-3-6 12:00",
+                                  end_station_id: 15,
+                                  bike_id: 3,
+                                  subscription_type: "Subscriber", 
+                                  zipcode: 80333)
+
+        expect(Trip.most_ridden_bike_with_total_number_of_rides_for_that_bike[:most_ridden_bike_id]).to eq(3)
+        expect(Trip.most_ridden_bike_with_total_number_of_rides_for_that_bike[:total_number_of_rides]).to eq(2)
+      end
+    end
+
   end
 
   describe "Database relations" do
