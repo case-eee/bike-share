@@ -19,14 +19,16 @@ def import_station_csv
                    long: row["long"],
                    dock_count: row["dock_count"],
                    city_name: row["city"],
-                   installation_date: time_fix(row["installation_date"])})
+                   installation_date: time_fix(row["installation_date"]),
+                   csv_id: row['id']})
   end
   puts "Imported Stations to Table."
 end
 
 def import_trip_csv
+  puts
   CSV.foreach('db/csv/trip.csv', :headers=> true) do |row|
-    Trip.write({duration: row['duration'],
+    Trip.import({duration: row['duration'],
                 start_date: time_fix(row['start_date']),
                 start_station_id: row['start_station_id'],
                 end_station_id: row['end_station_id'],
