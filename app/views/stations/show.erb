@@ -1,0 +1,10 @@
+<h1><%= @station.name %></h1>
+  <p>Dock Count: <%= @station.dock_count %></p>
+  <p>City: <%= @station.city %></p>
+  <p>Installation Date: <%= @station.installation_date %></p>
+  <a href="/stations/<%= @station.id%>/detailed">Details</a>
+  <a href="/stations/<%= @station.id %>/edit">Edit</a>
+  <form action="/stations/<%= @station.id%>" method="POST">
+    <input type="hidden" name="_method" value="DELETE">
+    <input type='submit' value="Delete">
+  </form>
