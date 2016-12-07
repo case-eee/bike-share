@@ -1,4 +1,5 @@
 <h1>All Trips</h1>
+<a class="btn btn-primary" href="/trips/new">New Trip</a>
 <h3>Total Trips: <%= @trips.count %></h3>
 
 <table class="table table-striped table-hover">
@@ -17,7 +18,7 @@
   </tr>
   <% @trips.each do |trip| %>
   <tr>
-    <td><%= trip.id %></td>
+    <td><a href="/trips/<%=trip.id%>"><%=trip.id %></a></td>
     <td><%= trip.duration %></td>
     <td><%= trip.start_station_id %></td>
     <td><%= trip.start_date %></td>
@@ -27,8 +28,9 @@
     <td><%= trip.subscription_id %></td>
     <td><%= trip.zipcode %></td>
     <td><a class="btn btn-warning" href="/trips/<%= trip.id %>/edit">Update</a></td>
+
     <td>
-      <form action="/trips/<%= trip.id %>" metdod="POST">
+      <form action="/trips/<%= trip.id %>" method="POST">
         <input type="hidden" name="_method" value="DELETE">
         <input class="btn btn-danger" type="submit" value="Delete">
       </form>

@@ -1,27 +1,38 @@
-<h1>Trip Details</1>
-<h2>Duration: <%= @trip.duration %></h2>
-<h3>Bike ID: <%= @trip.bike_id %></h3>
-<h3>Subscription Type: <%= @subscription_type %></h3>
-<h3>User Zipcode: <%= @trip.zipcode %></h3>
 
+<h1> Trip Details </h1>
+<table class="table table-hover">
 
-<div class="row">
-  <div class="col-md-6 col-sm-12">
-    <h2>Start Date: <%= @trip.start_date %></h2>
-    <h2>Start Station: <%= @trip.start_station_id %></h2>
-  </div>
-  <div class="col-md-6 col-sm-12">
-    <h2>End Date: <%= @trip.end_date %></h2>
-    <h2>End Station: <%= @trip.end_station_id %></h2>
-  </div>
-</div>
+<tr>
+  <th class = "bold"> Trip Id </th>
+  <th class = "bold"> Duration </th>
+  <th class = "bold"> Start Station </th>
+  <th class = "bold"> Start Date and Time </th>
+  <th class = "bold"> End Station </th>
+  <th class = "bold"> End Date and Time </th>
+  <th class = "bold"> Bike Id </th>
+  <th class = "bold"> Subscription Type </th>
+  <th class = "bold"> User Zipcode </th>
+  <th> </th>
+  <th> </th>
+</tr>
+<tr>
+  <td><%= @trip.id %></td>
+  <td><%= @trip.duration %></td>
+  <td><%= @trip.start_station_id %></td>
+  <td><%= @trip.start_date %></td>
+  <td><%= @trip.end_station_id %></td>
+  <td><%= @trip.end_date %></td>
+  <td><%= @trip.bike_id%></td>
+  <td><%= @trip.subscription_id %></td>
+  <td><%= @trip.zipcode %></td>
+  <td><a class="btn btn-warning" href='/trips/<%=@trip.id%>/edit'>Update</a></td>
 
-<div class="row">
-  <div class="col-md-4 col-offset-md-4 col-sm-12">
+  <td>
     <form action="/trips/<%= @trip.id %>" method="POST">
       <input type="hidden" name="_method" value="DELETE">
       <input class="btn btn-danger" type="submit" value="Delete">
     </form>
-    <a class="btn btn-warning" href="/trips/<%= @trip.id %>/edit">Edit</a>
-  </div> 
-</div>
+  </td>
+  </tr>
+
+</table>
