@@ -1,6 +1,8 @@
 require_relative '../models/subscription'
+require_relative '../models/date_format'
 
 class Trip < ActiveRecord::Base
+  include DateFormat
   validates :duration,
             :start_date,
             :start_station_id,
@@ -45,13 +47,11 @@ class Trip < ActiveRecord::Base
   end
 
   def self.station_with_most_starting_rides
-    most_common = Trip.group(:start_station_id).order('count_id DESC').limit(1).count(:id)
-    Station.find(most_common.keys.first)
+    Station.find(Trip.group(:start_station_id).order('count_id DESC').limit(1).count(:id).keys.first)
   end
 
   def self.least_ridden_bike 
-    least_common = Trip.group(:bike_id).order('count_id ASC').limit(1).count(:id)
-    least_common.keys.first
+    Trip.group(:bike_id).order('count_id ASC').limit(1).count(:id).keys.first
   end
 
   def self.trips_by_bike(given_bike_id)
@@ -59,8 +59,11 @@ class Trip < ActiveRecord::Base
   end
 
   def self.day_with_lowest_number_of_trips
-    least_common = Trip.group(:start_date).order("count_id ASC").limit(1).count(:id)
-    binding.pry
+    Trip.group(:start_date).order("count_id ASC").limit(1).count(:id).keys.first
+  end
+
+  def self.most_frequent_destination_station
+    Station.find(Trip.group(:end_station_id).order("count_id DESC").limit(1).count(:id).keys.first)
   end
 
   def self.find_station_id(station_name)
