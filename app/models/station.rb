@@ -64,4 +64,14 @@ class Station < ActiveRecord::Base
   def self.most_trips(station_id)
     find(station_id).trip_starts.group(:start_date).count.max_by{|k, v| v}.first  
   end
+
+  def self.station_locations
+    coordinates_array = Station.pluck(:lat, :long)
+    coordinates_hash = {}
+    return_array = coordinates_array.map do |coordinates|
+      {:lat => coordinates[0], :lng => coordinates[1] }
+    end
+    return_array
+  end
+
 end

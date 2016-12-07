@@ -46,12 +46,6 @@ class BikeShareApp < Sinatra::Base
     erb :"trips/index"
   end
 
-  # get "/trips" do
-  #   # @trips = Trip.all
-  #   # erb :"trips/index"
-  #   redirect "/trips?page=1"
-  # end
-
   get "/trips/new" do
     erb :"trips/new"
   end
@@ -90,6 +84,11 @@ class BikeShareApp < Sinatra::Base
     erb :"conditions/new"
   end
 
+  get "/conditions/:id" do
+    @condition = Condition.find(params[:id])
+    erb :"conditions/show"
+  end
+
   post "/conditions" do
     Condition.create(params[:condition])
     redirect "/conditions"
@@ -110,8 +109,4 @@ class BikeShareApp < Sinatra::Base
     redirect "/conditions"
   end
 
-  get "/conditions/:id" do
-    @condition = Condition.find(params[:id])
-    erb :"conditions/show"
-  end
 end
