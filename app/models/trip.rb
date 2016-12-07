@@ -58,7 +58,7 @@ class Trip < ActiveRecord::Base
   end
 
   def self.day_with_lowest_number_of_trips
-  
+    
   end
 
   def self.find_station_id(station_name)
