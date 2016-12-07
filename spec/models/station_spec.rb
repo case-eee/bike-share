@@ -330,4 +330,83 @@ describe "Station" do
       end
     end
   end
+  describe "Database relations" do
+    it "Returns lits of Trip objects where station was start station for trip" do
+      test_trip1 = Trip.write(duration: 90,
+                                start_date: "2011-3-6 12:00",
+                                start_station_id: 1,
+                                end_date: "2011-3-6 12:00",
+                                end_station_id: 3,
+                                bike_id: 3,
+                                subscription_type: "Subscriber", 
+                                zipcode: 80211)
+      test_trip2 = Trip.write(duration: 100,
+                                start_date: "2012-2-2 12:00",
+                                start_station_id: 10,
+                                end_date: "2012-2-6 12:00",
+                                end_station_id: 3,
+                                bike_id: 6,
+                                subscription_type: "Subscriber", 
+                                zipcode: 80222)
+      test_start_station = Station.write(name: "TestStation1",
+                                        lat: 1.1,
+                                        long: 1.2,
+                                        dock_count: 1,
+                                        city_name: "TestCityName1",
+                                        installation_date: "2011-11-11",
+                                        csv_id: 1
+                                        )
+      test_end_station = Station.write(name: "TestStation3",
+                                        lat: 3.1,
+                                        long: 3.2,
+                                        dock_count: 3,
+                                        city_name: "TestCityName3",
+                                        installation_date: "2011-11-11",
+                                        csv_id: 3
+                                        )
+
+      expect(test_start_station.start_trips.count).to eq(1)
+      expect(test_start_station.start_trips.first.duration).to eq(test_trip1.duration)
+    end
+    it "Returns lits of Trip objects where station was end station for trip" do
+      test_trip1 = Trip.write(duration: 90,
+                                start_date: "2011-3-6 12:00",
+                                start_station_id: 1,
+                                end_date: "2011-3-6 12:00",
+                                end_station_id: 3,
+                                bike_id: 3,
+                                subscription_type: "Subscriber", 
+                                zipcode: 80211)
+      test_trip2 = Trip.write(duration: 100,
+                                start_date: "2012-2-2 12:00",
+                                start_station_id: 10,
+                                end_date: "2012-2-6 12:00",
+                                end_station_id: 3,
+                                bike_id: 6,
+                                subscription_type: "Subscriber", 
+                                zipcode: 80222)
+      test_start_station = Station.write(name: "TestStation1",
+                                        lat: 1.1,
+                                        long: 1.2,
+                                        dock_count: 1,
+                                        city_name: "TestCityName1",
+                                        installation_date: "2011-11-11",
+                                        csv_id: 1
+                                        )
+      test_end_station = Station.write(name: "TestStation3",
+                                        lat: 3.1,
+                                        long: 3.2,
+                                        dock_count: 3,
+                                        city_name: "TestCityName3",
+                                        installation_date: "2011-11-11",
+                                        csv_id: 3
+                                        )
+
+      expect(test_end_station.end_trips.count).to eq(2)
+      expect(test_end_station.end_trips.first.duration).to eq(test_trip1.duration)
+      expect(test_end_station.end_trips.last.duration).to eq(test_trip2.duration)
+    end
+
+  end
+
 end
