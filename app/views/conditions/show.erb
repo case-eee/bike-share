@@ -1,0 +1,25 @@
+<% @title = "#{@condition.date}" %>
+
+<div class="show-condition">
+<div class="jumbotron">
+  <div class="container">
+  <h1 class="page-header"><%= @condition.date %></h1>
+  <ul class="list-group">
+    <li class="list-group-item">Maximum Temperature (&deg;F): <%= @condition.max_temperature_f %></li>
+    <li class="list-group-item">Minimum Temperature (&deg;F): <%= @condition.min_temperature_f %></li>
+    <li class="list-group-item">Mean Temperature (&deg;F): <%= @condition.mean_temperature_f %></li>
+    <li class="list-group-item">Mean Humidity: <%= @condition.mean_humidity %></li>
+    <li class="list-group-item">Mean Visibility (Miles): <%= @condition.mean_visibility_miles %></li>
+    <li class="list-group-item">Mean Wind Speed (MPH): <%= @condition.mean_wind_speed_mph %></li>
+    <li class="list-group-item">Precipitation (Inches): <%= @condition.precipitation_inches %></li>
+  </ul>
+        </br>
+  <form class="format-button" action="/conditions/<%= @condition.id %>/edit" method="GET">
+        <input id="edit" class="btn btn-warning btn-xs" type="submit" value="Edit">
+      </form>
+      <form class="format-button" action="/conditions/<%= @condition.id %>" method="POST">
+        <input type="hidden" name="_method" value="DELETE">
+        <input id="edit" class="btn btn-warning btn-xs" type="submit" value="Delete">
+</form>
+</div>
+</div>

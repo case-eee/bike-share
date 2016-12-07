@@ -1,0 +1,37 @@
+<h1>Trips Dashboard</h1>
+
+<p>Average duration of a ride (in minutes):
+  <%= Trip.average_trip_duration %>
+</p>
+<p>Longest Ride (in minutes):
+  <%= Trip.maximum_trip_duration %>
+</p>
+<p>Shortest Ride (in minutes):
+  <%= Trip.minimum_trip_duration %>
+</p>
+<p>Station with the most rides as a starting place:
+  <%= Trip.station_with_most_rides_as_start_point.first %>
+</p>
+<p>Station with the most rides as an ending place:
+  <%= Trip.station_with_most_rides_as_end_point.first %>
+</p>
+
+<p>Month-by-month breakdown of number of rides with subtotals for each year: <%= %></p>
+  <li>January: <%= %></li>
+  <li>Feburary: <%= %></li>
+  <li>March: <%= %></li>
+  <li>April: <%= %></li>
+  <li>May: <%= %></li>
+  <li>June: <%= %></li>
+  <li>July: <%= %></li>
+
+<p>Most ridden bike with total number of rides for that bike: <%= %></p>
+<p>Least ridden bike with total number of rides for that bike: <%= %></p>
+<p>User subscription type breakout with both count and percentage:
+  <%= %></p>
+<p>Single date with the highest number of trips with a count of those trips: <%= %></p>
+<p>Single date with the lowest number of trips with a count of those trips: <%= %></p>
+
+<h2>Trip-Weather Data</h2>
+<p>Weather on the day with the highest number of rides: <%= WeatherCondition.weather_on_day_with_highest_rides %></p>
+<p>Weather on the day with the lowest number of rides: <%= WeatherCondition.weather_on_day_with_lowest_rides %></p>

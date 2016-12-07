@@ -1,0 +1,48 @@
+<% @title = "#{@station.name}" %>
+
+<div class="show-station">
+<div class="jumbotron">
+  <div class="container">
+  <h1 class="page-header"><%= @station.name %></h1>
+  <ul>
+    <li>Number of bike docks: <%= @station.dock_count %></li>
+    <li>Latitude: <%= @station.lat %></li>
+    <li>Longitude: <%= @station.long %></li>
+    <li>City: <%= @station.city.name %></li>
+    <li>Established: <%= @station.installation_date %></li>
+    </br>
+    </br>
+  </ul>
+    <ul class="list-group" id="stats">
+    <li class="list-group-item">Number of rides started at this station:
+      <%= Trip.number_rides_started_at_station(@station) %>
+    </li>
+    <li class="list-group-item">Number of rides ended at this station:
+      <%= Trip.number_rides_ended_at_station(@station) %>
+    </li>
+    <li class="list-group-item">Most frequent destination station for rides beginning at this station:
+      <%= Trip.station_with_maximum_rides_as_start_location(@station).first%>
+    </li>
+    <li class="list-group-item">Most frequent origination station for rides ending at this station:
+      <%= Trip.station_with_maximum_rides_as_end_location(@station).first %></li>
+    <li class="list-group-item">Date with the highest number of trips started at this station:
+      <%= Trip.date_with_highest_number_trips(@station).first %>
+    </li>
+    <li class="list-group-item">Most frequent zip code for users starting trips at this station:
+      <%= Trip.most_frequent_user_zip_code(@station).first%>
+    </li>
+    <li class="list-group-item">Bike ID most frequently starting a trip at this station:
+      <%= Trip.most_frequent_bike_id(@station).first %>
+    </li>
+  </ul>
+
+  <form class="format-button" action="/stations/<%= @station.id %>/edit" method="GET">
+        <input id="edit" class="btn btn-warning btn-xs" type="submit" value="Edit">
+      </form>
+      <form class="format-button" action="/stations/<%= @station.id %>" method="POST">
+        <input type="hidden" name="_method" value="DELETE">
+        <input id="edit" class="btn btn-warning btn-xs" type="submit" value="Delete">
+</form>
+</div>
+</div>
+</div>

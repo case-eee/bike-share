@@ -1,0 +1,69 @@
+<h1>Weather Dashboard</h1>
+<table>
+  <caption>Ride Summary: Temperature Breakdown</caption>
+  <tr>
+	<th>High Temperature<br />(&degF)</th>
+	<th>Average Rides<br />per Day</th>
+	<th>Highest Rides<br />per Day</th>
+	<th>Least Rides<br />per Day</th>
+  </tr>
+  <% @metrics[:temperature].each_pair do |temp_range,metrics_hash| %>
+	<tr>
+	  <td><%= temp_range %></td>
+	  <% metrics_hash.each_pair do |metric,value| %>
+		<td><%= value %></td>
+	  <% end %>
+	</tr>
+  <% end %>
+</table>
+<table>
+  <caption>Ride Summary: Precipitation Breakdown</caption>
+  <tr>
+	<th>Precipitation<br />(inches)</th>
+	<th>Average Rides<br />per Day</th>
+	<th>Highest Rides<br />per Day</th>
+	<th>Least Rides<br />per Day</th>
+  </tr>
+  <% @metrics[:precipitation].each_pair do |precip_range,metrics_hash| %>
+	<tr>
+	  <td><%= precip_range %></td>
+	  <% metrics_hash.each_pair do |metric,value| %>
+		<td><%= value %></td>
+	  <% end %>
+	</tr>
+  <% end %>
+</table>
+<table>
+  <caption>Ride Summary: Wind Speed Breakdown</caption>
+  <tr>
+	<th>Mean Wind Speed<br />(mph)</th>
+	<th>Average Rides<br />per Day</th>
+	<th>Highest Rides<br />per Day</th>
+	<th>Least Rides<br />per Day</th>
+  </tr>
+  <% @metrics[:wind].each_pair do |wind_range,metrics_hash| %>
+	<tr>
+	  <td><%= wind_range %></td>
+	  <% metrics_hash.each_pair do |metric,value| %>
+		<td><%= value %></td>
+	  <% end %>
+	</tr>
+  <% end %>
+</table>
+<table>
+  <caption>Ride Summary: Visibility Breakdown</caption>
+  <tr>
+	<th>Mean Visibility<br />(miles)</th>
+	<th>Average Rides<br />per Day</th>
+	<th>Highest Rides<br />per Day</th>
+	<th>Least Rides<br />per Day</th>
+  </tr>
+  <% @metrics[:visibility].each_pair do |vis_range,metrics_hash| %>
+	<tr>
+	  <td><%= vis_range %></td>
+	  <% metrics_hash.each_pair do |metric,value| %>
+		<td><%= value %></td>
+	  <% end %>
+	</tr>
+  <% end %>
+</table>

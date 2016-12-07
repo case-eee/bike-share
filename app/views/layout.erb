@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link rel="stylesheet" href="/reset.css" type='text/css'>
+    <link href="https://fonts.googleapis.com/css?family=Quicksand|Source+Sans+Pro" rel="stylesheet"> 
+    <link rel="stylesheet" href="/application.css" type='text/css'>
+    <title><%= @title %></title>
+    <link rel="shortcut icon" type="image/png" href="/bike_favicon.ico"/>
+
+  </head>
+  <body>
+    <header>
+    <nav class="navbar navbar-default">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="/"><img src="/bike_favicon.ico" height="70"/></a></h1>
+      <nav>
+        <ul>
+          <a href=""><li></li></a>
+        </ul>
+      </div>
+      <ul class="nav navbar-nav navbar-right">
+            <li id="navbar-links"><a href="/stations">Stations</a></li>
+            <li id="navbar-links"><a href="/trips">Trips</a></li>
+            <li id="navbar-links"><a href="/conditions">Weather Conditions</a></li>
+          </ul>
+          </div>
+        </li>
+      </ul>
+      </nav>
+    </header>
+    <div class="container">
+      <%= yield %>
+    </div>
+    <footer></footer>
+  </body>
+</html>

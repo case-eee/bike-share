@@ -1,0 +1,45 @@
+<% @title = "All Weather Conditions" %>
+
+<div class="all-conditions">
+<div class="jumbotron">
+  <div class="container">
+  <h1 class="page-header">All Weather Conditions
+  <form action="/conditions/new" method="GET">
+    <input id="create" class="btn btn-warning btn-small" type="submit" value="Create New">
+  </form></h1>
+  <% @conditions.each do |condition| %>
+    <div class="condition-summary">
+      <ul>
+        <li class="station-name"><a href="/conditions/<%= condition.id %>"><%= condition.date %></a></li>
+        </br>
+        <li>Maximum Temperature (&deg;F): <%= condition.max_temperature_f %></li>
+        <li>Minimum Temperature (&deg;F): <%= condition.min_temperature_f %></li>
+        <li>Mean Temperature (&deg;F): <%= condition.mean_temperature_f %></li>
+        <li>Mean Humidity: <%= condition.mean_humidity %></li>
+        <li>Mean Visibility (Miles): <%= condition.mean_visibility_miles %></li>
+        <li>Mean Wind Speed (MPH): <%= condition.mean_wind_speed_mph %></li>
+        <li>Precipitation (Inches): <%= condition.precipitation_inches %></li>
+        </br>
+      </ul>
+      <form class="format-button" action="/conditions/<%= condition.id %>/edit" method="GET">
+        <input id="edit" class="btn btn-warning btn-xs" type="submit" value="Edit">
+      </form>
+      <form class="format-button" action="/conditions/<%= condition.id %>" method="POST">
+        <input type="hidden" name="_method" value="DELETE">
+        <input id="edit" class="btn btn-warning btn-xs" type="submit" value="Delete">
+      </form>
+    </div>
+      </br>
+      </br>
+      </br>
+  <% end %>
+</div>
+
+  <% if @page >= 1 %>
+    <a href="/conditions?page=<%= @page - 1 %>">Back</a>
+  <% end %>
+  <% unless @end %>
+    <a href="/conditions?page=<%= @page + 1 %>">Forward</a>
+  <% end %>
+
+</div>

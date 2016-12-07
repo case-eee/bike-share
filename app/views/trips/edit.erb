@@ -1,0 +1,25 @@
+<% @title = "Edit Trip Info" %>
+
+<div class="form">
+  <h1>Edit Trip Information</h1>
+  <form action="/trips/<%= @trip.id %>" method="POST">
+    <input type="hidden" name="_method" value="PUT" />
+    <input type="integer" name="trip[duration]" value="<%= @trip.duration %>" onclick='this.value = "";'/><br/>
+    <input type="integer" name="trip[start_date]" value="<%= @trip.start_date %>" onclick='this.value = "";'/><br/>
+    <input type="text" name="trip[start_station_name]" value="<%= @trip.start_station_name %>" onclick='this.value = "";'/><br/>
+    <input type="integer" name="trip[start_station_id]" value="<%= @trip.start_station_id %>" onclick='this.value = "";'/><br/>
+    <input type="integer" name="trip[end_date]" value="<%= @trip.end_date %>" onclick='this.value = "";'/><br/>
+    <input type="text" name="trip[end_station_name]" value="<%= @trip.end_station_name %>" onclick='this.value = "";'/><br/>
+    <input type="integer" name="trip[end_station_id]" value="<%= @trip.end_station_id %>" onclick='this.value = "";'/><br/>
+    <input type="integer" name="station[bike_id]" value="<%= @trip.bike_id %>" onclick='this.value = "";'/><br/>
+
+    <select class="form_dropdown" name="station[subscription_type_id]">
+      <option selected="selected" value="<%= @trip.subscription_type_id %>"><%= @trip.subscription_type.upcase %></option>
+      <% @trip.sort_by(&:subscription).each do |subscription| %>
+        <option value="<%= city.id %>"><%= subscription.subscription_type.upcase %></option>
+      <% end %>
+    </select><br/>
+    <input type="text" name="trip[user_zip_code]" value="<%= @trip.user_zip_code %>" /><br/>
+    <input type="submit" value="Edit"/>
+  </form>
+</div>

@@ -1,0 +1,22 @@
+
+<div class="show-trip">
+  <ul>
+    <li>Duration: <%= @trip.duration %></li>
+    <li>Start Date: <%= @trip.start_date %></li>
+    <li>Start Station Name: <%= @trip.start_station_name%></li>
+    <li>Start Station ID: <%= @trip.start_station_id %></li>
+    <li>End Date: <%= @trip.end_date %></li>
+    <li>End Station Name: <%= @trip.end_station_name %></li>
+    <li>End Station ID: <%= @trip.end_station_id %></li>
+    <li>Bike ID: <%= @trip.bike_id %></li>
+    <li>Subscription Type: <%= @trip.subscription_type_id %></li>
+    <li>Rider Zip Code: <%= @trip.user_zip_code %></li>
+  </ul>
+  <form action="/trips/<%= @trip.id %>/edit" method="GET">
+    <input type="submit" value="Edit">
+  </form>
+  <form action="/trips/<%= @trip.id %>" method="POST">
+    <input type="hidden" name="_method" value="DELETE">
+    <input type="submit" value="Delete">
+  </form>
+</div>

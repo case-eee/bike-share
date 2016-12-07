@@ -1,0 +1,48 @@
+<% @title = "All Stations" %>
+
+<div class="all-stations">
+<div class="jumbotron">
+  <div class="container">
+  <h1 class="page-header">All Stations
+  <form action="/stations/new" method="GET">
+    <input id="create" class="btn btn-warning btn-small" type="submit" value="Create New"/>
+  </form></h1>
+  <% @stations.each do |station| %>
+    <div class="station-summary">
+      <ul>
+        <li class="station-name"><a href="/stations/<%= station.id %>"><%= station.name %></a></li>
+        </br>
+        <li>Number of bike docks: <%= station.dock_count %></li>
+        <li>City: <%= station.city.name %></li>
+        <li>Latitude: <%= station.lat %></li>
+        <li>Longitude: <%= station.long %></li>
+        <li>Established: <%= station.installation_date %></li>
+        </br>
+      </ul>
+      <form class="format-button" action="/stations/<%= station.id %>/edit" method="GET">
+        <input id="edit" class="btn btn-warning btn-xs" type="submit" value="Edit">
+      </form>
+      <form class="format-button" action="/stations/<%= station.id %>" method="POST">
+        <input type="hidden" name="_method" value="DELETE">
+        <input id="edit" class="btn btn-warning btn-xs" type="submit" value="Delete">
+</form>
+    </div>
+      </br>
+      </br>
+      </br>
+  <% end %>
+</div>
+</div>
+</div>
+
+
+
+<div id="map" style="height:100%";></div>
+
+<% @stations.each do |station| %>
+  addMarker(<%= station.lat %>, <%= station.long %>);
+<% end %>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script type="text/javascript" src="station_map.js"></script>
+<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBY5e6y9BV-anVv_aKGrlgMd_uxwi71PSQ&v=3&callback=initMap"></script>

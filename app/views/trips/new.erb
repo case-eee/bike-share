@@ -1,0 +1,24 @@
+<% @title = "Create New Trip" %>
+
+<div class="form">
+  <h1>Create a New Trip</h1>
+  <form method="POST" action="/trips">
+    <input type="integer" name="trip[duration]" value="Duration" onclick='this.value = "";'><br/>
+    <input type="integer" name="trip[start_date]" value="Start Date" onclick='this.value = "";'><br/>
+    <input type="integer" name="trip[start_station_name]" value="Start Station Name" onclick='this.value = "";'><br/>
+    <input type="integer" name="trip[start_station_id]" value="Start Station ID" onclick='this.value = "";'><br/>
+    <input type="integer" name="trip[end_date]" value="End Date" onclick='this.value = "";'><br/>
+    <input type="integer" name="trip[end_station_name]" value="End Station Name" onclick='this.value = "";'><br/>
+    <input type="integer" name="trip[end_station_id]" value="End Station ID" onclick='this.value = "";'><br/>
+    <input type="integer" name="trip[bike_id]" value="Bike ID" onclick='this.value = "";'><br/>
+
+    <select class="form_dropdown" name="trip[subscription_type_id]">
+      <option selected="selected" value="">-Select Subscription Type-</option>
+      <% @cities.sort_by(&:subscription_type).each do |subscription| %>
+        <option value="<%= trip.subscription_type_id %>"><%= trip.subscription.upcase %></option>
+      <% end %>
+    </select><br/>
+    <input type="date" name="trip[user_zip_code]" value="User Zip Code" onclick='this.value = "";'><br/>
+    <input type="submit" value="Create Trip">
+  </form>
+</div>
