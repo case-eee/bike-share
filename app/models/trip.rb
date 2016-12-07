@@ -32,7 +32,21 @@ class Trip < ActiveRecord::Base
   end
 
   def self.station_with_most_starting_rides
-    Station.trips
+    most_common = Trip.group(:start_station_id).order('count_id DESC').limit(1).count(:id)
+    Station.find_by(csv_id: most_common.keys)
+  end
+
+  def self.least_ridden_bike 
+    least_common = Trip.group(:bike_id).order('count_id ASC').limit(1).count(:id)
+    least_common.keys.first
+  end
+
+  def self.trips_by_bike(given_bike_id)
+    where(bike_id: given_bike_id).count
+  end
+
+  def self.day_with_lowest_number_of_trips
+  
   end
 
   def self.average_duration_of_a_ride
