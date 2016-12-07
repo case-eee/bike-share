@@ -10,6 +10,8 @@ class Trip < ActiveRecord::Base
             :zipcode,
                presence: true
   belongs_to :subscription
+  belongs_to :start_station , class_name: "Station", primary_key: "csv_id", foreign_key: "start_station_id"
+  belongs_to :end_station , class_name: "Station", primary_key: "csv_id", foreign_key: "end_station_id"
 
   def self.write(trip_details)
     self.find_or_create_by(subscription_id: find_subscription_id(trip_details[:subscription_name]),
@@ -29,7 +31,5 @@ class Trip < ActiveRecord::Base
   def self.rides_average_duration
     average(:duration)
   end
-
-
 
 end
