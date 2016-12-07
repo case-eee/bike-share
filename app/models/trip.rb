@@ -1,4 +1,4 @@
-require_relative 'subscriptions'
+require_relative '../models/subscription'
 
 class Trip < ActiveRecord::Base
   validates :duration,
@@ -15,8 +15,7 @@ class Trip < ActiveRecord::Base
   belongs_to :end_station, class_name: "Station", foreign_key: "end_station_id"
 
   def self.import(trip_details)
-    Trip.delete_all
-    self.create(subscription_id: find_subscription_id(trip_details[:subscription_name]),
+    self.create(subscription_id: find_subscription_id(trip_details[:subscription_type]),
                 duration: trip_details[:duration],
                 start_date: trip_details[:start_date],
                 start_station_id: find_station_id(trip_details[:start_station_name]),
@@ -27,7 +26,7 @@ class Trip < ActiveRecord::Base
   end
   
   def self.write(trip_details)
-    self.find_or_create_by(subscription_id: find_subscription_id(trip_details[:subscription_name]),
+    self.find_or_create_by(subscription_id: find_subscription_id(trip_details[:subscription_type]),
                           duration: trip_details[:duration],
                           start_date: trip_details[:start_date],
                           start_station_id: find_station_id(trip_details[:start_station_name]),
@@ -91,16 +90,24 @@ class Trip < ActiveRecord::Base
   end
 
   def self.shortest_ride
-    where(duration: minimum(:duration))
+    minimum(:duration)
   end
 
   def self.rides_started_here(station)
     where(start_station_id: station).count
   end
 
-  def monthly_rides
-  require 'pry', binding.pry
-    Trip.group(:start_date)
+  def self.monthly_rides
+    Trip.group(:start_date).order("count_start_station_id DESC").count(:start_station_id)
   end
 
+  # def most_used_bike(station_id)
+  #   station = Station.find(station_id)
+  #   Trip.group(:bike_id).order(count_trip)
+  # end
+
+  def self.subscription_types
+    test = Trip.group(:subscription_id).order('count_subscription_id DESC').count(:subscription_id)
+    require 'pry'; binding.pry
+  end
 end
