@@ -28,8 +28,18 @@ class Trip < ActiveRecord::Base
     Subscription.write(name: subscription_type).id
   end
 
-  def self.rides_average_duration
+  def self.average_duration_of_a_ride
     average(:duration)
+  end
+
+  def self.trip_count_for_stations_as_starting_place_all
+    Trip.group(:start_station_id).order("count_start_station_id desc").count("start_station_id")
+  end
+
+  def self.station_with_most_rides_as_starting_place
+    start_station_id_count_list = trip_count_for_stations_as_starting_place_all
+    start_station_id = start_station_id_count_list.first.first
+    Station.find_by(csv_id: start_station_id)
   end
 
 end
