@@ -224,7 +224,7 @@ describe "Trip" do
                                   subscription_type: "Subscriber", 
                                   zipcode: 80333)
 
-        expect(Trip.date_with_highest_number_of_trips_with_count_of_those_trips[:date_with_most_trips]).to eq("2011-3-6")
+        expect(Trip.date_with_highest_number_of_trips_with_count_of_those_trips[:date_with_most_trips].to_s).to eq("2011-03-06")
       end
       it "Returns count" do
         test_trip1 = Trip.write(duration: 90,

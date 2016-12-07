@@ -12,8 +12,7 @@ class Station < ActiveRecord::Base
                           long: station_details[:long],
                           dock_count: station_details[:dock_count],
                           city_id: find_city_id(station_details[:city_name]),
-                          installation_date: station_details[:installation_date],
-                          csv_id: station_details[:csv_id]
+                          installation_date: station_details[:installation_date]
                           )
   end
 
@@ -49,10 +48,6 @@ class Station < ActiveRecord::Base
   def self.find_by_most_bikes
     return [] if most_bikes.nil?
     where("dock_count = #{most_bikes}")
-  end
-
-  def self.number_of_rides_ended_at_this_station
-    end_trips.count
   end
 
 end
