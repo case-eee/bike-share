@@ -23,6 +23,7 @@ def import_station_csv
 end
 
 def import_trip_csv
+  Trip.delete_all
   CSV.foreach('db/csv/trip.csv', :headers=> true) do |row|
     Trip.import({duration: row['duration'],
                 start_date: time_fix(row['start_date']),
