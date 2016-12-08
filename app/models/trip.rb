@@ -1,5 +1,5 @@
 class Trip < ActiveRecord::Base
-  # validates :duration, :start_station_id, :end_station_id, :start_date, :end_date, :bike_id, :subscription_type, :zip_code, presence: true
+#validates :duration, :start_station_id, :end_station_id, :start_date, :end_date, :bike_id, :subscription_type, :zip_code, presence: true
   belongs_to :trip_start, :class_name => 'Station', :foreign_key => 'start_station_id'
   belongs_to :trip_end, :class_name => 'Station', :foreign_key => 'end_station_id'
   belongs_to :condition, :foreign_key => 'start_date'
@@ -17,8 +17,9 @@ class Trip < ActiveRecord::Base
   end
 
   def self.most_starting_rides_station
-    station_id = group(:start_station_id).count.sort.first
-    require 'pry' ; binding.pry
+    Where
+    # station_id = group(:start_station_id).count.sort.first
+    # #require 'pry' ; binding.pry
     Station.find(station_id)
   end
 

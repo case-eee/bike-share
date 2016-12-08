@@ -63,8 +63,8 @@ ActiveRecord::Schema.define(version: 20161204235511) do
 
   create_table "trips", force: :cascade do |t|
     t.bigint   "duration"
-    t.bigint   "start_station_id"
-    t.bigint   "end_station_id"
+    t.integer  "start_station_id"
+    t.integer  "end_station_id"
     t.datetime "start_date_time"
     t.date     "start_date"
     t.datetime "end_date_time"

@@ -9,13 +9,14 @@ require 'pry'
 
 #create_stations
 CSV.foreach('db/csv/station.csv', :headers=> true) do |row|
-  City.create(name: row[5]) unless City.find_by(name: row[5])
-  city = City.find_by(name: row[5])
-  Station.create({name: row[1],
+  city = City.find_or_create_by(name: row[5])
+  installation_date = Date.strptime(row[6], '%m/%d/%Y')
+  Station.create({id: row[0],
+                  name: row[1],
                   lat: row[2],
                   long: row[3],
                   dock_count: row[4], 
-                  installation_date: row[6], 
+                  installation_date: installation_date, 
                   city_id: city.id})
 end
 
@@ -25,8 +26,12 @@ SmarterCSV.process('db/csv/weather.csv').each do |row|
   Condition.create(row) if row[:zip_code] == 94107
 end
 
-#create_trips
+#create_conditions
 SmarterCSV.process('db/csv/trip.csv').each do |row|
+  row[:start_date] = Date.strptime(row[:start_date], '%m/%d/%Y')
+  row[:end_date] = Date.strptime(row[:end_date], '%m/%d/%Y')
+
+#create_trips
   Trip.create(duration: row[:duration],
               start_date_time: row[:start_date],
               start_date: row[:start_date],
