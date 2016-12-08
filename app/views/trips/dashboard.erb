@@ -10,47 +10,32 @@
 <table class="table table-striped table-hover">
 
 <tr>
-  <td><h3> Total Station Count</td></h3>
-<td><h3>  <%= Station.count %> </td></h3>
+  <td><h3> Average Ride Duration</td></h3>
+  <td><h3>  <%= Trip.average_duration_of_a_ride %> </td></h3>
 </tr>
 
 <tr>
-<td><h3> Average Bikes Available Per Station</td></h3>
-<td><h3>  <%= Station.average_bikes_per_station %> </td></h3>
+  <td><h3> Longest Ride</td></h3>
+  <td><h3>  <%= Trip.longest_ride %> </td></h3>
 </tr>
 
 <tr>
-<td><h3> Stations Where the Most Bikes are Available</td></h3>
-<td><h3>  <%= Station.most_bikes %> </td></h3>
+  <td><h3> Shortest Ride</td></h3>
+  <td><h3>  <%= Trip.shortest_ride %> </td></h3>
 </tr>
 
 <tr>
-<td><h3> Most Bikes Available at a Station</td></h3>
-<% Station.find_by_most_bikes.each do |station| %>
-<td><h3>  <%= station.name %>: <%= station.dock_count %> </td></h3>
-<% end %>
+  <td><h3> Station with the Most Starting Rides</td></h3>
+  <td><h3><%= Trip.station_with_most_starting_rides.name %></td></h3>
 </tr>
 
 <tr>
-<td><h3>Fewest Bikes Available at a Station</td></h3>
-<td><h3>  <<%= Station.fewest_bikes %> </td></h3>
+  <td><h3> Station with the Most Ending Rides</td></h3>
+  <td><h3><%= Trip.most_frequent_destination_station.name %></td></h3>
 </tr>
 
-<tr>
-<td><h3>Stations Where the Fewet Bikes are Available</td></h3>
-<% Station.find_by_fewest_bikes.each do |station| %>
-<td><h3>  <%= station.name %>: <%= station.dock_count %> </td></h3>
-<% end %>
-</tr>
 
-<tr>
-<td><h3>Most Recently Installed Station</td></h3>
-<td><h3>  <%= Station.most_recently_installed_station.name %> </td></h3>
-</tr>
 
-<tr>
-<td><h3>Oldest Station</td></h3>
-<td><h3>  <%= Station.oldest_station.name %> </td></h3>
-</tr>
+
 
 </table>

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161207173824) do
+ActiveRecord::Schema.define(version: 20161207201430) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -46,6 +46,7 @@ ActiveRecord::Schema.define(version: 20161207173824) do
     t.integer "cloud_cover"
     t.integer "wind_dir_degrees"
     t.integer "zip_code"
+    t.integer "max_gust_speed_mph"
   end
 
   create_table "stations", force: :cascade do |t|
