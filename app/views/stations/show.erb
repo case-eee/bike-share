@@ -1,4 +1,43 @@
-<h1><%= @station.name %></h1>
-<p><%= @station.dock_count %></p>
-<p><%= @station.installation_date %></p>
-<p><%= @station.city_id %></p>
+<head>
+  <style>
+      /* Always set the map height explicitly to define the size of the div
+       * element that contains the map. */
+      #map {
+        height: 500px;
+      }
+      /* Optional: Makes the sample page fill the window. */
+      html, body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+      }
+    </style>
+</head>
+
+<div class="col-md-6">
+  <h1><%= @station.name %></h1>
+  <p>dock_count : <%= @station.dock_count %></p>
+  <p>installation_date : <%= @station.installation_date %></p>
+  <p>city_id : <%= @station.city_id %></p>
+</div>
+<div class="col-md-6">
+  <div id="map"></div>
+</div>
+
+<script>
+  var map;
+  function initMap() {
+    var map = new google.maps.Map(document.getElementById('map'), {
+      zoom: 15,
+      center: {lat: <%= @station.lat %>, lng: <%= @station.long %>}
+    });
+
+    var marker = new google.maps.Marker({
+      position: {lat: <%= @station.lat %>, lng: <%= @station.long %>},
+      map: map
+    });
+  }  
+</script>
+
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDisxFtRAEd0eNIvPK7CY82qYdtLROmwjc&callback=initMap"
+async defer></script>

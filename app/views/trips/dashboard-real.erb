@@ -1,0 +1,18 @@
+<h1>trip dash</h1>
+<a href="/trips" style="color:white;font-size:25px;">See All Trips</a>
+<h3><p class="station_title"> average trip duration </p> <%= Trip.average_trip_duration %> s</h3>
+<h3><p class="station_title"> longest ride </p> <%= Trip.longest_ride %> s</h3>
+<h3><p class="station_title"> shortest ride </p> <%= Trip.shortest_ride %> s</h3>
+<h3><p class="station_title"> station with most rides as a starting place </p> <%= Trip.most_starting_rides_station.name %></h3>
+<h3><p class="station_title"> station with most rides as an ending place </p> <%= Trip.most_ending_rides_station.name %></h3>
+<!-- display array for each year -->
+<h3><p class="station_title"> who knows </p> <%= Trip.year_iterator %></h3>
+<h3><p class="station_title"> most ridden bike </p> <%= Trip.most_ridden_bike %></h3>
+<h3><p class="station_title"> least ridden bike </p> <%= Trip.least_ridden_bike %></h3>
+<h3><p class="station_title"> user subscription type breakout </p> <%= Trip.user_count %></h3>
+<h3><p class="station_title"> single day with most trips </p> <%= Trip.most_trips %></h3>
+<h3><p class="station_title"> single day with least trips </p> <%= Trip.least_trips %></h3>
+
+
+
+

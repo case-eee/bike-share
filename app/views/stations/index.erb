@@ -1,18 +1,26 @@
-<h1>All Stations</h1>
+<div class="titled">
+  <h1>All Stations</h1>
 
-<form action="/stations/new" method="GET">
-  <input type="submit" value="Create"/>
-</form>
-
-<% @stations.each do |station| %>
-  <h1><%= station.name %></h1>
-  <p><%= station.dock_count %></p>
-  <p><%= station.installation_date %></p>
-  <p><%= station.city_id %></p>
-  <form action="/stations/<%= station.id %>" method="POST">
-    <input type="hidden" name="_method" value="DELETE">
-    <input type="submit" value="Delete Station">
+  <form action="/stations/new" method="GET">
+    <input type="submit" value="Create A New Station"/>
   </form>
-  <a href="/stations/<%= station.id %>/edit">Edit Station</a>
-  <a href="/stations/<%= station.id %>">See Station</a>
+</div>
+<br>
+<% @stations.each do |station| %>
+  <div class="station_object col-md-4">
+    <h1><%= station.name %></h1>
+    <p>Dock Count : <%= station.dock_count %></p>
+    <p>Installation Date : <%= station.installation_date %></p>
+    <p>City ID: <%= station.city_id %></p>
+    <div class="button_row">
+      <a class="col-md-4" href="/stations/<%= station.id %>">Details</a>
+      <a class="col-md-4" href="/stations/<%= station.id %>/edit">Edit</a>
+      <form class="col-md-4 delete_station" action="/stations/<%= station.id %>" method="POST">
+        <input type="hidden" name="_method" value="DELETE">
+        <input type="submit" value="Delete">
+      </form>
+    </div>
+  </div>
 <% end %>
+
+

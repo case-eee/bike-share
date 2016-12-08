@@ -17,18 +17,19 @@ describe "when a user visits /stations" do
   end
 
   it "they can delete an existing station" do
-    Station.create(name:"hi35",dock_count:23,city_id:2,installation_date:'1999-23-23')
+    Station.create(name:"hi35",dock_count:23,city_id:2,installation_date:'1999-10-23')
     visit "/stations"
 
     expect(page).to have_content "hi35"
-    first('form:nth-of-type(2)').click_on "Delete Station"
-
+    within(".delete_station") do
+      click_on "Delete"
+    end
     expect(page).to have_current_path "/stations"
     expect(page).not_to have_content "hi35"
   end
 
   it "they can update an existing station" do
-    station = Station.create(name:"hi35",dock_count:23,city_id:2,installation_date:'1999-23-23')
+    station = Station.create(name:"hi35",dock_count:23,city_id:2,installation_date:'1999-10-23')
     visit "/stations"
 
     expect(page).to have_content "hi35"
@@ -38,22 +39,20 @@ describe "when a user visits /stations" do
     fill_in "station[name]", :with => "Dock_1"
     fill_in "station[dock_count]", :with => 1
     fill_in "station[city_id]", :with => 1
-    fill_in "station[installation_date]", :with => "1000-23-19"
+    fill_in "station[installation_date]", :with => "1000-10-19"
     click_on "Update Station"
     expect(page).to have_content "Dock_1"
     expect(page).to have_current_path "/stations"
   end
 
   it "they can see an individual station" do
-    station = Station.create(name:"hi35",dock_count:23,city_id:2,installation_date:'1999-23-23')
+    station = Station.create(name:"hi35",dock_count:23,city_id:2,installation_date:'1999-10-23')
     visit "/stations"
 
     expect(page).to have_content "hi35"
     find("a[href='/stations/#{station.id}']").click
     expect(page).to have_content "hi35"
     expect(page).to have_current_path "/stations/#{station.id}"
-
   end
-
 
 end
