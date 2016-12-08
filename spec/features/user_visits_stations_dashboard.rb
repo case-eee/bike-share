@@ -39,7 +39,7 @@ describe "Dashboard Features" do
                     installation_date: "2011-11-11"
                     )
       visit "/stations-dashboard"
-      
+
       within('tr:nth-of-type(2)') do
         within('td:nth-of-type(1)') do
           expect(page).to have_content("Average Bikes Available Per Station")
@@ -75,7 +75,6 @@ describe "Dashboard Features" do
           expect(page).to have_content("#{Station.most_bikes}")
         end
       end
-
     end
 
     it "they see the stations where most bikes are available" do
@@ -180,7 +179,7 @@ describe "Dashboard Features" do
                     installation_date: "2013-11-11"
                     )
       visit "/stations-dashboard"
-      
+
       within('tr:nth-of-type(7)') do
         within('td:nth-of-type(1)') do
           expect(page).to have_content("Most Recently Installed Station")
