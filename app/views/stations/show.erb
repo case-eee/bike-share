@@ -1,5 +1,6 @@
 
 <!DOCTYPE html>
+<h1> Station Details </h1>
 <table class="table table-hover">
 
 <tr>
@@ -13,11 +14,14 @@
   <td><%= @station.name %></td>
   <td><%= @station.dock_count %></td>
   <td><%= @station.installation_date %></td>
-  <td><a href='/stations/<%=@station.id%>/edit'>Edit</a></td>
-  <td><form action = "/stations/<%=@station.id%>" method = "post"/>
-  <input type = "hidden" name = "_method" value = "delete"/>
-  <input type = "submit" value = "Delete"></form></td>
-  </tr>
+  <td><a class="btn btn-warning" href='/stations/<%=@station.id%>/edit'>Update</a></td>
 
+  <td>
+    <form action="/stations/<%= @station.id %>" method="POST">
+      <input type="hidden" name="_method" value="DELETE">
+      <input class="btn btn-danger" type="submit" value="Delete">
+    </form>
+  </td>
+  </tr>
 
 </table>

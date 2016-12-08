@@ -34,7 +34,7 @@ describe "When a user visits the edit trip page" do
     click_on "Update"
 
     expect(current_path).to eq("/trips/#{ trip.id }")
-    expect(page).to have_content("Duration: 47")
+    expect(page).to have_content("47")
   end
 
   describe "from the index" do

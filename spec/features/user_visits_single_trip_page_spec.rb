@@ -12,7 +12,8 @@ describe "When a user visits a single trip page" do
                        zipcode: 80211)
     visit("/trips/#{ trip.id }")
 
-    expect(page).to have_content("Duration: 45")
+    expect(page).to have_content("Trip Details")
+    expect(page).to have_content("45")
   end
 
 end

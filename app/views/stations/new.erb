@@ -1,35 +1,22 @@
 
+<h1>Add New Station</h1>
 
-
-<form class="form-horizontal" action = "/stations" method = "post">
-  <div class="form-group">
-    <label for="inputEmail3" class="col-sm-2 control-label">Station Name</label>
-    <div class="col-sm-10">
-      <input type="Station Name" name="stations[name]" class="form-control" id="stations" placeholder="South Market St">
-    </div>
-
+<form class="form-group" action="/stations" method="POST">
     <div class="form-group">
-      <label for="inputEmail3" class="col-sm-2 control-label">Dock Count</label>
-      <div class="col-sm-10">
-        <input type="Dock Count" name="stations[dock_count]" class="form-control" id="dock_count" placeholder="15">
-      </div>
-
-      <div class="form-group">
-        <label for="inputEmail3" class="col-sm-2 control-label">City</label>
-        <div class="col-sm-10">
-          <input type="City" name="stations[city_id]" class="form-control" id="city" placeholder="San Francisco">
-        </div>
-
-        <div class="form-group">
-          <label for="inputEmail3" class="col-sm-2 control-label">City</label>
-          <div class="col-sm-10">
-            <input type="Installation Date" name="stations[installation_date]" class="form-control" id="city" placeholder="2011-11-11">
-          </div>
-
-  <div class="form-group">
-    <div class="col-sm-offset-2 col-sm-10">
-      <input type="submit" class="btn btn-default" value = "Submit"></button>
-
-    </div>
+    <label>Station Name</label>
+    <input class="form-control" type="text" name="stations[name]">
   </div>
+  <div class="form-group">
+    <label>Dock Count</label>
+    <input class="form-control" type="integer" name="stations[dock_count]">
+  </div>
+  <div class="form-group">
+    <label>City</label>
+    <input class="form-control" type="text" name="stations[city_id]">
+  </div>
+  <div class="form-group">
+    <label>Installation Date</label>
+    <input class="form-control" type="datetime" name="stations[installation_date]">
+  </div>
+  <input class="btn btn-primary" type="submit" value="Submit">
 </form>

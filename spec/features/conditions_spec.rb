@@ -5,21 +5,22 @@ describe "Condition feature test (Capybara)" do
     it "Page loads" do
       visit("/conditions")
 
-      expect(page).to have_content("Daily weather list")
+      expect(page).to have_content("Daily Weather Details")
     end
     it "Page loads with correct content" do
-      Condition.write(date: "2011-01-01",
-                      max_temperature_f: 90,
-                      mean_temperature_f: 45,
-                      min_temperature_f: 0,
-                      mean_humidity: 50,
-                      mean_visibility_miles: 10,
-                      max_wind_speed_mph: 2,
-                      precipitation_inches: 0
-                      )
+      test_condition = Condition.write(date: "2011-01-01",
+                                        max_temperature_f: 90,
+                                        mean_temperature_f: 45,
+                                        min_temperature_f: 0,
+                                        mean_humidity: 50,
+                                        mean_visibility_miles: 10,
+                                        max_wind_speed_mph: 2,
+                                        precipitation_inches: 0
+                                        )
       visit("/conditions")
 
-      expect(page).to have_content("Daily weather list")
+      expect(page).to have_content("Daily Weather Details")
+      expect(page).to have_content(test_condition.max_temperature_f.to_s)
     end
   end
   describe "Show condition page:  GET /conditions/:id" do
@@ -49,7 +50,7 @@ describe "Condition feature test (Capybara)" do
                       )
       visit("/conditions/#{test_condition.id}")
 
-      click_on "Edit"
+      click_on "Update"
 
       expect(page).to have_content("Edit")
       expect(current_path).to eq("/conditions/#{test_condition.id}/edit")
@@ -60,7 +61,7 @@ describe "Condition feature test (Capybara)" do
     it "Page loads with correct content" do
       visit("/conditions/new")
 
-      expect(page).to have_content("Add new weather condition")
+      expect(page).to have_content("Add New Weather Details")
       expect(page).to have_selector("input", :id =>"conditions-date")
       expect(page).to have_selector("input", :id =>"conditions-max_temperature_f")
       expect(page).to have_selector("input", :id =>"conditions-mean_temperature_f")
@@ -139,7 +140,7 @@ describe "Condition feature test (Capybara)" do
 
       fill_in "conditions[max_temperature_f]", with: new_max_temperature_f
 
-      click_on "Save"
+      click_on "Update"
 
       new_condition = Condition.find(test_condition.id)
 

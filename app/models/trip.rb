@@ -15,21 +15,6 @@ class Trip < ActiveRecord::Base
   belongs_to :subscription
   belongs_to :start_station, class_name: "Station", foreign_key: "start_station_id"
   belongs_to :end_station, class_name: "Station", foreign_key: "end_station_id"
-  belongs_to :test_output, class_name: "Station", foreign_key: "end_station_id"
-  
-
-def self.test_output
-  self.end_station
-  super
-end
-
-def self.db_date_matcher(input_date)
-  Time.new(input_date)
-end
-
-def self.start_date_clean
-  db_date_matcher(self.start_date)
-end
 
   def self.import(trip_details)
     self.create(subscription_id: find_subscription_id(trip_details[:subscription_type]),

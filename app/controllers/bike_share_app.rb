@@ -4,6 +4,10 @@ require 'will_paginate/active_record'
 class BikeShareApp < Sinatra::Base
 include WillPaginate::Sinatra::Helpers
 
+  get '/' do
+    erb :homepage
+  end
+
   get '/stations' do
     @stations = Station.all
     erb :"stations/index"

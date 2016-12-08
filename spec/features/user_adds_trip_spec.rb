@@ -18,7 +18,7 @@ describe "When a user visits the new trip path" do
     new_trip = Trip.find_by(duration: 45)
 
     expect(current_path).to eq("/trips/#{ new_trip.id }")
-    expect(page).to have_content("Duration: 45") 
+    expect(page).to have_content("45") 
   end
 
 end

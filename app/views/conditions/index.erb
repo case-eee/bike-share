@@ -1,39 +1,43 @@
-<h1>Daily weather list</h1>
+<h1>Daily Weather Details</h1>
 
-<% @conditions.each do |condition|%>
-  <table>
-    <tr>
-      <th>DB ID</th>
-      <th>Date</th>
-      <th>Max Temp</th>
-      <th>Mean Temp</th>
-      <th>Min Temp</th>
-      <th>Mean Humidity</th>
-      <th>Mean Visibility</th>
-      <th>Max wind speed</th>
-      <th>Precipitation</th>
-      <th></th>
-      <th></th>
-    </tr>
-    <tr>
-      <td><%= condition.id %></td>
-      <td><a href = "/conditions/<%= condition.id %>"><%= condition.date %></a></td>
-      <td><%= condition.max_temperature_f %></td>
-      <td><%= condition.mean_temperature_f %></td>
-      <td><%= condition.min_temperature_f %></td>
-      <td><%= condition.mean_humidity %></td>
-      <td><%= condition.mean_visibility_miles %></td>
-      <td><%= condition.max_wind_speed_mph %></td>
-      <td><%= condition.precipitation_inches %></td>
-      <td>
-        <a href = "/conditions/<%= condition.id %>/edit">Edit</a></p>
-      </td>
-      <td>
-        <form action = "/conditions/<%= condition.id %>" method = "POST">
-          <input type = "hidden" name = "_method" value = "DELETE" />
-          <input type = "submit" value = "Delete" />
-        </form>
-      </td>
-    </tr>
-  </table>
-<% end %>
+<a class="btn btn-primary" href="/conditions/new">New Forecast</a>
+
+<table class="table table-striped table-hover">
+  <tr>
+    <th>Id</th>
+    <th>Date</th>
+    <th>Max Temp (F)</th>
+    <th>Mean Temp (F)</th>
+    <th>Min Temp (F)</th>
+    <th>Mean Humidity</th>
+    <th>Mean Visibility (miles)</th>
+    <th>Max Wind Speed (mph)</th>
+    <th>Precipitation (inches)</th>
+    <th></th>
+    <th></th>
+
+  </tr>
+  <% @conditions.each do |condition| %>
+  <tr>
+    <td><%= condition.id %></td>
+    <td><a href="/conditions/<%=condition.id%>"><%= condition.date %></a></td>
+
+    <td><%= condition.max_temperature_f %></td>
+    <td><%= condition.mean_temperature_f %></td>
+    <td><%= condition.min_temperature_f %></td>
+    <td><%= condition.mean_humidity %></td>
+    <td><%= condition.mean_visibility_miles %></td>
+    <td><%= condition.max_wind_speed_mph %></td>
+    <td><%= condition.precipitation_inches %></td>
+    <td>
+    <td><a class="btn btn-warning" href="/conditions/<%= condition.id %>/edit">Update</a></td>
+
+    <td>
+      <form action="/conditions/<%= condition.id %>" method="POST">
+        <input type="hidden" name="_method" value="DELETE">
+        <input class="btn btn-danger" type="submit" value="Delete">
+      </form>
+    </td>
+  </tr>
+  <% end %>
+</table>

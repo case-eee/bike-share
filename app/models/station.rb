@@ -1,5 +1,6 @@
 class Station < ActiveRecord::Base 
 
+  belongs_to :city
   has_many :start_trips , class_name: "Trip", foreign_key: "start_station_id" do
     def date_of_highest_number_of_trips
       group(:start_date).order("count_start_date DESC").count(:start_date).first.first.to_s
