@@ -17,7 +17,8 @@ class Trip < ActiveRecord::Base
   end
 
   def self.most_starting_rides_station
-    station_id = group(:start_station_id).count.max_by{|k, v| v}.first
+    station_id = group(:start_station_id).count.sort.first
+    require 'pry' ; binding.pry
     Station.find(station_id)
   end
 
