@@ -1,16 +1,83 @@
 <h1>trip dash</h1>
-<h3><p class="station_title"> average trip duration </p> <%= Trip.average_trip_duration %></h3>
-<h3><p class="station_title"> longest ride </p> <%= Trip.longest_ride %></h3>
-<h3><p class="station_title"> shortest ride </p> <%= Trip.shortest_ride %></h3>
-<h3><p class="station_title"> station with most rides as a starting place </p> <%= Trip.most_starting_rides_station.name %></h3>
-<h3><p class="station_title"> station with most rides as an ending place </p> <%= Trip.most_ending_rides_station.name %></h3>
+<a href="/trips" style="color:white;font-size:25px;">See All Trips</a>
+<h3><p class="station_title"> average trip duration </p> 1077.21 s</h3>
+<h3><p class="station_title"> longest ride </p> 17270400 s</h3>
+<h3><p class="station_title"> shortest ride </p> 60 s</h3>
+<h3><p class="station_title"> station with most rides as a starting place </p> San Francisco Caltrain (Townsend at 4th)</h3>
+<h3><p class="station_title"> station with most rides as an ending place </p> San Francisco Caltrain (Townsend at 4th)</h3>
 <!-- display array for each year -->
-<h3><p class="station_title"> who knows </p> <%= Trip.year_iterator %></h3>
-<h3><p class="station_title"> most ridden bike </p> <%= Trip.most_ridden_bike %></h3>
-<h3><p class="station_title"> least ridden bike </p> <%= Trip.least_ridden_bike %></h3>
-<h3><p class="station_title"> user subscription type breakout </p> <%= Trip.user_count %></h3>
-<h3><p class="station_title"> single day with most trips </p> <%= Trip.most_trips %></h3>
-<h3><p class="station_title"> single day with least trips </p> <%= Trip.least_trips %></h3>
+<h3><p class="station_title"> monthly breakdown of ride subtotals by year </p>
+  <% results = [[2013, 95609, {8=>1916, 9=>23377, 10=>27822, 11=>23309, 12=>19185}], [2014, 324846, {1=>23789, 2=>18487, 8=>31163, 7=>31227, 6=>29945, 5=>28461, 4=>26199, 3=>24586, 12=>19656, 11=>25485, 10=>34195, 9=>31653}], [2015, 242885, {8=>31880, 7=>32457, 6=>31886, 5=>29515, 4=>31344, 3=>31588, 2=>26386, 1=>27829}]] %>
+  <table class="table">
+    <tr> 
+      <th> year </th>
+      <th> total </th>
+      <th> jan </th>
+      <th> feb </th>
+      <th> mar </th>
+      <th> apr </th>
+      <th> may </th>
+      <th> jun </th>
+      <th> jul </th>
+      <th> aug </th>
+      <th> sep </th>
+      <th> oct </th>
+      <th> nov </th>
+      <th> dec </th>
+    </tr>
+    <% results.each do |k|%>
+      <tr>
+        <td> <%= k[0] %> </td> 
+        <td> <%= k[1] %> </td> 
+        <td> <%= k[2][1] ? k[2][1] : "-" %> </td> 
+        <td> <%= k[2][2] ? k[2][2] : "-" %> </td> 
+        <td> <%= k[2][3] ? k[2][3] : "-" %> </td> 
+        <td> <%= k[2][4] ? k[2][4] : "-" %> </td> 
+        <td> <%= k[2][5] ? k[2][5] : "-" %> </td> 
+        <td> <%= k[2][6] ? k[2][6] : "-" %> </td> 
+        <td> <%= k[2][7] ? k[2][7] : "-" %> </td> 
+        <td> <%= k[2][8] ? k[2][8] : "-" %> </td> 
+        <td> <%= k[2][9] ? k[2][9] : "-" %> </td> 
+        <td> <%= k[2][10] ? k[2][10] : "-" %> </td> 
+        <td> <%= k[2][11] ? k[2][11] : "-" %> </td> 
+        <td> <%= k[2][12] ? k[2][12] : "-" %> </td> 
+      </tr>
+    <% end %>
+  </table>
+</h3>
+<h3><p class="station_title"> most ridden bike </p> 
+  <% second = [[392, 2034]] %>
+  bike id : <%= second.first[0] %> // number of trips : <%= second.first[1] %>
+</h3>
+<h3><p class="station_title"> least ridden bike </p> 
+  <% third = [[876, 6]] %>
+  bike id : <%= third.first[0] %> // number of trips : <%= third.first[1] %>
+</h3>
+<h3><p class="station_title"> user subscription type breakout </p> 
+  <table class="table" style="width:400px;margin-left:auto;margin-right:auto;">
+    <tr>
+      <th> type </th>
+      <th> count </th>
+      <th> &#37; </th>
+    </tr>
+    <% fourth = {"Customer"=>[96594, 14.56], "Subscriber"=>[566746, 85.44]} %>
+    <% fourth.each do |k, v| %>
+      <tr>
+        <td> <%= k %> </td>
+        <td> <%= v[0] %> </td>
+        <td> <%= v[1] %> </td>
+      <tr>
+    <% end %>
+  </table>
+</h3>
+<h3><p class="station_title"> single day with most trips </p> 
+  <% fifth = ["Mon, 15 Sep 2014", 1516] %>
+  date : <%= fifth[0] %> // number of trips : <%= fifth[1] %>
+</h3>
+<h3><p class="station_title"> single day with least trips </p> 
+  <% sixth = ["Sun, 09 Feb 2014", 81] %>
+  date : <%= sixth[0] %> // number of trips : <%= sixth[1] %>
+</h3>
 
 
 

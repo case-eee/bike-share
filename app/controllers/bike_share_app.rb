@@ -43,6 +43,13 @@ class BikeShareApp < Sinatra::Base
   end
 
   get "/condition-dashboard" do
+    if params.empty?
+      @dynamic = nil
+      @params = nil
+    else
+      @dynamic = Condition.ranges_with_trips(params[:attribute].to_sym, params[:increment].to_f)
+      @params = params
+    end
     erb :"conditions/dashboard"
   end
 
@@ -52,8 +59,8 @@ class BikeShareApp < Sinatra::Base
 
   get "/trips" do
     @number = params[:number].to_i
-    start = @number * 30
-    finish = start + 30
+    start = @number * 29 + 1
+    finish = start + 29
     @current_trips = Trip.order(:start_date).reverse_order.where( :id => [start .. finish] )
     erb :"trips/index"
   end

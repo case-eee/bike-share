@@ -27,14 +27,16 @@ body {
   padding-left: 10px;
 }
 
-tr {
+table {
   color: white;
 }
 
-table {
-  margin-left:auto;
-  margin-right:auto;
+th {
+  text-align: center;
+  font-size: 30px;
+  font-weight: bold;
 }
+
 
 h1 {
   font-family: 'Bungee', cursive;
@@ -78,7 +80,26 @@ i {
   width: 30%;
 }
 
-.button_row > form > input {
+.query {
+  margin-bottom:5px;
+}
+
+.query > span{
+  color:white;
+  padding:10px;
+}
+
+.custom_button {
+  background:white;
+  border-radius: 10px;
+  border:3px solid grey;
+}
+
+form > select {
+  margin:10px;
+}
+
+.button_row > form > input{
   border:none;
   background:none;
   color:white;
@@ -108,5 +129,9 @@ i {
   background:white;
   opacity: 0.9;
   border-radius:10px;
-  color:black;
+  color: black;
+}
+
+.glyphicon {
+  font-size: 80px;
 }

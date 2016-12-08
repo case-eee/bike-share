@@ -4,6 +4,9 @@ gem 'sinatra', require: 'sinatra/base'
 gem 'pg'
 gem 'activerecord'
 gem 'sinatra-activerecord'
+gem "rb-readline"
+gem 'smarter_csv'
+gem 'font-awesome-less'
 
 group :development, :test do
   gem 'shotgun'
