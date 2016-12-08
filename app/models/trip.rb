@@ -5,7 +5,7 @@ class Trip < ActiveRecord::Base
   belongs_to :condition,  :foreign_key => 'start_date'
 
   def self.average_trip_duration
-    average(:duration)
+    average(:duration).round(2)
   end
 
   def self.longest_ride
@@ -57,10 +57,19 @@ class Trip < ActiveRecord::Base
   def self.number_of_rides_by_month(year)
     trips_per_month = Hash.new(0)
     trips_per_year = where("extract (year from start_date) = ?", year)
-    trips_per_year.each do |e|  
-      trips_per_month[e.start_date.month] += 1
-    end
+      trips_per_year.each do |e|  
+        trips_per_month[e.start_date.month] += 1
+      end
     [trips_per_year.count, trips_per_month]
+  end
+
+  def self.year_iterator
+    year_max = maximum("extract (year from start_date)").to_i
+    year_min = minimum("extract (year from start_date)").to_i
+    range = (year_min..year_max).to_a
+    range.map do |year|
+      number_of_rides_by_month(year).unshift(year)
+    end
   end
 
   def self.most_trips
@@ -73,7 +82,7 @@ class Trip < ActiveRecord::Base
 
   def self.condition_on_day_with_most_rides
     most_date = group(:start_date).count.max_by{|k, v| v}.first.strftime('%Y-%m-%d')
-    Condition.find_by(date: most_date)
+    Condition.where(date: most_date)
   end
 
   def self.condition_on_day_with_least_rides

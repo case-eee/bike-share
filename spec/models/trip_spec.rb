@@ -173,6 +173,19 @@ describe "Trip" do
     end
   end
 
+  describe ".year_iterator" do
+    it "returns month by month breakdown of number of rides with subtotals of each year" do
+      Trip.create(duration: 20, start_station_id: 2, end_station_id: 2, start_date: "1-1-2014 14:44", end_date: "11-1-2014 14:55", bike_id: 23, subscription_type: "Subscriber", zip_code: 1029)
+      Trip.create(duration: 20, start_station_id: 2, end_station_id: 2, start_date: "1-1-2014 14:44", end_date: "11-1-2014 14:55", bike_id: 23, subscription_type: "Subscriber", zip_code: 1029)
+      Trip.create(duration: 40, start_station_id: 3, end_station_id: 3, start_date: "6-6-2014 14:44", end_date: "11-3-2014 14:55", bike_id: 23, subscription_type: "Subscriber", zip_code: 1029)
+      Trip.create(duration: 67, start_station_id: 1, end_station_id: 1, start_date: "12-12-2014 14:44", end_date: "11-3-2013 14:55", bike_id: 23, subscription_type: "Subscriber", zip_code: 1029)
+      Trip.create(duration: 67, start_station_id: 1, end_station_id: 1, start_date: "12-3-2013 14:44", end_date: "11-3-2013 14:55", bike_id: 23, subscription_type: "Subscriber", zip_code: 1029)
+
+
+      expect(Trip.year_iterator.last[0]).to eql(2014)
+    end
+  end
+
   describe ".most_ridden_bike" do
     it "returns the most ridden bike with the total number of rides for that bike" do
       Trip.create(duration: 20, start_station_id: 2, end_station_id: 2, start_date: "1-3-2014 14:44", end_date: "11-1-2014 14:55", bike_id: 23, subscription_type: "Subscriber", zip_code: 1029)
