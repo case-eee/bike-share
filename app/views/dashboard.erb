@@ -1,0 +1,143 @@
+<body data-spy="scroll" data-target="#myScrollspy" data-offset="20">
+
+  <div class="container">
+    <div class="row">
+      <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#station_dashboard">Open Station Dashboard</button>
+      <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#trip_dashboard">Open Trip Dashboard</button>
+      <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#trip_dashboard">Open Weather Dashboard</button>
+
+      <!-- Modal -->
+      <div id="station_dashboard" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+          <!-- Modal content-->
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal">&times;</button>
+              <h4 class="modal-title">Station Data</h4>
+            </div>
+            <div class="modal-body">
+              <h1>Stations</h1>
+              <p>Total number of stations: <%= Station.total_stations %></p>
+              <p>Average bikes per station: <%= Station.average_number_of_bikes%></p>
+              <p>Most bikes available: <%= Station.most_bikes_available%></p>
+              <p>Station with most bikes: <%= Station.with_most_bikes.name%></p>
+              <p>Fewest bikes available: <%= Station.fewest_bikes_available%></p>
+              <p>Station with fewest bikes: <%= Station.with_fewest_bikes.name%></p>
+              <p>Oldest Station: <%= Station.oldest_station.name%></p>
+              <p>Newest Station: <%= Station.newest_station.name%></p>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <div id="trip_dashboard" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+
+          <!-- Modal content-->
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal">&times;</button>
+              <h4 class="modal-title">Trip Data</h4>
+            </div>
+            <div class="modal-body">
+              <h1>Trips</h1>
+              <p>Average duration of a ride: <%= Trip.average_duration.round(2) %></p>
+              <p>Longest ride: <%= Trip.longest_ride.to_i%></p>
+              <p>Shortest ride: <%= Trip.shortest_ride.to_i%></p>
+              <p>Station with the most rides as a starting place: <%= Trip.most_popular_starting_station.name%></p>
+              <p>Station with the most rides as an ending place: <%= Trip.most_popular_ending_station.name%></p>
+              <p> Month by Month breakdown of number of rides for 2013:
+                <% Trip.month_by_month_breakdown_2013.each_pair do |key,value|%>
+                <p><%= "#{key} : #{value}" %></p>
+                <% end %>
+              </p>
+              <p> Month by Month breakdown of number of rides for 2014:
+                <% Trip.month_by_month_breakdown_2014.each_pair do |key,value| %>
+                <p><%= "#{key} : #{value}" %></p>
+                <% end %>
+              </p>
+              <p> Month by Month breakdown of number of rides for 2015:
+                <% Trip.month_by_month_breakdown_2015.each_pair do |key,value|%>
+                <p><%= "#{key} : #{value}" %></p>
+                <% end %>
+              </p>
+              <p>Most ridden bike with total number of rides for that bike:
+                <br>Bike id: <%= Trip.most_ridden_bike.id.to_i%>
+                <br>Count: <%= Trip.most_ridden_bike.count%>
+              </p>
+              <p>Least ridden bike with total number of rides for that bike:
+                <br>Bike id: <%= Trip.least_ridden_bike.id.to_i%>
+                <br>Count: <%= Trip.least_ridden_bike.count%>
+              </p>
+              <p>User subscription type breakout with both count and percentage:
+                <br>Total users: <%= Trip.subscribers.total%>
+                <br><b>User type: Subscriber</b>
+                <br>Count: <%= Trip.subscribers.count%>
+                <br>Percent: <%="%#{Trip.subscribers.percent.round(2)}"%>
+                <br><b>User type: Customers</b>
+                <br>Count: <%= Trip.customers.count%>
+                <br>Percent: <%= "%#{Trip.customers.percent.round(2)}"%>
+              </p>
+              <p>Single date with the highest number of trips with a count of those trips:
+                <br> Date: <%= Trip.date_with_the_most_trips.date.strftime("%m-%d-%Y")%>
+                <br> Count: <%= Trip.date_with_the_most_trips.count%>
+                <br><b>Weather:</b>
+                <p>Max temperature(f): <%= Trip.date_with_the_most_trips.weather.max_temperature_f%></p>
+                <p>Average temperature(f):<%= Trip.date_with_the_most_trips.weather.mean_temperature_f%></p>
+                <p>Min temperature(f): <%= Trip.date_with_the_most_trips.weather.min_temperature_f%></p>
+                <p>Average humidity: <%= Trip.date_with_the_most_trips.weather.mean_humidity%></p>
+                <p>Average visibility(miles): <%= Trip.date_with_the_most_trips.weather.mean_visibility_miles%></p>
+                <p>Average wind speed(mph): <%= Trip.date_with_the_most_trips.weather.mean_wind_speed_mph%></p>
+                <p>Precipitation(inches):<%= Trip.date_with_the_most_trips.weather.precipitation_inches%></p>
+              </p>
+              <p>Single date with the lowest number of trips with a count of those trips:
+                <br>Date: <%= Trip.date_with_the_least_trips.date.strftime("%m-%d-%Y")%>
+                <br>Count:<%= Trip.date_with_the_least_trips.count%>
+                <br><b>Weather:</b>
+                <p>Max temperature(f): <%= Trip.date_with_the_least_trips.weather.max_temperature_f%> </p>
+                <p>Average temperature(f):<%= Trip.date_with_the_least_trips.weather.mean_temperature_f%></p>
+                <p>Min temperature(f): <%= Trip.date_with_the_least_trips.weather.min_temperature_f%></p>
+                <p>Average humidity: <%= Trip.date_with_the_least_trips.weather.mean_humidity%></p>
+                <p>Average visibility(miles): <%= Trip.date_with_the_least_trips.weather.mean_visibility_miles%></p>
+                <p>Average wind speed(mph): <%= Trip.date_with_the_least_trips.weather.mean_wind_speed_mph%></p>
+                <p>Precipitation(inches):<%= Trip.date_with_the_least_trips.weather.precipitation_inches%></p>
+              </p>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+          </div>
+
+        </div>
+      </div>
+      <!--
+
+      <div class="card" class="col-md-4 offset-md-6">
+      <img class = "img-fluid" src="https://ww2.kqed.org/news/wp-content/uploads/sites/10/2013/08/RS6338_photo.jpg" alt="Avatar">
+      <div class="container">
+
+    </div>
+    <div class="col-sm-9">
+    <div id="trips-dashboard">
+  </div>
+  <div id="weather-dashboard">
+  <h1>Weather Dashboard</h1>
+  <p>Total number of stations: <%= Station.total_stations %></p>
+  <p>Average bikes per station: <%= Station.average_number_of_bikes%></p>
+  <p>Most bikes available: <%= Station.most_bikes_available%></p>
+  <p>Station with most bikes: <%= Station.with_most_bikes.name%></p>
+  <p>Fewest bikes available: <%= Station.fewest_bikes_available%></p>
+  <p>Station with fewest bikes: <%= Station.with_fewest_bikes.name%></p>
+  <p>Oldest Station: <%= Station.oldest_station.name%></p>
+  <p>Newest Station: <%= Station.newest_station.name%></p>
+</div>
+</div>
+</div>
+
+</div>
+
+</body>

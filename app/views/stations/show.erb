@@ -1,0 +1,18 @@
+<h1><%= @station.name %></h1>
+  <p>ID: <%= @station.id %>
+  <p>Dock Count: <%= @station.dock_count %></p>
+  <p>City: <%= @station.city %></p>
+  <p>Installation Date: <%= @station.installation_date %></p>
+  <p>Number of rides started at this station: <%= @station.rides_started%></p>
+  <p>Number of rides ended at this station: <%= @station.rides_ended%></p>
+  <p>Most common destination station: <%= @station.most_common_destination%></p>
+  <p>Most common origination station: <%= @station.most_common_origination%></p>
+  <p>Date with most trips: <%= @station.date_with_most_trips_started%></p>
+  <p>Most common zip code: <%= @station.most_common_zip_code%></p>
+  <p>Most common bike ID: <%= @station.most_common_bike_id%></p>
+  <a href="/stations/<%= @station.id%>/detailed">Details</a>
+  <a href="/stations/<%= @station.id %>/edit">Edit</a>
+  <form action="/stations/<%= @station.id%>" method="POST">
+    <input type="hidden" name="_method" value="DELETE">
+    <input type='submit' value="Delete">
+  </form>
