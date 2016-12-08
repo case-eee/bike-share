@@ -15,6 +15,7 @@ class Trip < ActiveRecord::Base
   belongs_to :subscription
   belongs_to :start_station, class_name: "Station", foreign_key: "start_station_id"
   belongs_to :end_station, class_name: "Station", foreign_key: "end_station_id"
+  belongs_to :bikes, class_name: "Station" , foreign_key: "bike_id"
 
   def self.import(trip_details)
     self.create(subscription_id: find_subscription_id(trip_details[:subscription_type]),
@@ -101,21 +102,28 @@ class Trip < ActiveRecord::Base
     minimum(:duration)
   end
 
-  def self.rides_started_here(station)
-    where(start_station_id: station).count
-  end
-
   def self.monthly_rides
-    Trip.group(:start_date).order("count_start_station_id DESC").count(:start_station_id)
+    Trip.group("DATE_TRUNC('month', start_date)").order("count_start_station_id DESC").count(:start_station_id)
   end
 
-  # def most_used_bike(station_id)
-  #   station = Station.find(station_id)
-  #   Trip.group(:bike_id).order(count_trip)
-  # end
+  def self.monthly_breakdown_of_rides
+    breakout = monthly_rides
+    {
+      :monthly_breakdown => 
+      [(Date.parse breakout.keys.each {|date| date.to_s}.join), 
+                   breakout.values.each {|trip| trip}.flatten]
+    }
+  end
 
   def self.subscription_types
-    test = Trip.group(:subscription_id).order('count_subscription_id DESC').count(:subscription_id)
-    require 'pry'; binding.pry
+    total = Trip.count
+    subscribers = Subscription.find_by(name: "Subscriber").trips.count
+    customers = Subscription.find_by(name: "Customer").trips.count
+    {
+      :subscriber_count => subscribers,
+      :subscriber_percentage => ((subscribers / total.to_f) * 100).round(2),
+      :customer_count => customers,
+      :customer_percentage => ((customers / total.to_f) * 100).round(2)
+    }
   end
 end

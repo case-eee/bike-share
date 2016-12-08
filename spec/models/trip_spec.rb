@@ -222,6 +222,71 @@ describe "Trip" do
         expect(Trip.shortest_ride).to eq(40)
       end
     end
+    describe "Monthly rides" do
+      it "Returns data with rides broken up by month" do
+        Trip.write(duration: 90,
+                   start_date: "2011-3-6 12:00",
+                   start_station_name: "TestStation1",
+                   end_date: "2011-3-6 12:00",
+                   end_station_name: "TestStation3",
+                   bike_id: 3,
+                   subscription_type: "Subscriber", 
+                   zipcode: 80211)
+        expect(Trip.monthly_rides.values[0]).to eq(1)
+        expect(Trip.monthly_breakdown_of_rides[:monthly_breakdown][0].month).to eq(3)
+      end
+    end
+    describe "Subscription types" do
+      xit "returns nil with no entries in database" do
+        expect(Trip.subscription_types).to eq(nil)
+      end
+      xit "Returns correct number and percent with one entry" do
+        Station.write(name: "TestStation1",
+                      lat: 1.1,
+                      long: 1.2,
+                      dock_count: 1,
+                      city_name: "TestCityName1",
+                      installation_date: "2011-11-11",
+                      )
+        Trip.write(duration: 90,
+                  start_date: "2011-3-6 12:00",
+                  start_station_name: "TestStation1",
+                  end_date: "2011-3-6 12:00",
+                  end_station_name: "TestStation3",
+                  bike_id: 3,
+                  subscription_type: "Subscriber", 
+                  zipcode: 80211)
+        expect(Trip.subscription_types).to eq([1, 100])
+      end
+      it "Returns correct number and percent with two entry" do
+        Station.write(name: "TestStation1",
+                      lat: 1.1,
+                      long: 1.2,
+                      dock_count: 1,
+                      city_name: "TestCityName1",
+                      installation_date: "2011-11-11",
+                      )
+        Trip.write(duration: 90,
+                  start_date: "2011-3-6 12:00",
+                  start_station_name: "TestStation1",
+                  end_date: "2011-3-6 12:00",
+                  end_station_name: "TestStation3",
+                  bike_id: 3,
+                  subscription_type: "Subscriber", 
+                  zipcode: 80211)
+        Trip.write(duration: 90,
+                  start_date: "2011-3-6 12:00",
+                  start_station_name: "TestStation1",
+                  end_date: "2011-3-6 12:00",
+                  end_station_name: "TestStation3",
+                  bike_id: 3,
+                  subscription_type: "Customer", 
+                  zipcode: 80211)
+
+        expect(Trip.subscription_types[:subscriber_percentage]).to eq(50.0)
+        expect(Trip.subscription_types[:customer_percentage]).to eq(50.0)
+      end
+    end
   end
 
   describe "Database relations" do
