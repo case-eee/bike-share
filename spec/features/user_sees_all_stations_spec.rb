@@ -14,7 +14,7 @@ require_relative '../spec_helper'
 
       fill_in 'stations[name]', with: "StationTest1"
       fill_in 'stations[dock_count]', with: 1
-      fill_in 'stations[city_id]', with: "San Francisco"
+      fill_in 'stations[city_name]', with: "San Francisco"
       fill_in 'stations[installation_date]', with: "2011-11-11"
       click_on 'Submit'
 

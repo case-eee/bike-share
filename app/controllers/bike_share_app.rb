@@ -27,7 +27,7 @@ include WillPaginate::Sinatra::Helpers
   end
 
   post '/stations' do
-    station = Station.create(params[:stations])
+    station = Station.write(params[:stations])
     redirect "/stations/#{ station.id }"
   end
 
@@ -38,7 +38,7 @@ include WillPaginate::Sinatra::Helpers
 
   put '/stations/:id' do
     station = Station.find(params[:id])
-    station.update(params[:stations])
+    station.write_update(station, params[:stations])
     redirect "stations/#{station.id}"
   end
 

@@ -3,19 +3,19 @@
   <input type="hidden" name="_method" value="PUT">
   <div class="form-group">
     <label>Station Name</label>
-    <input class="form-control" type="text" name="stations[name]" value="<%= @station.name %>">
+    <input class="form-control" type="text" name="stations[name]" value="<%= @station.name %>" required />
   </div>
   <div class="form-group">
     <label>Dock Count</label>
-    <input class="form-control" type="integer" name="stations[dock_count]" value="<%= @station.dock_count %>">
+    <input class="form-control" type="integer" name="stations[dock_count]" value="<%= @station.dock_count %>" required/>
   </div>
   <div class="form-group">
     <label>City</label>
-    <input class="form-control" type="text" name="stations[city]" value="<%= @station.city.name %>">
+    <input class="form-control" type="text" name="stations[city_name]" value="<%= @station.city.name %>" />
   </div>
   <div class="form-group">
     <label>Installation Date</label>
-    <input class="form-control" type="datetime" name="stations[instllation_date]" value="<%= @station.installation_date %>">
+    <input class="form-control" type="datetime" name="stations[installation_date]" value="<%= @station.installation_date %>" required />
   </div>
 
   <input class="btn btn-warning" type="submit" value="Update">

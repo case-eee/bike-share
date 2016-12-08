@@ -13,6 +13,24 @@ describe "Station" do
 
       expect(Station.find(1).name).to eq("TestStation1")
     end
+    it "Can update if all fields are present" do
+      test_station = Station.write(name: "TestStation1",
+                    lat: 1.1,
+                    long: 1.2,
+                    dock_count: 1,
+                    city_name: "TestCityName1",
+                    installation_date: "2011-11-11"
+                    )
+      updated_name = "NewName1"
+      test_station.write_update(test_station, {name: updated_name,
+                    lat: 1.1,
+                    long: 1.2,
+                    dock_count: 1,
+                    city_name: "TestCityName1",
+                    installation_date: "2011-11-11"})
+
+      expect(Station.find(test_station.id).name).to eq(updated_name)
+    end
     it "Will not save if name is not populated" do
       invalid_station = Station.new(lat: 1.1,
                                     long: 1.2,
@@ -90,7 +108,6 @@ describe "Station" do
 
         expect(oldest.name).to eq("ThisStation")
       end
-
     end
 
     describe "most_recently_installed_station" do
