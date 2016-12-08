@@ -17,7 +17,6 @@ class Trip < ActiveRecord::Base
   end
 
   def self.most_starting_rides_station
-    #station_id = group(:start_station_id).count.max_by{|k, v| v}.first
     station_id = group(:start_station_id).order('count_id Desc').limit(1).count(:id).to_a.last.first
     Station.find(station_id)
   end
@@ -78,13 +77,11 @@ class Trip < ActiveRecord::Base
 
   def self.condition_on_day_with_most_rides
     most_date = group(:start_date).order('count_id Desc').limit(1).count(:id).to_a.first.first.strftime('%Y-%m-%d')
-    # most_date = group(:start_date).count.max_by{|k, v| v}.first.strftime('%Y-%m-%d')
     Condition.where(date: most_date)
   end
 
   def self.condition_on_day_with_least_rides
     least_date = group(:start_date).order('count_id').limit(1).count(:id).to_a.first.first.strftime('%Y-%m-%d')
-    #least_date = group(:start_date).count.min_by{|k, v| v}.first.strftime('%Y-%m-%d')
     Condition.where(date: least_date)
   end
 end

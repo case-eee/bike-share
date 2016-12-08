@@ -4,7 +4,7 @@ class Condition < ActiveRecord::Base
   has_many  :trips, :foreign_key => 'start_date'
 
   def self.make_range(attribute, increment)
-    floor   = minimum(attribute)
+    floor = minimum(attribute)
     ceiling = maximum(attribute)
     range = []
 
