@@ -100,15 +100,15 @@ describe "Trip" do
   # end
 
 
-  # describe ".average_trip_duration" do
-  #   it "returns the average trip duration" do
-  #     Trip.create(duration: 20, start_station_id: 14242, end_station_id: 13233, start_date: "11-3-2014 14:44", end_date: "11-3-2014 14:55", bike_id: 23, subscription_type: "Subscriber", zip_code: 1029)
-  #     Trip.create(duration: 40, start_station_id: 14242, end_station_id: 13233, start_date: "11-3-2014 14:44", end_date: "11-3-2014 14:55", bike_id: 23, subscription_type: "Subscriber", zip_code: 1029)
+  describe ".average_trip_duration" do
+    it "returns the average trip duration" do
+      Trip.create(duration: 20, start_station_id: 14242, end_station_id: 13233, start_date: "11-3-2014 14:44", end_date: "11-3-2014 14:55", bike_id: 23, subscription_type: "Subscriber", zip_code: 1029)
+      Trip.create(duration: 40, start_station_id: 14242, end_station_id: 13233, start_date: "11-3-2014 14:44", end_date: "11-3-2014 14:55", bike_id: 23, subscription_type: "Subscriber", zip_code: 1029)
 
 
-  #     expect(Trip.average_trip_duration).to eql(30)
-  #   end
-  # end
+      expect(Trip.average_trip_duration).to eql(30)
+    end
+  end
 
   describe ".longest_ride" do
     it "returns the longest ride out of all trips" do
@@ -170,6 +170,19 @@ describe "Trip" do
       expect(Trip.number_of_rides_by_month(2014).last[1]).to eql(2)
       expect(Trip.number_of_rides_by_month(2014).last[12]).to eql(1)
 
+    end
+  end
+
+  describe ".year_iterator" do
+    it "returns month by month breakdown of number of rides with subtotals of each year" do
+      Trip.create(duration: 20, start_station_id: 2, end_station_id: 2, start_date: "1-1-2014 14:44", end_date: "11-1-2014 14:55", bike_id: 23, subscription_type: "Subscriber", zip_code: 1029)
+      Trip.create(duration: 20, start_station_id: 2, end_station_id: 2, start_date: "1-1-2014 14:44", end_date: "11-1-2014 14:55", bike_id: 23, subscription_type: "Subscriber", zip_code: 1029)
+      Trip.create(duration: 40, start_station_id: 3, end_station_id: 3, start_date: "6-6-2014 14:44", end_date: "11-3-2014 14:55", bike_id: 23, subscription_type: "Subscriber", zip_code: 1029)
+      Trip.create(duration: 67, start_station_id: 1, end_station_id: 1, start_date: "12-12-2014 14:44", end_date: "11-3-2013 14:55", bike_id: 23, subscription_type: "Subscriber", zip_code: 1029)
+      Trip.create(duration: 67, start_station_id: 1, end_station_id: 1, start_date: "12-3-2013 14:44", end_date: "11-3-2013 14:55", bike_id: 23, subscription_type: "Subscriber", zip_code: 1029)
+
+
+      expect(Trip.year_iterator.last[0]).to eql(2014)
     end
   end
 
