@@ -137,16 +137,12 @@ describe "Dashboard Features" do
                     )
       visit "/stations-dashboard"
 
-      # expect(page).to have_content("Most recently installed station: TestStation2")
-
-      # save_and_open_page
-
       within('tr:nth-of-type(4)') do
         within('td:nth-of-type(1)') do
           expect(page).to have_content("Most Bikes Available at a Station")
         end
         within('td:nth-of-type(2)') do
-          expect(page).to have_content("#{Station.find_by_most_bikes}")
+          expect(page).to have_content("TestStation2")
         end
       end
 

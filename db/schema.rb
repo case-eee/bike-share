@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161207173824) do
+ActiveRecord::Schema.define(version: 20161207224559) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -42,10 +42,11 @@ ActiveRecord::Schema.define(version: 20161207173824) do
     t.integer "max_wind_speed_mph"
     t.integer "mean_wind_speed_mph"
     t.integer "min_wind_speed_mph"
-    t.integer "precipitation_inches"
+    t.float   "precipitation_inches"
     t.integer "cloud_cover"
     t.integer "wind_dir_degrees"
     t.integer "zip_code"
+    t.integer "max_gust_speed_mph"
   end
 
   create_table "stations", force: :cascade do |t|
