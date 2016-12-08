@@ -1,10 +1,10 @@
 class Condition < ActiveRecord::Base
   self.primary_key = 'date'
   validates :date, :max_temperature_f, :mean_temperature_f, :min_temperature_f, :mean_humidity, :mean_visibility_miles, :max_wind_speed_mph, :precipitation_inches, presence: true
-  has_many :trips, :foreign_key => 'start_date'
+  has_many  :trips, :foreign_key => 'start_date'
 
   def self.make_range(attribute, increment)
-    floor = minimum(attribute)
+    floor   = minimum(attribute)
     ceiling = maximum(attribute)
     range = []
 
@@ -57,7 +57,7 @@ class Condition < ActiveRecord::Base
   end
 
   def self.average_daily(rides)
-    rides.reduce(:+)/(rides.length.to_f)
+    (rides.reduce(:+)/(rides.length.to_f)).round(2)
   end
 
   def self.maximum_daily(rides)

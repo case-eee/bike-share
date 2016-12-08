@@ -1,8 +1,8 @@
 class Trip < ActiveRecord::Base
 #validates :duration, :start_station_id, :end_station_id, :start_date, :end_date, :bike_id, :subscription_type, :zip_code, presence: true
   belongs_to :trip_start, :class_name => 'Station', :foreign_key => 'start_station_id'
-  belongs_to :trip_end, :class_name => 'Station', :foreign_key => 'end_station_id'
-  belongs_to :condition, :foreign_key => 'start_date'
+  belongs_to :trip_end,   :class_name => 'Station', :foreign_key => 'end_station_id'
+  belongs_to :condition,  :foreign_key => 'start_date'
 
   def self.average_trip_duration
     average(:duration)
@@ -17,9 +17,7 @@ class Trip < ActiveRecord::Base
   end
 
   def self.most_starting_rides_station
-    Where
-    # station_id = group(:start_station_id).count.sort.first
-    # #require 'pry' ; binding.pry
+    station_id = group(:start_station_id).count.max_by{|k, v| v}.first
     Station.find(station_id)
   end
 
@@ -75,7 +73,7 @@ class Trip < ActiveRecord::Base
 
   def self.condition_on_day_with_most_rides
     most_date = group(:start_date).count.max_by{|k, v| v}.first.strftime('%Y-%m-%d')
-    Condition.where(date: most_date)
+    Condition.find_by(date: most_date)
   end
 
   def self.condition_on_day_with_least_rides
