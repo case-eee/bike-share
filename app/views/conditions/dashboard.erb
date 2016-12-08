@@ -1,7 +1,49 @@
 <h1>conditions dashboard</h1>
 <a href="/conditions" style="color:white;font-size:25px;">See All Conditions</a>
 <div>
-  <table class="table"><p class="station_title"> breakout by high temperature in 10 degree chunks </p> 
+  <table class="table">
+    <p class="station_title"> 
+      <% if @dynamic.nil? %>
+        <%= "create a custom table" %>
+      <% else %>
+        breakdown of <%= @params["attribute"] %> in <%= @params["increment"] %> chunks
+      <% end %>
+    </p> 
+    <div class="query">
+      <form action="/condition-dashboard" method="GET">
+        <span>breakdown by</span> 
+        <select name="attribute">
+          <option value="max_temperature_f">max temp</option>
+          <option value="mean_temperature_f">mean temp</option>
+          <option value="min_temperature_f">min temp</option>
+          <option value="mean_humidity">mean humidity</option>
+          <option value="mean_visibility_miles">mean visibility</option>
+          <option value="max_wind_speed_mph">max wind speed</option>
+        </select> 
+        <span>in</span>
+        <select name="increment">
+          <option value="0.5">.5</option>
+          <option value=1>1</option>
+          <option value=5>5</option>
+          <option value=10>10</option>
+        </select>
+        <span>chunks</span>
+        <input class="custom_button" type="submit" value="fetch">
+      </form>
+    </div>
+        <tr> <th> range </th> <th> average </th> <th> max </th> <th> min </th> </tr>
+        <% unless @dynamic.nil? %>
+          <% @dynamic.each do |k, v| %>
+            <tr>
+              <td> <%= k %> </td> <td> <%= v[0] %> </td> <td> <%= v[1] %> </td> <td> <%= v[2] %> </td> 
+            </tr>
+          <% end %> 
+        <% end %>
+  </table>
+</div>
+<br>
+<div>
+  <table class="table"><p class="station_title"> breakdown by high temperature in 10 degree chunks </p> 
         <tr> <th> range </th> <th> average </th> <th> max </th> <th> min </th> </tr>
         <% Condition.ranges_with_trips(:max_temperature_f, 10).each do |k, v| %>
           <tr>
@@ -12,7 +54,7 @@
 </div>
 <br>
 <div>
-  <table class="table"><p class="station_title"> breakout by precipitation in half degree chunks </p> 
+  <table class="table"><p class="station_title"> breakdown by precipitation in half degree chunks </p> 
         <tr> <th> range </th> <th> average </th> <th> max </th> <th> min </th> </tr>
         <% Condition.ranges_with_trips(:precipitation_inches, 0.5).each do |k, v| %>
           <tr>
@@ -23,7 +65,7 @@
 </div>
 <br>
 <div>
-  <table class="table"><p class="station_title"> breakout by mean wind speed in 4 mph chunks </p> 
+  <table class="table"><p class="station_title"> breakdown by mean wind speed in 4 mph chunks </p> 
         <tr> <th> range </th> <th> average </th> <th> max </th> <th> min </th> </tr>
         <% Condition.ranges_with_trips(:mean_wind_speed_mph, 4).each do |k, v| %>
           <tr>
@@ -34,7 +76,7 @@
 </div>
 <br>
 <div>
-  <table class="table"><p class="station_title"> breakout by mean visibility in 4 mph chunks </p> 
+  <table class="table"><p class="station_title"> breakdown by mean visibility in 4 mph chunks </p> 
         <tr> <th> range </th> <th> average </th> <th> max </th> <th> min </th> </tr>
         <% Condition.ranges_with_trips(:mean_visibility_miles, 4).each do |k, v| %>
           <tr>
@@ -42,4 +84,26 @@
           </tr>
         <% end %> 
   </table>
-</div
+</div>
+<div>
+  <h3><p class="station_title"> weather on the day with the highest rides </p> 
+    <% condition_most = Trip.condition_on_day_with_most_rides.first %></h3>
+    <p> max temp : <%= condition_most.max_temperature_f %> f</p>
+    <p> mean temp: <%= condition_most.mean_temperature_f %> f</p>
+    <p> min temp : <%= condition_most.min_temperature_f %> f</p>
+    <p> mean humidity : <%= condition_most.mean_humidity %> &#37;</p>
+    <p> mean visibility : <%= condition_most.mean_visibility_miles %> miles</p>
+    <p> max wind speed : <%= condition_most.max_wind_speed_mph %> mph</p>
+    <p> precipitation : <%= condition_most.precipitation_inches %> inches</p>
+</div>
+<div>
+  <h3><p class="station_title"> weather on the day with the fewest rides </p> 
+    <% condition_most = Trip.condition_on_day_with_least_rides.first %></h3>
+    <p> max temp: <%= condition_most.max_temperature_f %> f</p>
+    <p> mean temp: <%= condition_most.mean_temperature_f %> f</p>
+    <p> min temp : <%= condition_most.min_temperature_f %> f</p>
+    <p> mean humidity : <%= condition_most.mean_humidity %> &#37;</p>
+    <p> mean visibility : <%= condition_most.mean_visibility_miles %> miles</p>
+    <p> max wind speed : <%= condition_most.max_wind_speed_mph %> mph</p>
+    <p> precipitation : <%= condition_most.precipitation_inches %> inches</p>
+</div>
