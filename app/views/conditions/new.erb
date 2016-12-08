@@ -1,12 +1,13 @@
 <h1>Create a New Condition</h1>
 <form action="/conditions" method="POST">
-  <input class="edit_or_new_form" type="datetime" name="condition[date]" placeholder="date"><br>
+  <h3>make sure all fields are entered properly</h3>
+  <input class="edit_or_new_form" type="date" name="condition[date]" placeholder="date"><br>
   <input class="edit_or_new_form" type="float" name="condition[max_temperature_f]" placeholder="max_temperature"><br>
   <input class="edit_or_new_form" type="float" name="condition[mean_temperature_f]" placeholder="mean_temperature"><br>
   <input class="edit_or_new_form" type="float" name="condition[min_temperature_f]" placeholder="min_temperature"><br>
   <input class="edit_or_new_form" type="float" name="condition[mean_humidity]" placeholder="mean_humidity"><br>
   <input class="edit_or_new_form" type="float" name="condition[mean_visibility_miles]" placeholder="mean_visibility"><br>
   <input class="edit_or_new_form" type="float" name="condition[max_wind_speed_mph]" placeholder="max_wind_speed"><br>
-  <input class="edit_or_new_form" type="float" name="condition[precipitation_inches]" placeholder="precipitation"><br>
-  <input type="submit" value="Create Condition">
+  <input class="edit_or_new_form" type="float" name="condition[precipitation_inches]" placeholder="precipitation_inches"><br>
+  <input class="edit_or_new_form" type="submit" value="Create Condition">
 </form>

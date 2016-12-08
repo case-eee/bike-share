@@ -1,10 +1,10 @@
 require_relative '../../spec_helper'
 
 describe "when a user visits conditions/new" do
-  xit "they can create a new condition" do
+  it "they can create a new condition" do
     visit "/conditions/new"
 
-    fill_in "condition[date]", :with => "8/29/2013"
+    fill_in "condition[date]", :with => "08/08/2013"
     fill_in "condition[max_temperature_f]", :with => 74.0
     fill_in "condition[mean_temperature_f]", :with => 68.0
     fill_in "condition[min_temperature_f]", :with => 61.0

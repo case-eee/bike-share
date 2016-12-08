@@ -4,47 +4,54 @@ describe "Condition" do
 
   describe "validates" do
     it "presence of date" do
-      invalid_condition = Condition.create(max_temperature_f:4,mean_temperature_f:4, min_temperature_f:4, mean_humidity:34, mean_visibility_miles:55, max_wind_speed_mph:89)
+      invalid_condition = Condition.create(max_temperature_f:4,mean_temperature_f:4, min_temperature_f:4, mean_humidity:34, mean_visibility_miles:55, max_wind_speed_mph:89, precipitation_inches: 4)
 
       expect(invalid_condition).to_not be_valid
     end
 
     it "presence of max_temperature_f" do
       date = Date.strptime("8/30/2013", '%m/%d/%Y')
-      invalid_condition = Condition.create(date:date,mean_temperature_f:4, min_temperature_f:4, mean_humidity:34, mean_visibility_miles:55, max_wind_speed_mph:89)
+      invalid_condition = Condition.create(date:date,mean_temperature_f:4, min_temperature_f:4, mean_humidity:34, mean_visibility_miles:55, max_wind_speed_mph:89, precipitation_inches: 4)
 
       expect(invalid_condition).to_not be_valid
     end
 
     it "presence of mean_temperature_f" do
       date = Date.strptime("8/30/2013", '%m/%d/%Y')
-      invalid_condition = Condition.create(max_temperature_f:4, date:date, min_temperature_f:4, mean_humidity:34, mean_visibility_miles:55, max_wind_speed_mph:89)
+      invalid_condition = Condition.create(max_temperature_f:4, date:date, min_temperature_f:4, mean_humidity:34, mean_visibility_miles:55, max_wind_speed_mph:89, precipitation_inches: 4)
 
       expect(invalid_condition).to_not be_valid
     end
 
     it "presence of min_temperature_f" do
       date = Date.strptime("8/30/2013", '%m/%d/%Y')
-      invalid_condition = Condition.create(max_temperature_f:4, date:date, mean_temperature_f:4, mean_humidity:34, mean_visibility_miles:55, max_wind_speed_mph:89)
+      invalid_condition = Condition.create(max_temperature_f:4, date:date, mean_temperature_f:4, mean_humidity:34, mean_visibility_miles:55, max_wind_speed_mph:89, precipitation_inches: 4)
 
       expect(invalid_condition).to_not be_valid
     end
 
     it "presence of mean_humidity" do
       date = Date.strptime("8/30/2013", '%m/%d/%Y')
-      invalid_condition = Condition.create(max_temperature_f:4, date:date, mean_temperature_f:4, min_temperature_f:34, mean_visibility_miles:55, max_wind_speed_mph:89)
+      invalid_condition = Condition.create(max_temperature_f:4, date:date, mean_temperature_f:4, min_temperature_f:34, mean_visibility_miles:55, max_wind_speed_mph:89, precipitation_inches: 4)
 
       expect(invalid_condition).to_not be_valid
     end
 
     it "presence of mean_visibility_miles" do
       date = Date.strptime("8/30/2013", '%m/%d/%Y')
-      invalid_condition = Condition.create(max_temperature_f:4, date:date, mean_temperature_f:4, min_temperature_f:34, mean_humidity:55, max_wind_speed_mph:89)
+      invalid_condition = Condition.create(max_temperature_f:4, date:date, mean_temperature_f:4, min_temperature_f:34, mean_humidity:55, max_wind_speed_mph:89, precipitation_inches: 4)
 
       expect(invalid_condition).to_not be_valid
     end
 
     it "presence of max_wind_speed_mph" do
+      date = Date.strptime("8/30/2013", '%m/%d/%Y')
+      invalid_condition = Condition.create(max_temperature_f:4, date:date, mean_temperature_f:4, min_temperature_f:34, mean_humidity:55, mean_visibility_miles:89, precipitation_inches: 4)
+
+      expect(invalid_condition).to_not be_valid
+    end
+
+    it "presence of precipitation" do
       date = Date.strptime("8/30/2013", '%m/%d/%Y')
       invalid_condition = Condition.create(max_temperature_f:4, date:date, mean_temperature_f:4, min_temperature_f:34, mean_humidity:55, mean_visibility_miles:89)
 
