@@ -4,35 +4,35 @@
 <form class="form-group" action="/conditions" method="POST">
     <div class="form-group">
     <label>Date</label>
-    <input class="form-control" type="datetime" name="conditions[date]" id = "conditions-date" required />
+    <input class="form-control" type="date" name="conditions[date]" id = "conditions-date" required />
   </div>
   <div class="form-group">
     <label>Max Temp (F)</label>
-    <input class="form-control" type="integer" name="conditions[max_temperature_f]" id = "conditions-max_temperature_f" required />
+    <input class="form-control" type="number" name="conditions[max_temperature_f]" id = "conditions-max_temperature_f" required />
   </div>
   <div class="form-group">
     <label>Mean Temp (F)</label>
-    <input class="form-control" type="integer" name="conditions[mean_temperature_f]" id = "conditions-mean_temperature_f" required />
+    <input class="form-control" type="number" name="conditions[mean_temperature_f]" id = "conditions-mean_temperature_f" required />
   </div>
   <div class="form-group">
     <label>Min Temp (F)</label>
-    <input class="form-control" type="integer" name="conditions[min_temperature_f]" id = "conditions-min_temperature_f" required />
+    <input class="form-control" type="number" name="conditions[min_temperature_f]" id = "conditions-min_temperature_f" required />
   </div>
   <div class="form-group">
     <label>Mean Humidity</label>
-    <input class="form-control" type="integer" name="conditions[mean_humidity]" id = "conditions-mean_humidity" required />
+    <input class="form-control" type="number" name="conditions[mean_humidity]" id = "conditions-mean_humidity" required />
   </div>
   <div class="form-group">
     <label>Mean Visibility (miles)</label>
-    <input class="form-control" type="integer" name="conditions[mean_visibility_miles]" id = "conditions-mean_visibility_miles" required />
+    <input class="form-control" type="number" name="conditions[mean_visibility_miles]" id = "conditions-mean_visibility_miles" required />
   </div>
   <div class="form-group">
     <label>Max Wind Speed (mph)</label>
-    <input class="form-control" type="integer" name="conditions[max_wind_speed_mph]" id = "conditions-max_wind_speed_mph" required />
+    <input class="form-control" type="number" name="conditions[max_wind_speed_mph]" id = "conditions-max_wind_speed_mph" required />
   </div>
   <div class="form-group">
     <label>Precipatation (inches)</label>
-    <input class="form-control" type="integer" name="conditions[precipitation_inches]" id = "conditions-precipitation_inches" required />
+    <input class="form-control" type="number" name="conditions[precipitation_inches]" id = "conditions-precipitation_inches" required />
   </div>
   <input class="btn btn-primary" type="submit" value="Submit">
 </form>
