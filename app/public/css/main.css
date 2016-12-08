@@ -116,6 +116,7 @@ form > select {
 .edit_or_new_form {
   margin:10px;
   border-radius:10px;
+  color: gray;
   border: 1px solid white;
 }
 

@@ -27,7 +27,6 @@ class Trip < ActiveRecord::Base
   end
 
   def self.most_ridden_bike
-    # [[bike_id, # of rides], [bike_id, # of rides]]
     bikes = group(:bike_id).count
     bikes.find_all do |bike|
       bike[1] == bikes.values.max
@@ -35,7 +34,6 @@ class Trip < ActiveRecord::Base
   end
 
   def self.least_ridden_bike
-    # [[bike_id, # of rides], [bike_id, # of rides]]
     bikes = group(:bike_id).count
     bikes.find_all do |bike|
       bike[1] == bikes.values.min
