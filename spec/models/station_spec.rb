@@ -446,6 +446,24 @@ describe "Station" do
 
       expect(test_station3.most_frequent_user_zipcode_as_start_station).to eq(80222)
     end
+    it "find the most frequently used bike at this station" do
+      Station.write(name: "BikeStation",
+                    lat: 1.1,
+                    long: 1.2,
+                    dock_count: 1,
+                    city_name: "TestTown",
+                    installation_date: "2011-11-24")
+      Trip.write(duration: 90,
+                start_date: "2011-3-6 12:00",
+                start_station_name: "BikeStation",
+                end_date: "2011-3-6 12:00",
+                end_station_name: "TestStation3",
+                bike_id: 3,
+                subscription_name: "Subscriber", 
+                zipcode: 80211)
+require 'pry'; binding.pry
+      expect(Station.first.start_trips.bike_most_used_starting).to eq(3)
+    end
 
   end
 end

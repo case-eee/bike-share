@@ -1,8 +1,14 @@
 class Station < ActiveRecord::Base 
 
-  has_many :start_trips , class_name: "Trip", foreign_key: "start_station_id"
+  has_many :start_trips , class_name: "Trip", foreign_key: "start_station_id" do 
+    def bike_most_used_starting
+      group(:bike_id).order("count_bike_id DESC").count(:bike_id).first.first
+    end
+  end
   has_many :end_trips , class_name: "Trip", foreign_key: "end_station_id"
-
+  
+  
+  
   validates :name, :dock_count, :city_id, :installation_date, presence: true
 
 
@@ -52,6 +58,10 @@ class Station < ActiveRecord::Base
 
   def most_frequent_user_zipcode_as_start_station
     start_trips.group(:zipcode).order("count_id DESC").limit(1).count(:id).keys.first
+  end
+
+  def most_frequent_origin_station
+    end_trips.group(:start_station_id).order("count_id DESC").limit(1).count(:id).keys.first
   end
 
 end

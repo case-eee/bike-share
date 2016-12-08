@@ -256,7 +256,6 @@ describe "Trip" do
                   bike_id: 3,
                   subscription_type: "Subscriber", 
                   zipcode: 80211)
-
         expect(Trip.subscription_types).to eq([1, 100])
       end
       it "Returns correct number and percent with two entry" do
@@ -283,8 +282,9 @@ describe "Trip" do
                   bike_id: 3,
                   subscription_type: "Customer", 
                   zipcode: 80211)
-        expect(Trip.subscription_types["Subscriber"]).to eq([1, 50.0])
-        expect(Trip.subscription_types["Customer"]).to eq([1, 50.0])
+
+        expect(Trip.subscription_types[:subscriber_percentage]).to eq(50.0)
+        expect(Trip.subscription_types[:customer_percentage]).to eq(50.0)
       end
     end
   end
