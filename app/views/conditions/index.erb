@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+  <link rel="stylesheet" href="application.css">
+  <title>Conditions Index Page <%= @page %></title>
+</head>
+<body>
+  <div class="table-responsive">
+  <h1>Conditions</h1>
+<table class="table table-inverse table-condensed">
+    <thead>
+      <tr>
+        <!-- <th>ID</th> -->
+        <th>Date</th>
+        <th>Max Temperature (F)</th>
+        <th>Mean Temperature (F)</th>
+        <th>Min Temperature (F)</th>
+        <th>Mean Humidity</th>
+        <th>Mean Visibility (miles)</th>
+        <th>Mean Wind Speed (mph)</th>
+        <th>Precipitation (inches)</th>
+        <th><!-- Delete Button --> </th>
+      </tr>
+    </thead>
+    <tbody>
+      <% count = 0 %>
+      <% @conditions.each do |condition| %>
+      <tr>
+        <td><%= condition.date.to_s.split[0] %></td>
+        <td><%= condition.max_temperature_f %></td>
+        <td><%= condition.mean_temperature_f %></td>
+        <td><%= condition.min_temperature_f %></td>
+        <td><%= condition.mean_humidity  %></td>
+        <td><%= condition.mean_visibility_miles %></td>
+        <td><%= condition.mean_wind_speed_mph %></td>
+        <td><%= condition.precipitation_inches %></td>
+        <td>
+          <form action="/conditions/<%= condition.id %>/edit">
+            <input type="submit" value="Edit"/>
+          </form>
+        </td>
+        <td>
+          <form action="/conditions/<%= condition.id %>" method="post">
+            <input type="hidden" name="_method" value="DELETE">
+            <input type="submit" value="Delete"/>
+          </form>
+        </td>
+      </tr>
+      <% end %>
+    </tbody>
+  </table>
+  </div>
+  <div class="will_pagination">
+    <div class="page_info">
+      <%= page_entries_info @conditions %>
+    </div>
+    <%= will_paginate @conditions, :container => false %>
+  </div>
+  </body>
+  <!-- Latest compiled and minified JavaScript -->
+  <link src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous">
+</html>

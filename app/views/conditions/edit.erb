@@ -1,0 +1,62 @@
+<h2>Update Condition</h2>
+<form action="/conditions/<%= @condition.id %>" method="post">
+  <input type="hidden" name="_method" value="DELETE">
+  <div class="offset-sm-2 col-sm-10">
+    <button id="delete_trip"type="submit" class="btn btn-danger">Delete</button>
+  </div>
+</form>
+
+<form action="/conditions/<%= @condition.id %>" method="POST">
+  <input type="hidden" name="_method" value="PUT">
+  <div class="form-group row">
+    <label for="date" class="col-xs-2 col-form-label"></label>
+    <div class="col-xs-10">
+      Date<input class="form-control"type="sting" id="date" name="condition[date]" value="<%= @condition.date %>">
+    </div>
+  </div>
+  <div class="form-group row">
+    <label for="max_temperature" class="col-xs-2 col-form-label"></label>
+    <div class="col-xs-10">
+      Max Temperature<input id="max_temperature" class="form-control" type="string" name="condition[max_temperature_f]" value="<%= @condition.max_temperature_f%>" />
+    </div>
+  </div>
+  <div class="form-group row">
+    <label for="mean_temperature_f" class="col-xs-2 col-form-label"></label>
+    <div class="col-xs-10">
+      Mean Temperature<input id="mean_temperature_f"class="form-control" type="string" name="condition[mean_temperature_f]" value="<%= @condition.mean_temperature_f%>" />
+    </div>
+  </div>
+  <div class="form-group row">
+    <label for="min_temperature_f" class="col-xs-2 col-form-label"></label>
+    <div class="col-xs-10">
+      Min Temperature <input class="form-control" id="min_temperature_f" type="string" name="condition[min_temperature_f]" value="<%= @condition.min_temperature_f%>" /></h3>
+    </div>
+  </div>
+  <div class="form-group row">
+    <label for="mean_humidity" class="col-xs-2 col-form-label"></label>
+    <div class="col-xs-10">
+      Mean Humidity<input class="form-control" id="mean_humidity" type="string" name="condition[mean_humidity]" value="<%= @condition.mean_humidity %>" />
+    </div>
+  </div>
+  <div class="form-group row">
+    <label for="mean_visibility_miles" class="col-xs-2 col-form-label"></label>
+    <div class="col-xs-10">
+      Mean Visibility (Miles)<input class="form-control" id="mean_visibility_miles" type="string" name="condition[mean_visibility_miles]" value="<%= @condition.mean_visibility_miles %>">
+    </div>
+  </div>
+  <div class="form-group row">
+    <label for="mean_wind_speed_mph" class="col-xs-2 col-form-label"></label>
+    <div class="col-xs-10">
+      Mean Wind Speed (mph)<input class="form-control" id="mean_wind_speed_mph" type="string" name="condition[mean_wind_speed_mph]" value="<%= @condition.mean_wind_speed_mph%>">
+    </div>
+  </div>
+  <div class="form-group row">
+    <label for="precipitation_inches" class="col-xs-2 col-form-label"></label>
+    <div class="col-xs-10">
+      Precipitation (inches)<input class="form-control"id="precipitation_inches" type="string" name="condition[precipitation_inches]" value="<%= @condition.precipitation_inches%>">
+    </div>
+  </div>
+<div class="offset-sm-2 col-sm-10">
+  <button id="submit_trip"type="submit" class="btn btn-primary">Update</button>
+</div>
+</form>
