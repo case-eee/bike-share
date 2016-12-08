@@ -13,6 +13,11 @@ class BikeShareApp < Sinatra::Base
     erb :"stations/new"
   end
 
+  get "/stations/:id/edit" do
+    @station = Station.find(params[:id])
+    erb :"stations/edit"
+  end
+
   get "/stations/:id" do
     @station = Station.find(params[:id])
     erb :"stations/show"
@@ -28,13 +33,9 @@ class BikeShareApp < Sinatra::Base
     redirect "/stations"
   end
 
-  get "/stations/:id/edit" do
-    @station = Station.find(params[:id])
-    erb :"stations/edit"
-  end
-
   put "/stations/:id" do
-    Station.update(params[:station])
+  require 'pry'; binding.pry
+    Station.update(params[:id], params[:station])
     redirect "/stations"
   end
 
@@ -90,7 +91,7 @@ class BikeShareApp < Sinatra::Base
   end
 
   put "/trips/:id" do
-    Trip.update(params[:trip])
+    Trip.update(params[:id], params[:trip])
     redirect "/trips"
   end
 
@@ -124,7 +125,7 @@ class BikeShareApp < Sinatra::Base
   end
 
   put "/conditions/:id" do
-    Condition.update(params[:condition])
+    Condition.update(params[:id], params[:condition])
     redirect "/conditions"
   end
 

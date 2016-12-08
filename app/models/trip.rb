@@ -17,12 +17,13 @@ class Trip < ActiveRecord::Base
   end
 
   def self.most_starting_rides_station
-    station_id = group(:start_station_id).count.max_by{|k, v| v}.first
+    #station_id = group(:start_station_id).count.max_by{|k, v| v}.first
+    station_id = group(:start_station_id).order('count_id Desc').limit(1).count(:id).to_a.last.first
     Station.find(station_id)
   end
 
   def self.most_ending_rides_station
-    station_id = group(:end_station_id).count.max_by{|k, v| v}.first
+    station_id = group(:end_station_id).order('count_id Desc').limit(1).count(:id).to_a.last.first
     Station.find(station_id)
   end
 
@@ -53,11 +54,8 @@ class Trip < ActiveRecord::Base
   end
 
   def self.number_of_rides_by_month(year)
-    trips_per_month = Hash.new(0)
     trips_per_year = where("extract (year from start_date) = ?", year)
-      trips_per_year.each do |e|  
-        trips_per_month[e.start_date.month] += 1
-      end
+    trips_per_month = trips_per_year.group("extract (month from start_date)").count(:id)
     [trips_per_year.count, trips_per_month]
   end
 
@@ -71,20 +69,22 @@ class Trip < ActiveRecord::Base
   end
 
   def self.most_trips
-    group(:start_date).count.max_by{|k, v| v}
+    group(:start_date).order('count_id Desc').limit(1).count(:id).to_a.first
   end
 
   def self.least_trips
-    group(:start_date).count.min_by{|k, v| v}
+    group(:start_date).order('count_id').limit(1).count(:id).to_a.first
   end
 
   def self.condition_on_day_with_most_rides
-    most_date = group(:start_date).count.max_by{|k, v| v}.first.strftime('%Y-%m-%d')
+    most_date = group(:start_date).order('count_id Desc').limit(1).count(:id).to_a.first.first.strftime('%Y-%m-%d')
+    # most_date = group(:start_date).count.max_by{|k, v| v}.first.strftime('%Y-%m-%d')
     Condition.where(date: most_date)
   end
 
   def self.condition_on_day_with_least_rides
-    least_date = group(:start_date).count.min_by{|k, v| v}.first.strftime('%Y-%m-%d')
+    least_date = group(:start_date).order('count_id').limit(1).count(:id).to_a.first.first.strftime('%Y-%m-%d')
+    #least_date = group(:start_date).count.min_by{|k, v| v}.first.strftime('%Y-%m-%d')
     Condition.where(date: least_date)
   end
 end
