@@ -55,14 +55,16 @@ input {
   text-align: center;
 }
 
+p {color:white}
+
 a {
   border:none;
   background:none;
-  color:gray;
+  color: white;
 }
 
 i {
-  color: lightgrey;
+  color: white;
   opacity: 0.5;
   margin-right: 10px;
 }
@@ -79,7 +81,7 @@ i {
 .button_row > form > input {
   border:none;
   background:none;
-  color:gray;
+  color:white;
   padding:0px;
 }
 
@@ -93,7 +95,7 @@ i {
 .edit_or_new_form {
   margin:10px;
   border-radius:10px;
-  border: 1px solid lightgray;
+  border: 1px solid white;
 }
 
 .station_title { 
@@ -106,5 +108,5 @@ i {
   background:white;
   opacity: 0.9;
   border-radius:10px;
-  color: grey;
+  color:white;
 }
