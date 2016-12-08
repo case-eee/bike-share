@@ -330,4 +330,212 @@ describe "Station" do
       end
     end
   end
+
+  describe "Database relations" do
+    it "Returns list of Trip objects where station was start station for trip" do
+      test_start_station = Station.write(name: "StartStation",
+                                        lat: 1.1,
+                                        long: 1.2,
+                                        dock_count: 1,
+                                        city_name: "TestCityName1",
+                                        installation_date: "2011-11-11",
+                                        )
+      test_end_station = Station.write(name: "EndStation",
+                                        lat: 3.1,
+                                        long: 3.2,
+                                        dock_count: 3,
+                                        city_name: "TestCityName3",
+                                        installation_date: "2011-11-11",
+                                        )
+      test_trip1 = Trip.write(duration: 90,
+                              start_date: "2011-3-6 12:00",
+                              start_station_name: "StartStation",
+                              end_date: "2011-3-6 12:00",
+                              end_station_name: "EndStation",
+                              bike_id: 3,
+                              subscription_type: "Subscriber", 
+                              zipcode: 80211)
+      test_trip2 = Trip.write(duration: 100,
+                              start_date: "2012-2-2 12:00",
+                              start_station_name: "StartStation",
+                              end_date: "2012-2-6 12:00",
+                              end_station_name: "EndStation",
+                              bike_id: 6,
+                              subscription_type: "Subscriber", 
+                              zipcode: 80222)
+
+      expect(test_start_station.start_trips.count).to eq(2)
+      expect(test_start_station.start_trips.first.duration).to eq(test_trip1.duration)
+    end
+    it "Returns lits of Trip objects where station was end station for trip" do
+      test_start_station = Station.write(name: "TestStation1",
+                                          lat: 1.1,
+                                          long: 1.2,
+                                          dock_count: 1,
+                                          city_name: "TestCityName1",
+                                          installation_date: "2011-11-11",
+                                          )
+      test_end_station = Station.write(name: "TestStation3",
+                                        lat: 3.1,
+                                        long: 3.2,
+                                        dock_count: 3,
+                                        city_name: "TestCityName3",
+                                        installation_date: "2011-11-11",
+                                        )
+      test_trip1 = Trip.write(duration: 90,
+                                start_date: "2011-3-6 12:00",
+                                start_station_name: "TestStation1",
+                                end_date: "2011-3-6 12:00",
+                                end_station_name: "TestStation3",
+                                bike_id: 3,
+                                subscription_name: "Subscriber", 
+                                zipcode: 80211)
+      test_trip2 = Trip.write(duration: 100,
+                                start_date: "2012-2-2 12:00",
+                                start_station_name: "TestStation1",
+                                end_date: "2012-2-6 12:00",
+                                end_station_name: "TestStation3",
+                                bike_id: 6,
+                                subscription_type: "Subscriber", 
+                                zipcode: 80222)
+
+      expect(test_end_station.end_trips.count).to eq(2)
+      expect(test_end_station.end_trips.first.duration).to eq(test_trip1.duration)
+      expect(test_end_station.end_trips.last.duration).to eq(test_trip2.duration)
+    end
+    it "Returns date on which the most trips started from the station" do
+      test_start_station = Station.write(name: "StartStation",
+                                        lat: 1.1,
+                                        long: 1.2,
+                                        dock_count: 1,
+                                        city_name: "TestCityName1",
+                                        installation_date: "2011-11-11",
+                                        )
+      test_trip1 = Trip.write(duration: 90,
+                              start_date: "2011-3-6 12:00",
+                              start_station_name: "StartStation",
+                              end_date: "2011-3-6 12:00",
+                              end_station_name: "EndStation",
+                              bike_id: 3,
+                              subscription_type: "Subscriber", 
+                              zipcode: 80211)
+      test_trip2 = Trip.write(duration: 100,
+                              start_date: "2012-2-2 12:00",
+                              start_station_name: "StartStation",
+                              end_date: "2012-2-6 12:00",
+                              end_station_name: "EndStation",
+                              bike_id: 6,
+                              subscription_type: "Subscriber", 
+                              zipcode: 80222)
+      test_trip3 = Trip.write(duration: 190,
+                              start_date: "2011-3-6 12:00",
+                              start_station_name: "StartStation",
+                              end_date: "2011-3-7 12:00",
+                              end_station_name: "EndStation",
+                              bike_id: 5,
+                              subscription_type: "Subscriber", 
+                              zipcode: 80233)
+
+      expect(test_start_station.start_trips.count).to eq(3)
+      expect(test_start_station.start_trips.date_of_highest_number_of_trips).to eq(test_trip1.start_date.to_s)
+    end
+    it "Returns date on which the most trips started from the station" do
+      test_start_station = Station.write(name: "StartStation",
+                                        lat: 1.1,
+                                        long: 1.2,
+                                        dock_count: 1,
+                                        city_name: "TestCityName1",
+                                        installation_date: "2011-11-11",
+                                        )
+      test_trip1 = Trip.write(duration: 90,
+                              start_date: "2011-3-6 12:00",
+                              start_station_name: "StartStation",
+                              end_date: "2011-3-6 12:00",
+                              end_station_name: "EndStation",
+                              bike_id: 3,
+                              subscription_type: "Subscriber", 
+                              zipcode: 80211)
+      test_trip2 = Trip.write(duration: 100,
+                              start_date: "2012-2-2 12:00",
+                              start_station_name: "StartStation",
+                              end_date: "2012-2-6 12:00",
+                              end_station_name: "EndStation",
+                              bike_id: 6,
+                              subscription_type: "Subscriber", 
+                              zipcode: 80222)
+      test_trip3 = Trip.write(duration: 190,
+                              start_date: "2011-3-6 12:00",
+                              start_station_name: "StartStation",
+                              end_date: "2011-3-7 12:00",
+                              end_station_name: "EndStation",
+                              bike_id: 5,
+                              subscription_type: "Subscriber", 
+                              zipcode: 80233)
+
+      expect(test_start_station.start_trips.count).to eq(3)
+      expect(test_start_station.start_trips.trip_count_of_highest_number_of_trips).to eq(2)
+    end
+
+  end
+  describe "Iteration 6 methods" do
+
+    it "find the most frequent zipcode for users starting at a station" do
+      Station.write(name: "TestStation1",
+                                      lat: 1.1,
+                                      long: 1.2,
+                                      dock_count: 1,
+                                      city_name: "TestCityName1",
+                                      installation_date: "2011-11-11")
+      test_station3 = Station.write(name: "TestStation3",
+                                        lat: 3.1,
+                                        long: 3.2,
+                                        dock_count: 3,
+                                        city_name: "TestCityName3",
+                                        installation_date: "2011-11-11")
+      test_trip1 = Trip.write(duration: 90,
+                                start_date: "2011-3-6 12:00",
+                                start_station_name: "TestStation3",
+                                end_date: "2011-3-6 12:00",
+                                end_station_name: "TestStation3",
+                                bike_id: 3,
+                                subscription_name: "Subscriber", 
+                                zipcode: 80211)
+      test_trip2 = Trip.write(duration: 100,
+                                start_date: "2012-2-2 12:00",
+                                start_station_name: "TestStation3",
+                                end_date: "2012-2-6 12:00",
+                                end_station_name: "TestStation3",
+                                bike_id: 6,
+                                subscription_type: "Subscriber", 
+                                zipcode: 80222)
+      test_trip3 = Trip.write(duration: 100,
+                                start_date: "2012-2-2 12:00",
+                                start_station_name: "TestStation3",
+                                end_date: "2012-2-6 12:00",
+                                end_station_name: "TestStation1",
+                                bike_id: 6,
+                                subscription_type: "Subscriber", 
+                                zipcode: 80222)
+
+      expect(test_station3.most_frequent_user_zipcode_as_start_station).to eq(80222)
+    end
+    it "find the most frequently used bike at this station" do
+      Station.write(name: "BikeStation",
+                    lat: 1.1,
+                    long: 1.2,
+                    dock_count: 1,
+                    city_name: "TestTown",
+                    installation_date: "2011-11-24")
+      Trip.write(duration: 90,
+                start_date: "2011-3-6 12:00",
+                start_station_name: "BikeStation",
+                end_date: "2011-3-6 12:00",
+                end_station_name: "TestStation3",
+                bike_id: 3,
+                subscription_name: "Subscriber", 
+                zipcode: 80211)
+      expect(Station.first.start_trips.bike_most_used_starting).to eq(3)
+    end
+
+  end
 end

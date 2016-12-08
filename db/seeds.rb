@@ -12,8 +12,6 @@ end
 
 def import_station_csv
   CSV.foreach('db/csv/station.csv', :headers=> true) do |row|
-
-
     Station.write({name: row["name"],
                    lat: row["lat"],
                    long: row["long"],
@@ -25,11 +23,12 @@ def import_station_csv
 end
 
 def import_trip_csv
+  Trip.delete_all
   CSV.foreach('db/csv/trip.csv', :headers=> true) do |row|
-    Trip.write({duration: row['duration'],
+    Trip.import({duration: row['duration'],
                 start_date: time_fix(row['start_date']),
-                start_station_id: row['start_station_id'],
-                end_station_id: row['end_station_id'],
+                start_station_name: row['start_station_name'],
+                end_station_name: row['end_station_name'],
                 end_date: time_fix(row['end_date']),
                 bike_id: row['bike_id'],
                 subscription_type: row['subscription_type'],

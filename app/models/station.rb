@@ -1,5 +1,19 @@
-class Station < ActiveRecord::Base
+class Station < ActiveRecord::Base 
+
   belongs_to :city
+  has_many :start_trips , class_name: "Trip", foreign_key: "start_station_id" do
+    def date_of_highest_number_of_trips
+      group(:start_date).order("count_start_date DESC").count(:start_date).first.first.to_s
+    end
+    def trip_count_of_highest_number_of_trips
+      group(:start_date).order("count_start_date DESC").count(:start_date).first.last
+    end
+    def bike_most_used_starting
+      group(:bike_id).order("count_bike_id DESC").count(:bike_id).first.first
+    end
+  end
+  has_many :end_trips , class_name: "Trip", foreign_key: "end_station_id"
+  
   validates :name, :dock_count, :city_id, :installation_date, presence: true
 
   def self.write(station_details)
@@ -44,6 +58,14 @@ class Station < ActiveRecord::Base
   def self.find_by_most_bikes
     return [] if most_bikes.nil?
     where("dock_count = #{most_bikes}")
+  end
+
+  def most_frequent_user_zipcode_as_start_station
+    start_trips.group(:zipcode).order("count_id DESC").limit(1).count(:id).keys.first
+  end
+
+  def most_frequent_origin_station
+    end_trips.group(:start_station_id).order("count_id DESC").limit(1).count(:id).keys.first
   end
 
 end
