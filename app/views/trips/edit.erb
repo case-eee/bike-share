@@ -1,0 +1,74 @@
+<h2>Update Trip</h2>
+<form action="/trips/<%= @trip.id %>" method="post">
+  <input type="hidden" name="_method" value="DELETE">
+  <div class="offset-sm-2 col-sm-10">
+    <button id="delete_trip"type="submit" class="btn btn-danger">Delete</button>
+  </div>
+</form>
+
+<form action="/trips/<%= @trip.id %>" method="POST">
+  <input type="hidden" name="_method" value="PUT">
+  <div class="form-group row">
+    <label for="duration" class="col-xs-2 col-form-label"></label>
+    <div class="col-xs-10">
+      Duration<input class="form-control" type="text"name='trip[duration]' value="<%= @trip.duration %>" id="duration">
+    </div>
+  </div>
+  <div class="form-group row">
+    <label for="start_date" class="col-xs-2 col-form-label"></label>
+    <div class="col-xs-10">
+      Start Date<input class="form-control" type="search" name='trip[start_date]' value="<%= @trip.start_date %>" id="start_date">
+    </div>
+  </div>
+  <div class="form-group row">
+    <label for="start_station_name" class="col-xs-2 col-form-label"></label>
+    <div class="col-xs-10">
+      Start Station Name<input class="form-control" id="start_station_name"type="text" name='trip[start_station_name]'value="<%= @trip.start_station_name %>">
+    </div>
+  </div>
+  <div class="form-group row">
+    <label for="start_station_id" class="col-xs-2 col-form-label"></label>
+    <div class="col-xs-10">
+      End Station Id<input  class="form-control" id="start_station_id"type="text" name='trip[start_station_id]'value="<%= @trip.start_station_id %>">
+    </div>
+  </div>
+  <div class="form-group row">
+    <label for="end_date" class="col-xs-2 col-form-label"></label>
+    <div class="col-xs-10">
+      End Date<input class="form-control" id="end_date"type="text" name='trip[end_date]' value="<%= @trip.end_date %>">
+    </div>
+  </div>
+  <div class="form-group row">
+    <label for="end_station_name" class="col-xs-2 col-form-label"></label>
+    <div class="col-xs-10">
+      End Station Name<input class="form-control" id="end_station_name"type="text" name='trip[end_station_name]' value="<%= @trip.end_station_name %>">
+    </div>
+  </div>
+  <div class="form-group row">
+    <label for="end_station_id" class="col-xs-2 col-form-label"></label>
+    <div class="col-xs-10">
+      End Station Id<input  class="form-control" id="end_station_id"type="text" name='trip[end_station_id]'value="<%= @trip.end_station_id %>">
+    </div>
+  </div>
+  <div class="form-group row">
+    <label for="bike_id" class="col-xs-2 col-form-label"></label>
+    <div class="col-xs-10">
+      Bike Id<input class="form-control"id="bike_id"type="text" name='trip[bike_id]' value="<%= @trip.bike_id %>">
+    </div>
+  </div>
+  <div class="form-group row">
+    <label for="subscription_type" class="col-xs-2 col-form-label"></label>
+    <div class="col-xs-10">
+      Subscription Type<input class="form-control" id="subscription_type"type="text" name='trip[subscription_type]' value="<%= @trip.subscription_type %>">
+    </div>
+  </div>
+  <div class="form-group row">
+    <label for="zip_code" class="col-xs-2 col-form-label"></label>
+    <div class="col-xs-10">
+      Zip Code<input class="form-control" id="zip_code"type="text" name='trip[zip_code]'value="<%= @trip.zip_code %>">
+  </div>
+</div>
+<div class="offset-sm-2 col-sm-10">
+  <button id="submit_trip"type="submit" class="btn btn-primary">Update</button>
+</div>
+</form>

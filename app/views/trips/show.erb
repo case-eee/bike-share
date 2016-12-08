@@ -1,0 +1,39 @@
+<div class="table-responsive">
+  <table class="table table-inverse">
+    <thead>
+      <tr>
+        <th>Trip ID</th>
+        <th>Duration</th>
+        <th>Start Date</th>
+        <th>Start Station</th>
+        <th>Start Station ID</th>
+        <th>End Date</th>
+        <th>End Station Name</th>
+        <th>End Station Id</th>
+        <th>Bike ID</th>
+        <th>Subscription Type</th>
+        <th>Zip Code</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a href="/trips/<%= @trip.id %>"><%= @trip.id %></a></td>
+        <td><%= @trip.duration%></td>
+        <td><%= @trip.start_date%></td>
+        <td><%= @trip.start_station_name%></td>
+        <td><%= @trip.start_station_id%></td>
+        <td><%= @trip.end_date%></td>
+        <td><%= @trip.end_station_name%></td>
+        <td><%= @trip.end_station_id%></td>
+        <td><%= @trip.bike_id%></td>
+        <td><%= @trip.subscription_type%></td>
+        <td><%= @trip.zip_code%></td>
+        <td>
+          <form action="/trips/<%= @trip.id %>/edit">
+            <input type="submit" value="Edit"/>
+          </form>
+        </td>
+      </tr>
+    </tbody>
+  </div>
+</table>
