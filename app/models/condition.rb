@@ -58,7 +58,7 @@ class Condition < ActiveRecord::Base
   end
 
   def self.average_daily(rides)
-    rides.reduce(:+)/(rides.length.to_f)
+    (rides.reduce(:+)/(rides.length.to_f)).round(2)
   end
 
   def self.maximum_daily(rides)

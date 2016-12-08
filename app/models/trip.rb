@@ -73,7 +73,7 @@ class Trip < ActiveRecord::Base
 
   def self.condition_on_day_with_most_rides
     most_date = group(:start_date).count.max_by{|k, v| v}.first.strftime('%Y-%m-%d')
-    Condition.where(date: most_date)
+    Condition.find_by(date: most_date)
   end
 
   def self.condition_on_day_with_least_rides
