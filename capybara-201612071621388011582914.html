@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Bike-Share</title>
+    <link href="/css/bootstrap.min.css" rel="stylesheet" media="screen">
+    <link href="https://fonts.googleapis.com/css?family=Bungee|Raleway" rel="stylesheet">
+    <link rel="stylesheet" href="/css/font-awesome.min.css">
+    <link href="/css/main.css" rel="stylesheet">
+  </head>
+  <body>
+    <nav class="navbar navbar-inverse">
+      <div class="container-fluid">
+        <div class="navbar-left">
+          <a href="/"><i class="fa fa-bicycle fa-4x fa-flip-horizontal <!--fa-spinner fa-spin-->"></i></a>
+        </div>
+        <div class="navbar-header navbar-right">
+          <a class="navbar-text" style="color:white;" href="/station-dashboard">Stations </a>
+          <a class="navbar-text" style="color:white;" href="/trip-dashboard"> Trips </a>
+          <a class="navbar-text" style="color:white;" href="/condition-dashboard"> Conditions </a>
+        </div>
+      </div>
+    </nav>
+    <h1>Create a New Condition</h1>
+<form action="/conditions" method="POST">
+  <input class="edit_or_new_form" type="datetime" name="condition[date]" placeholder="date"><br>
+  <input class="edit_or_new_form" type="float" name="condition[max_temperature_f]" placeholder="max_temperature"><br>
+  <input class="edit_or_new_form" type="float" name="condition[mean_temperature_f]" placeholder="mean_temperature"><br>
+  <input class="edit_or_new_form" type="float" name="condition[min_temperature_f]" placeholder="min_temperature"><br>
+  <input class="edit_or_new_form" type="float" name="condition[mean_humidity]" placeholder="mean_humidity"><br>
+  <input class="edit_or_new_form" type="float" name="condition[mean_visibility_miles]" placeholder="mean_visibility"><br>
+  <input class="edit_or_new_form" type="float" name="condition[max_wind_speed_mph]" placeholder="max_wind_speed"><br>
+  <input class="edit_or_new_form" type="float" name="condition[precipitation_inches]" placeholder="precipitation"><br>
+  <input type="submit" value="Create Condition">
+</form>
+
+    <script src="http://code.jquery.com/jquery.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
+  </body>
+</html>

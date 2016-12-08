@@ -64,11 +64,11 @@ class Trip < ActiveRecord::Base
   end
 
   def self.most_trips
-    group(:start_date.to_s).count.max_by{|k, v| v}
+    group(:start_date).count.max_by{|k, v| v}
   end
 
   def self.least_trips
-    group(:start_date.to_s).count.min_by{|k, v| v}
+    group(:start_date).count.min_by{|k, v| v}
   end
 
   def self.condition_on_day_with_most_rides

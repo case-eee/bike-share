@@ -217,7 +217,7 @@ describe "Station" do
       dave = Station.create(name:"dave", dock_count:20, city_id:3, installation_date:'1990-5-23', lat: -31.563910, long: 147.154312)
       nick = Station.create(name:"nick", dock_count:30, city_id:4, installation_date:'2016-5-24', lat: -32.563910, long: 146.154312)
       
-      expected = [{:lat=>-31, :lng=>147}, {:lat=>-31, :lng=>147}, {:lat=>-32, :lng=>146}]
+      expected = [{:lat=>-31.56391, :lng=>147.154312}, {:lat=>-31.56391, :lng=>147.154312}, {:lat=>-32.56391, :lng=>146.154312}]
 
       expect(Station.station_locations).to eql(expected)
     end
