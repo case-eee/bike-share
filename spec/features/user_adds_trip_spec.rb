@@ -3,6 +3,11 @@ require_relative '../spec_helper'
 
 describe "When a user visits the new trip path" do
   it "they can create a new trip" do
+    Station.write(name: "Station1",
+                  dock_count: 7,
+                  city_name: "Denver",
+                  installation_date: "2013-11-12")
+    
     visit '/trips/new'
 
     fill_in 'trips[duration]', with: 45

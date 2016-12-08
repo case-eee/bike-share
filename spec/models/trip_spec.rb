@@ -296,10 +296,10 @@ describe "Trip" do
       end
     end
     describe "Subscription types" do
-      xit "returns nil with no entries in database" do
+      it "returns nil with no entries in database" do
         expect(Trip.subscription_types).to eq(nil)
       end
-      xit "Returns correct number and percent with one entry" do
+      it "Returns correct number and percent with one entry" do
         Station.write(name: "TestStation1",
                       lat: 1.1,
                       long: 1.2,
@@ -315,7 +315,8 @@ describe "Trip" do
                   bike_id: 3,
                   subscription_type: "Subscriber", 
                   zipcode: 80211)
-        expect(Trip.subscription_types).to eq([1, 100])
+        expect(Subscription.first.trips.count).to eq(1)
+        expect(Subscription.first.trips.percentage).to eq(100)
       end
       it "Returns correct number and percent with two entry" do
         Station.write(name: "TestStation1",
@@ -342,8 +343,8 @@ describe "Trip" do
                   subscription_type: "Customer", 
                   zipcode: 80211)
 
-        expect(Trip.subscription_types[:subscriber_percentage]).to eq(50.0)
-        expect(Trip.subscription_types[:customer_percentage]).to eq(50.0)
+        expect(Subscription.first.trips.percentage).to eq(50.0)
+        expect(Subscription.last.trips.percentage).to eq(50.0)
       end
     end
   end
@@ -502,7 +503,7 @@ describe "Trip" do
     end
 
     it "find the day with fewest rides" do
-            Station.write(name: "StartStation", 
+      Station.write(name: "StartStation", 
                     dock_count: 7,
                     city_name: "City",
                     installation_date: "2013-11-11")

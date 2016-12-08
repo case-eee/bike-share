@@ -14,7 +14,7 @@ require_relative '../spec_helper'
 
       fill_in 'stations[name]', with: "StationTest1"
       fill_in 'stations[dock_count]', with: 1
-      fill_in 'stations[city_id]', with: "San Francisco"
+      fill_in 'stations[city_name]', with: "San Francisco"
       fill_in 'stations[installation_date]', with: "2011-11-11"
       click_on 'Submit'
 
@@ -59,17 +59,17 @@ require_relative '../spec_helper'
   end
 
   describe "When a user deletes an id path" do
-    xit "will delete the station object" do
+    it "will delete the station object" do
+      test_station = Station.write(name: "StationTest1",
+                                    dock_count: 1,
+                                    city_name: "San Diego",
+                                    installation_date: "2011-11-11")
+      
+      visit "/stations/#{test_station.id}"
 
-      station1 = Station.write(name: "StationTest1", dock_count: 1, city_name: "San Diego", installation_date: "2011-11-11")
-      visit "/stations/#{station1.id}"
-      puts Station.count
-      find("input[name=submit]").click
-
-      # expect(Station.count).to eq(0)
-      # expect(page).not_to have_content("StationTest1")
+      click_on "Delete"
 
       expect(current_path).to eq("/stations")
-
+      expect(page).not_to have_content(test_station.name)
     end
   end

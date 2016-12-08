@@ -4,19 +4,19 @@
 <form class="form-group" action="/stations" method="POST">
     <div class="form-group">
     <label>Station Name</label>
-    <input class="form-control" type="text" name="stations[name]">
+    <input class="form-control" type="text" name="stations[name]" id = "stations-name" required />
   </div>
   <div class="form-group">
     <label>Dock Count</label>
-    <input class="form-control" type="integer" name="stations[dock_count]">
+    <input class="form-control" type="number" name="stations[dock_count]" id = "stations-dock_count" required />
   </div>
   <div class="form-group">
     <label>City</label>
-    <input class="form-control" type="text" name="stations[city_id]">
+    <input class="form-control" type="text" name="stations[city_name]" id = "stations-city_id" required />
   </div>
   <div class="form-group">
     <label>Installation Date</label>
-    <input class="form-control" type="datetime" name="stations[installation_date]">
+    <input class="form-control" type="date" name="stations[installation_date]" id = "stations-installation_date" required />
   </div>
   <input class="btn btn-primary" type="submit" value="Submit">
 </form>

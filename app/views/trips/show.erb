@@ -1,5 +1,5 @@
 
-<h1> Trip Details </h1>
+<h1> Trip Details <a class = "btn btn-primary" href ="/trips">All Trips</a></h1>
 <table class="table table-hover">
 
 <tr>
@@ -18,12 +18,24 @@
 <tr>
   <td><%= @trip.id %></td>
   <td><%= @trip.duration %></td>
-  <td><%= @trip.start_station_id %></td>
+  <td>
+    <% if @trip.start_station.nil? %>
+      <%= @trip.start_station_id %>
+    <% else %>
+        <a href = "/stations/<%= @trip.start_station.id %>"><%= @trip.start_station.name%></a>
+    <% end %>
+  </td>
   <td><%= @trip.start_date %></td>
-  <td><%= @trip.end_station_id %></td>
+  <td>
+    <% if @trip.end_station.nil? %>
+      <%= @trip.end_station_id %>
+    <% else %>
+      <a href = "/stations/<%= @trip.end_station.id %>"><%= @trip.end_station.name%></a>
+    <% end %>
+  </td>
   <td><%= @trip.end_date %></td>
   <td><%= @trip.bike_id%></td>
-  <td><%= @trip.subscription_id %></td>
+  <td><%= @trip.subscription.name %></td>
   <td><%= @trip.zipcode %></td>
   <td><a class="btn btn-warning" href='/trips/<%=@trip.id%>/edit'>Update</a></td>
 

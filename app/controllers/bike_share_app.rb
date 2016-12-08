@@ -27,7 +27,7 @@ include WillPaginate::Sinatra::Helpers
   end
 
   post '/stations' do
-    station = Station.create(params[:stations])
+    station = Station.write(params[:stations])
     redirect "/stations/#{ station.id }"
   end
 
@@ -38,7 +38,7 @@ include WillPaginate::Sinatra::Helpers
 
   put '/stations/:id' do
     station = Station.find(params[:id])
-    station.update(params[:stations])
+    station.write_update(station, params[:stations])
     redirect "stations/#{station.id}"
   end
 
@@ -78,7 +78,7 @@ include WillPaginate::Sinatra::Helpers
 
   put '/trips/:id' do
     trip = Trip.find(params[:id])
-    trip.update(params[:trips])
+    trip.write_update(trip, params[:trips])
     redirect "/trips/#{ trip.id }"
   end
 
@@ -90,6 +90,12 @@ include WillPaginate::Sinatra::Helpers
   get "/conditions" do
     @conditions = Condition.all
     erb :"conditions/index"
+  end
+
+  get "/conditions-dashboard" do
+    @highest_rides = Condition.day_with_highest_number_of_rides 
+    @lowest_rides = Condition.day_with_lowest_number_of_rides
+    erb :"conditions/dashboard"
   end
 
   get "/conditions/new" do

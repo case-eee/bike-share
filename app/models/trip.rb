@@ -13,6 +13,7 @@ class Trip < ActiveRecord::Base
             :zipcode,
                presence: true
   belongs_to :subscription
+  belongs_to :condition
   belongs_to :start_station, class_name: "Station", foreign_key: "start_station_id"
   belongs_to :end_station, class_name: "Station", foreign_key: "end_station_id"
   belongs_to :bikes, class_name: "Station" , foreign_key: "bike_id"
@@ -37,6 +38,21 @@ class Trip < ActiveRecord::Base
                           end_date: trip_details[:end_date],
                           bike_id: trip_details[:bike_id],
                           zipcode: trip_details[:zipcode])
+  end
+
+  def write_update(trip, trip_details)
+    trip.update(subscription_id: find_subscription_id(trip_details[:subscription_type]),
+                          duration: trip_details[:duration],
+                          start_date: trip_details[:start_date],
+                          start_station_id: find_station_id(trip_details[:start_station_name]),
+                          end_station_id: find_station_id(trip_details[:end_station_name]),
+                          end_date: trip_details[:end_date],
+                          bike_id: trip_details[:bike_id],
+                          zipcode: trip_details[:zipcode])
+  end
+
+  def find_subscription_id(subscription_type)
+    Subscription.write(name: subscription_type).id
   end
 
   def self.find_subscription_id(subscription_type)
@@ -65,6 +81,11 @@ class Trip < ActiveRecord::Base
 
   def self.most_frequent_destination_station
     Station.find(Trip.group(:end_station_id).order("count_id DESC").limit(1).count(:id).keys.first)
+  end
+
+  def find_station_id(station_name)
+    return "This station has not been added to the database yet" if Station.find_by(name: station_name).nil?
+    Station.find_by(name: station_name).id
   end
 
   def self.find_station_id(station_name)
@@ -128,14 +149,15 @@ class Trip < ActiveRecord::Base
   end
 
   def self.subscription_types
+    return nil if Trip.count == 0
     total = Trip.count
+
     subscribers = Subscription.find_by(name: "Subscriber").trips.count
     customers = Subscription.find_by(name: "Customer").trips.count
-    {
-      :subscriber_count => subscribers,
+    { :subscriber_count => subscribers,
       :subscriber_percentage => ((subscribers / total.to_f) * 100).round(2),
       :customer_count => customers,
-      :customer_percentage => ((customers / total.to_f) * 100).round(2)
-    }
+      :customer_percentage => ((customers / total.to_f) * 100).round(2)}
   end
+
 end

@@ -14,7 +14,10 @@ class Station < ActiveRecord::Base
   end
   has_many :end_trips , class_name: "Trip", foreign_key: "end_station_id"
   
-  validates :name, :dock_count, :city_id, :installation_date, presence: true
+  validates :name,
+            :dock_count,
+            :city_id,
+            :installation_date, presence: true
 
   def self.write(station_details)
     self.find_or_create_by(name: station_details[:name],
@@ -24,6 +27,20 @@ class Station < ActiveRecord::Base
                           city_id: find_city_id(station_details[:city_name]),
                           installation_date: station_details[:installation_date]
                           )
+  end
+
+  def write_update(station, station_details)
+    station.update(name: station_details[:name],
+                          lat: station_details[:lat],
+                          long: station_details[:long],
+                          dock_count: station_details[:dock_count],
+                          city_id: find_city_id(station_details[:city_name]),
+                          installation_date: station_details[:installation_date]
+                          )
+  end
+
+  def find_city_id(city_name)
+    City.write(name: city_name).id
   end
 
   def self.find_city_id(city_name)
@@ -48,7 +65,7 @@ class Station < ActiveRecord::Base
   end
 
   def self.average_bikes_per_station
-    average(:dock_count)
+    average(:dock_count).to_f.round(2)
   end
 
   def self.most_bikes
