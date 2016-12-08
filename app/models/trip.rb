@@ -75,8 +75,12 @@ class Trip < ActiveRecord::Base
     where(bike_id: given_bike_id).count
   end
 
-  def self.day_with_lowest_number_of_trips
+  def self.day_with_lowest_number_of_trips_date
     Trip.group(:start_date).order("count_id ASC").limit(1).count(:id).keys.first
+  end
+
+  def self.day_with_lowest_number_of_trips_number
+    Trip.group(:start_date).order("count_id ASC").limit(1).count(:id).values.first
   end
 
   def self.most_frequent_destination_station
