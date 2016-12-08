@@ -167,8 +167,8 @@ describe "Trip" do
 
 
       expect(Trip.number_of_rides_by_month(2014).first).to eql(4)
-      expect(Trip.number_of_rides_by_month(2014).last[1]).to eql(2)
-      expect(Trip.number_of_rides_by_month(2014).last[12]).to eql(1)
+      expect(Trip.number_of_rides_by_month(2014).last[1.0]).to eql(2)
+      expect(Trip.number_of_rides_by_month(2014).last[12.0]).to eql(1)
 
     end
   end
