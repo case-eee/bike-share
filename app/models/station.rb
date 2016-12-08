@@ -85,4 +85,13 @@ class Station < ActiveRecord::Base
     end_trips.group(:start_station_id).order("count_id DESC").limit(1).count(:id).keys.first
   end
 
+  def most_frequent_destination_station
+    station_id = start_trips.group(:end_station_id).order("count_id DESC").limit(1).count(:id).keys.first
+    Station.find(station_id).name
+  end
+
+  def date_with_highest_number_of_trips_started
+    start_trips.group(:start_date).order("count_id DESC").limit(1).count(:id)
+  end
+
 end

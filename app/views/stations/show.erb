@@ -23,5 +23,16 @@
       </form>
     </td>
   </tr>
-
+<h3>Rides starting from this station: <%=@station.start_trips.count%></h3>
+<h3>Rides ending at this station: <%=@station.end_trips.count%></h3>
+<h3>Most frequent destination from here is: <br/>
+  <%=@station.most_frequent_destination_station%></h3>
+<h3>Most frequent origin station when ending here is: <br/>
+  <%=@station.most_frequent_origin_station%></h3>
+<h3>Date with highest number of trips starting here: <br/>
+  <%=@station.date_with_highest_number_of_trips_started.keys.first%> with #
+  <%= @station.date_with_highest_number_of_trips_started.values.first%> trips.
+</h3>
+<h3>Users leaving this station mostly from the: <%=@station.most_frequent_user_zipcode_as_start_station%> area!</h3>
+<h3>Most used bike here is bike #<%=@station.start_trips.bike_most_used_starting%></h3>
 </table>
