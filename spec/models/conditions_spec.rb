@@ -1804,7 +1804,7 @@ describe "" do
               subscription_type: "Subscriber",
               zipcode: 80211)
     Trip.write(duration: 70,
-              start_date: "2013-06-13",
+              start_date: "2013-12-12",
               start_station_name: "TestStation3",
               end_date: "2011-3-6",
               end_station_name: "TestStation3",

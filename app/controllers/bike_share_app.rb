@@ -78,7 +78,7 @@ include WillPaginate::Sinatra::Helpers
 
   put '/trips/:id' do
     trip = Trip.find(params[:id])
-    trip.update(params[:trips])
+    trip.write_update(trip, params[:trips])
     redirect "/trips/#{ trip.id }"
   end
 

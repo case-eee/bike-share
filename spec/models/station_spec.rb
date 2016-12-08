@@ -134,8 +134,8 @@ describe "Station" do
     end
 
     describe "average_bikes_per_station" do
-      it "Returns nil if database is empty" do
-        expect(Station.average_bikes_per_station).to eq(nil)
+      it "Returns zero if database is empty" do
+        expect(Station.average_bikes_per_station).to eq(0)
       end
       it "Returns average dock_count of stations" do
         Station.write(name: "ThisStation",

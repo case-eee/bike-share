@@ -11,46 +11,54 @@
 
 <tr>
   <td><h3> Total Station Count</td></h3>
-<td><h3>  <%= Station.count %> </td></h3>
+<td><h3> <%= Station.count %> </td></h3>
 </tr>
 
 <tr>
 <td><h3> Average Bikes Available Per Station</td></h3>
-<td><h3>  <%= Station.average_bikes_per_station %> </td></h3>
+<td><h3> <%= Station.average_bikes_per_station %> </td></h3>
 </tr>
 
 <tr>
 <td><h3> Stations Where the Most Bikes are Available</td></h3>
-<td><h3>  <%= Station.most_bikes %> </td></h3>
+<td><h3> <%= Station.most_bikes %> </td></h3>
 </tr>
 
 <tr>
-<td><h3> Most Bikes Available at a Station</td></h3>
-<% Station.find_by_most_bikes.each do |station| %>
-<td><h3>  <%= station.name %>: <%= station.dock_count %> </td></h3>
-<% end %>
+  <td><h3> Most Bikes Available at a Station</h3></td>
+  <td>
+    <select class="form-control" size = 5>  
+      <% Station.find_by_most_bikes.each do |station| %>
+        <option><h3> <%= station.name %> </h3></option>
+      <% end %>
+    </select>
+  </td>
 </tr>
 
 <tr>
 <td><h3>Fewest Bikes Available at a Station</td></h3>
-<td><h3>  <<%= Station.fewest_bikes %> </td></h3>
+<td><h3> <%= Station.fewest_bikes %> </td></h3>
 </tr>
 
 <tr>
-<td><h3>Stations Where the Fewet Bikes are Available</td></h3>
-<% Station.find_by_fewest_bikes.each do |station| %>
-<td><h3>  <%= station.name %>: <%= station.dock_count %> </td></h3>
-<% end %>
+  <td><h3>Stations Where the Fewest Bikes are Available</h3></td>
+  <td>
+    <select class="form-control" size = 5>
+      <% Station.find_by_fewest_bikes.each do |station| %>
+          <option><h3> <%= station.name %></h3></option>
+      <% end %>
+    </select>
+  </td>
 </tr>
 
 <tr>
 <td><h3>Most Recently Installed Station</td></h3>
-<td><h3>  <%= Station.most_recently_installed_station.name %> </td></h3>
+<td><h3> <%= Station.most_recently_installed_station.name %> </td></h3>
 </tr>
 
 <tr>
 <td><h3>Oldest Station</td></h3>
-<td><h3>  <%= Station.oldest_station.name %> </td></h3>
+<td><h3> <%= Station.oldest_station.name %> </td></h3>
 </tr>
 
 </table>
