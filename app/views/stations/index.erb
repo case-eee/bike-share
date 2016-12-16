@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+
+<h1>All Stations</h1>
+
+<a class="btn btn-primary" href="/stations/new">New Station</a>
+<br>
+<br>
+<table class="table table-striped table-hover">
+
+<tr>
+  <th class = "bold"> Station Name </th>
+  <th class = "bold"> Dock Count </th>
+  <th class = "bold"> Installation Date </th>
+  <th> </th>
+  <th> </th>
+</tr>
+<% @stations.each do |station| %>
+<tr>
+  <td><a href="/stations/<%=station.id%>"><%=station.name %></a></td>
+  <td><%= station.dock_count %></td>
+  <td><%= station.installation_date %></td>
+  <td><a class="btn btn-warning" href='/stations/<%=station.id%>/edit'>Update</a></td>
+
+  <td><form action="/stations/<%= station.id %>" method = "POST"/>
+  <input type="hidden" name="_method" value="DELETE"/>
+  <input class="btn btn-danger" type="submit" value = "Delete"></form></td>
+</tr>
+<% end %>
+
+
+</table>

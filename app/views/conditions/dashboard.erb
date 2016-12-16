@@ -1,0 +1,219 @@
+<div class="header-image jumbotron">
+  <h1>Conditions Overview</h1>
+  <p><a class="btn btn-primary" href="/conditions">All Conditions</a></p>
+</div>
+
+<div class="row">
+  <div class="col-md-offset-2 col-sm-6 col-md-4">
+    <div class="thumbnail">
+      <img class ="img-responsive" src="/images/sunny.jpg" alt="Sunny">
+      <div class="caption">
+        <h3>Conditions for Highest Ride Count</h3>
+        <h4><%= DateFormat.parse(@highest_rides.date) %></h4>
+        <ul>
+          <li>High Temp: <%= @highest_rides.max_temperature_f %></li>
+          <li>Low Temp: <%= @highest_rides.min_temperature_f %></li>
+          <li>Mean Visibility: <%= @highest_rides.mean_visibility_miles %> Miles</li>
+          <li>Humidity: <%= @highest_rides.mean_humidity %></li>
+          <li>Precipitataion: <%= @highest_rides.precipitation_inches %> Inches</li>
+          <li>Wind Speed: <%= @highest_rides.mean_wind_speed_mph %> MPH</li>
+        </ul>
+        <p><a href="/conditions/<%= @highest_rides.id %>" class="btn btn-primary" role="button">Show</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-sm-6 col-md-4">
+    <div class="thumbnail">
+      <img class ="img-responsive" src="/images/rain.png" alt="Cloudy">
+      <div class="caption">
+        <h3>Conditions for Lowest Ride Count</h3>
+        <h4><%= DateFormat.parse(@lowest_rides.date) %></h4>
+        <ul>
+          <li>High Temp: <%= @lowest_rides.max_temperature_f %></li>
+          <li>Low Temp: <%= @lowest_rides.min_temperature_f %></li>
+          <li>Mean Visibility: <%= @lowest_rides.mean_visibility_miles %> Miles</li>
+          <li>Humidity: <%= @lowest_rides.mean_humidity %></li>
+          <li>Precipitataion: <%= @lowest_rides.precipitation_inches %> Inches</li>
+          <li>Wind Speed: <%= @lowest_rides.mean_wind_speed_mph %> MPH</li>
+        </ul>
+        <p><a href="/conditions/<%= @lowest_rides.id %>" class="btn btn-primary" role="button">Show</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<h2>Rides by Maximum Temperature</h2>
+<table class="table table-striped">
+  <tr>
+    <th>Temperature Range</th>
+    <th>Average Number of Rides</th>
+    <th>Highest Number of Rides</th>
+    <th>Lowest Number of Rides</th>
+  </tr>
+  <tr>
+    <td>41-50</td>
+    <td><%= Condition.average_number_of_rides_in_range_max_temp(41..50) %></td>
+    <td><%= Condition.highest_number_of_rides_in_range_max_temp(41..50) %></td>
+    <td><%= Condition.lowest_number_of_rides_in_range_max_temp(41..50) %></td>
+  </tr>
+  <tr>
+    <td>51-60</td>
+    <td><%= Condition.average_number_of_rides_in_range_max_temp(51..60) %></td>
+    <td><%= Condition.highest_number_of_rides_in_range_max_temp(51...60) %></td>
+    <td><%= Condition.lowest_number_of_rides_in_range_max_temp(51..60) %></td>
+  </tr>
+  <tr>
+    <td>61-70</td>
+    <td><%= Condition.average_number_of_rides_in_range_max_temp(61..70) %></td>
+    <td><%= Condition.highest_number_of_rides_in_range_max_temp(61..70) %></td>
+    <td><%= Condition.lowest_number_of_rides_in_range_max_temp(61..70) %></td>
+  </tr>
+  <tr>
+    <td>71-80</td>
+    <td><%= Condition.average_number_of_rides_in_range_max_temp(61..70) %></td>
+    <td><%= Condition.highest_number_of_rides_in_range_max_temp(61..70) %></td>
+    <td><%= Condition.lowest_number_of_rides_in_range_max_temp(61..70) %></td>
+  </tr>
+  <tr>
+    <td>81-90</td>
+    <td><%= Condition.average_number_of_rides_in_range_max_temp(81..90) %></td>
+    <td><%= Condition.highest_number_of_rides_in_range_max_temp(81..90) %></td>
+    <td><%= Condition.lowest_number_of_rides_in_range_max_temp(81..90) %></td>
+  </tr>
+  <tr>
+    <td>91-100</td>
+    <td><%= Condition.average_number_of_rides_in_range_max_temp(91..100) %></td>
+    <td><%= Condition.highest_number_of_rides_in_range_max_temp(91..100) %></td>
+    <td><%= Condition.lowest_number_of_rides_in_range_max_temp(91..100) %></td>
+  </tr>
+  <tr>
+    <td>100-110</td>
+    <td><%= Condition.average_number_of_rides_in_range_max_temp(100..110) %></td>
+    <td><%= Condition.highest_number_of_rides_in_range_max_temp(100..110) %></td>
+    <td><%= Condition.lowest_number_of_rides_in_range_max_temp(100..110) %></td>
+  </tr>
+</table>
+
+<h2>Rides by Precipitataion</h2>
+<table class="table table-striped">
+  <tr>
+    <th>Precipitataion Range in inches</th>
+    <th>Average Number of Rides</th>
+    <th>Highest Number of Rides</th>
+    <th>Lowest Number of Rides</th>
+    <th>
+  </tr>
+  <tr>
+    <td>0-0.5</td>
+    <td><%= Condition.average_number_of_rides_in_range_precip(0..0.5) %></td>
+    <td><%= Condition.highest_number_of_rides_in_range_precip(0..0.5) %></td>
+    <td><%= Condition.lowest_number_of_rides_in_range_precip(0..0.5) %></td>
+  </tr>
+  <tr>
+    <td>0.5-1.0</td>
+    <td><%= Condition.average_number_of_rides_in_range_precip(0.5..1) %></td>
+    <td><%= Condition.highest_number_of_rides_in_range_precip(0.5..1) %></td>
+    <td><%= Condition.lowest_number_of_rides_in_range_precip(0.5..1) %></td>
+  </tr>
+  <tr>
+    <td>1.0-1.5</td>
+    <td><%= Condition.average_number_of_rides_in_range_precip(1..1.5) %></td>
+    <td><%= Condition.highest_number_of_rides_in_range_precip(1..1.5) %></td>
+    <td><%= Condition.lowest_number_of_rides_in_range_precip(1..1.5) %></td>
+  </tr>
+  <tr>
+    <td>1.5-2.0</td>
+    <td><%= Condition.average_number_of_rides_in_range_precip(1.5..2) %></td>
+    <td><%= Condition.highest_number_of_rides_in_range_precip(1.5..2) %></td>
+    <td><%= Condition.lowest_number_of_rides_in_range_precip(1.5..2) %></td>
+  </tr>
+</table>
+
+<h2>Rides by Mean Wind Speed</h2>
+<table class="table table-striped">
+  <tr>
+    <th>Mean Wind Speed in MPH</th>
+    <th>Average Number of Rides</th>
+    <th>Highest Number of Rides</th>
+    <th>Lowest Number of Rides</th>
+  </tr>
+  <tr>
+    <td>0-4</td>
+    <td><%= Condition.average_number_of_rides_in_range_wind(0..4) %></td>
+    <td><%= Condition.highest_number_of_rides_in_range_mean_wind_speed(0..4) %></td>
+    <td><%= Condition.lowest_number_of_rides_in_range_mean_wind_speed(0..4) %></td>
+  </tr>
+  <tr>
+    <td>4-8</td>
+    <td><%= Condition.average_number_of_rides_in_range_wind(4..8) %></td>
+    <td><%= Condition.highest_number_of_rides_in_range_mean_wind_speed(4..8) %></td>
+    <td><%= Condition.lowest_number_of_rides_in_range_mean_wind_speed(4..8) %></td>
+  </tr>
+  <tr>
+    <td>8-12</td>
+    <td><%= Condition.average_number_of_rides_in_range_wind(8..12) %></td>
+    <td><%= Condition.highest_number_of_rides_in_range_mean_wind_speed(8..12) %></td>
+    <td><%= Condition.lowest_number_of_rides_in_range_mean_wind_speed(8..12) %></td>
+  </tr>
+  <tr>
+    <td>12-16</td>
+    <td><%= Condition.average_number_of_rides_in_range_wind(12..16) %></td>
+    <td><%= Condition.highest_number_of_rides_in_range_mean_wind_speed(12..16) %></td>
+    <td><%= Condition.lowest_number_of_rides_in_range_mean_wind_speed(12..16) %></td>
+  </tr>
+  <tr>
+    <td>16-20</td>
+    <td><%= Condition.average_number_of_rides_in_range_wind(16..20) %></td>
+    <td><%= Condition.highest_number_of_rides_in_range_mean_wind_speed(16..20) %></td>
+    <td><%= Condition.lowest_number_of_rides_in_range_mean_wind_speed(16..20) %></td>
+  </tr>
+  <tr>
+    <td>20-24</td>
+    <td><%= Condition.average_number_of_rides_in_range_wind(16..20) %></td>
+    <td><%= Condition.highest_number_of_rides_in_range_mean_wind_speed(16..20) %></td>
+    <td><%= Condition.lowest_number_of_rides_in_range_mean_wind_speed(16..20) %></td>
+  </tr>
+</table>
+
+<h2>Rides by Mean Visibility</h2>
+<table class="table table-striped">
+  <tr>
+    <th>Mean Visibility in Miles</th>
+    <th>Average Number of Rides</th>
+    <th>Highest Number of Rides</th>
+    <th>Lowest Number of Rides</th>
+  </tr>
+  <tr>
+    <td>0-4</td>
+    <td><%= Condition.average_number_of_rides_in_mean_visibility(0..4) %></td>
+    <td><%= Condition.highest_number_of_rides_in_mean_visibility(0..4) %></td>
+    <td><%= Condition.lowest_number_of_rides_in_mean_visibility(0..4) %></td>
+  </tr>
+  <tr>
+    <td>4-8</td>
+    <td><%= Condition.average_number_of_rides_in_mean_visibility(4..8) %></td>
+    <td><%= Condition.highest_number_of_rides_in_mean_visibility(4..8) %></td>
+    <td><%= Condition.lowest_number_of_rides_in_mean_visibility(4..8) %></td>
+  </tr>
+  <tr>
+    <td>8-12</td>
+    <td><%= Condition.average_number_of_rides_in_mean_visibility(8..12) %></td>
+    <td><%= Condition.highest_number_of_rides_in_mean_visibility(8..12) %></td>
+    <td><%= Condition.lowest_number_of_rides_in_mean_visibility(8..12) %></td>
+  </tr>
+  <tr>
+    <td>12-16</td>
+    <td><%= Condition.average_number_of_rides_in_mean_visibility(12..16) %></td>
+    <td><%= Condition.highest_number_of_rides_in_mean_visibility(12..16) %></td>
+    <td><%= Condition.lowest_number_of_rides_in_mean_visibility(12..16) %></td>
+  </tr>
+  <tr>
+    <td>16-20</td>
+    <td><%= Condition.average_number_of_rides_in_mean_visibility(16..20) %></td>
+    <td><%= Condition.highest_number_of_rides_in_mean_visibility(16..20) %></td>
+    <td><%= Condition.lowest_number_of_rides_in_mean_visibility(16..20) %></td>
+  </tr>
+
+</table>
+

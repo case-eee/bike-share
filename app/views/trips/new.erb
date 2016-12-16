@@ -1,0 +1,37 @@
+<h1>Add New Trip</h1>
+
+<form class="form-group" action="/trips" method="POST">
+    <div class="form-group">
+    <label>Duration</label>
+    <input class="form-control" type="number" name="trips[duration]" required />
+  </div>
+  <div class="form-group">
+    <label>Start Date and Time</label>
+    <input class="form-control" type="date" name="trips[start_date]" required />
+  </div>
+  <div class="form-group">
+    <label>Starting Station</label>
+    <input class="form-control" type="number" name="trips[start_station_name]" required />
+  </div>
+  <div class="form-group">
+    <label>End Date and Time</label>
+    <input class="form-control" type="date" name="trips[end_date]" required />
+  </div>
+  <div class="form-group">
+    <label>Ending Station</label>
+    <input class="form-control" type="number" name="trips[end_station_name]" required />
+  </div>
+  <div class="form-group">
+    <label>Bike ID</label>
+    <input class="form-control" type="number" name="trips[bike_id]" required />
+  </div>
+  <div class="form-group">
+    <label>Subscription Type</label>
+    <input class="form-control" type="text" name="trips[subscription_name]" required />
+  </div>
+  <div class="form-group">
+    <label>User's Zipcode</label>
+    <input class="form-control" type="number" name="trips[zipcode]" required />
+  </div>
+  <input class="btn btn-primary" type="submit" value="Submit">
+</form>
