@@ -1,0 +1,40 @@
+<h1>Weather Conditions Dashboard</h1>
+
+<div class="conditions-dashboard">
+<h2>Rides Per Temperature Group</h2>
+<p>0-39 Degrees F: Avg Rides = <%= @conditions.average_rides(@conditions.rides_by_temperature) %></p>
+<p>40-49 Degrees F: Avg Rides = <%= @conditions.average_rides(@conditions.rides_by_temperature) %></p>
+<p>50-59 Degrees F: Avg Rides = <%= @conditions.average_rides(@conditions.rides_by_temperature) %></p>
+<p>60-69 Degrees F: Avg Rides = <%= @conditions.average_rides(@conditions.rides_by_temperature) %></p>
+<p>70-79 Degrees F: Avg Rides = <%= @conditions.average_rides(@conditions.rides_by_temperature) %></p>
+<p>80-89 Degrees F: Avg Rides = <%= @conditions.average_rides(@conditions.rides_by_temperature) %></p>
+<p>90-99 Degrees F: Avg Rides = <%= @conditions.average_rides(@conditions.rides_by_temperature) %></p>
+</div>
+
+<div class="conditions-dashboard">
+<h2>Rides Per Precipitation Group</h2>
+<p>0-0.5 Inches: Avg Rides = <%= @conditions.average_rides(@conditions.rides_by_precip) %></p>
+<p>0.5-1 Inches: Avg Rides = <%= @conditions.average_rides(@conditions.rides_by_precip) %></p>
+<p>1.1-1.6 Inches: Avg Rides = <%= @conditions.average_rides(@conditions.rides_by_precip) %></p>
+<p>1.7-2.2 Inches: Avg Rides = <%= @conditions.average_rides(@conditions.rides_by_precip) %></p>
+<p>2.3-2.8 Inches: Avg Rides = <%= @conditions.average_rides(@conditions.rides_by_precip) %></p>
+<p>2.9-3.4 Inches: Avg Rides = <%= @conditions.average_rides(@conditions.rides_by_precip) %></p>
+</div>
+
+<div class="conditions-dashboard">
+<h2>Rides Per Wind Speed Group</h2>
+<p>0-4 Miles Per Hour: Avg Rides = <%= @conditions.average_rides(@conditions.rides_by_wind) %></p>
+<p>4.1-8 Miles Per Hour: Avg Rides = <%= @conditions.average_rides(@conditions.rides_by_wind) %></p>
+<p>8.1-12 Miles Per Hour: Avg Rides = <%= @conditions.average_rides(@conditions.rides_by_wind) %></p>
+<p>12.1-16 Miles Per Hour: Avg Rides = <%= @conditions.average_rides(@conditions.rides_by_wind) %></p>
+<p>16.1-20 Miles Per Hour: Avg Rides = <%= @conditions.average_rides(@conditions.rides_by_wind) %></p>
+<p>20 + Miles Per Hour: Avg Rides = <%= @conditions.average_rides(@conditions.rides_by_wind) %></p>
+</div>
+
+<div class="conditions-dashboard">
+<h2>Rides By Visibility Group</h2>
+<p>0-4 Miles: Avg Rides = <%= @conditions.average_rides(@conditions.rides_by_visibility) %></p>
+<p>4.1-8 Miles: Avg Rides = <%= @conditions.average_rides(@conditions.rides_by_visibility) %></p>
+<p>8+ Miles: Avg Rides = <%= @conditions.average_rides(@conditions.rides_by_visibility) %></p>
+</div>
+

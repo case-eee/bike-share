@@ -1,0 +1,12 @@
+<h1 class="show-city-name"><%=  @city.name  %></h1>
+
+<form action="/cities/<%= @city.id %>" method="POST">
+  <div class="form-group">
+    <input class="button btn btn-delete" type="submit" value="Delete"/>
+    <input type="hidden" name="_method" value="DELETE">
+  </div>
+</form>
+
+<p><a class="btn btn-update button" href="/cities/<%= @city.id %>/edit">Update city</a></p>
+
+

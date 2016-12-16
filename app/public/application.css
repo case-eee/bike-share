@@ -1,0 +1,293 @@
+/*~~~~~~~ GENERAL STYLES ~~~~~~~*/
+.button {
+  background-color: rgba(255, 255, 255, 0);
+  border: 2px solid #fff;
+  border-radius: 0;
+  font-size: 12px;
+  color: whitesmoke;
+}
+
+.button:hover {
+  background-color: rgba(0,0,0,0.7);
+  border: 2px solid #fff;
+}
+.btn-update:hover {
+  border: 2px solid #65FFA8;
+  color: #65FFA8;
+}
+
+.btn-delete:hover {
+  border: 2px solid #FF5357;
+  color: #FF5357;
+}
+
+.btn-form {
+  display: inline-block;
+  float: right;
+}
+
+.wrapper {
+  width: 50%;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.pagination {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.pagination .disabled {
+  color: #555;
+  padding: 3px 6px;
+}
+
+.pagination a {
+  color: #222;
+  padding: 3px 6px;
+  border: 1px solid rgba(255,255,255,0.2);
+  background-color: rgba(255,255,255,0.1);
+  border-radius: 2px;
+}
+
+.pagination .current {
+  color: #222;
+  padding: 3px 6px;
+  border: 1px solid rgba(255,255,255,0.5);
+  background-color: rgba(255,255,255,0.3);
+  border-radius: 2px;
+}
+
+.pagination a:hover {
+  border: 1px solid rgba(255,255,255,0.5);
+  background-color: rgba(255,255,255,0.3);
+  text-decoration: none;
+}
+
+/* ~~~~~~~ LAYOUT ~~~~~~~*/
+body {
+  background: #B993D6; /* fallback for old browsers */
+  background: -webkit-linear-gradient(right, #B993D6, #8CA6DB);
+  background: -o-linear-gradient(right, #B993D6, #8CA6DB);
+  background: linear-gradient(to left, #B993D6, #8CA6DB); /* Chrome 10-25, Safari 5.1-6 */ /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+      }
+
+/* ~~~~~~~ NAVIGATION ~~~~~~~*/
+.navbar {
+  background-color: #222;
+
+}
+.navbar li {
+  color: #eee;
+  display: inline-block;
+  padding: 10px;
+}
+
+.navbar ul li a:hover {
+  text-decoration: none;
+  color: #FF5357;
+}
+
+.navbar ul li a{
+  color: whitesmoke;
+}
+
+.navbar ul {
+  display: inline-block;
+}
+
+img {
+  display: inline-block;
+  margin: 15px;
+}
+
+.nav-item {
+  color: #eee;
+}
+
+.dropdown-menu {
+  background-color: rgba(0,0,0,0.7);
+}
+
+a.dropdown-item {
+  color: whitesmoke;
+}
+
+/*FOOTER*/
+.footer {
+  background-color: #222;
+  position: relative;
+  bottom: 0;
+  width: 100%;
+}
+
+/*~~~~~~~ DASHBOARDS ~~~~~~~*/
+
+.dashboard-title {
+  font-size: 40px;
+  margin: 20px 0 20px 0;
+}
+
+.dashboard-stat {
+  font-size: 36px;
+  color: white;
+}
+
+/* ~~~~~~~ CITY ~~~~~~~*/
+
+.city-index-page-title {
+  font-size: 40px;
+  margin: 20px 0 20px 0;
+}
+
+/* ~~~~~~~ STATION ~~~~~~~*/
+/*station new*/
+form {}
+.new-station-prompt {}
+.new-city-prompt {}
+
+/*station index*/
+h1.station-page-title {
+  font-size: 40px;
+  margin: 20px 0 20px 0;
+}
+
+.station-info,
+.condition-info,
+.city-info {
+  background-color: rgba(255,255,255,0.3);
+  margin: 0 0 10px 0;
+  padding: 10px;
+  border: 4px solid rgba(255,255,255,0.5);
+  border-radius: 2px;
+}
+
+div.station-info:hover {
+  background-color: rgba(255,255,255,0.5);
+}
+
+div.condition-info:hover {
+  background-color: rgba(255,255,255,0.5);
+}
+
+div.city-info:hover {
+  background-color: rgba(255,255,255,0.5);
+}
+
+.stations-dashboard-total,
+.stations-dashboard-average,
+.stations-dashboard-max,
+.stations-dashboard-min ,
+.stations-dashboard-oldest,
+.stations-dashboard-newest {
+  background-color: rgba(255,255,255,0.2);
+  border: 4px solid rgba(255,255,255,0.5);
+  border-radius: 2px;
+  padding: 20px;
+  min-height: 210px;
+}
+
+.stations-dashboard-oldest,
+.stations-dashboard-newest {
+  margin-top: 20px;
+  margin-bottom: 40px;
+}
+
+.stations-dashboard-area {
+  padding: 20px;
+}
+
+.stations-dashboard-most-bikes,
+.stations-dashboard-fewest-bikes {
+  background-color: rgba(255,255,255,0.2);
+  border: 4px solid rgba(255,255,255,0.5);
+  border-radius: 2px;
+  margin-top: 20px;
+}
+
+.stations-dashboard-station {
+}
+
+.show {
+  display:none;
+}
+
+.hover:hover .show{
+  display:none;
+}
+
+h2.station-name {}
+.station-id {}
+
+.station-name-list {
+  font-size: 14px;
+}
+
+.station-stats-area:hover {
+}
+
+h2.city-name {}
+.city-id {}
+
+p.station-city {}
+p.station-coordinates {}
+
+/*station show*/
+.show-station-name {}
+.show-station-dock-count {}
+.show-station-installation-date {}
+
+.show-station-city {}
+.show-station-coordinates {}
+
+/*station edit*/
+.edit-station-page-title {}
+
+  /* ~~~~~~~ TRIP ~~~~~~~*/
+  /*trip new*/
+
+
+  .trip-page-title {
+    font-size: 40px;
+    margin: 20px 0 20px 0;
+  }
+
+  form {}
+  .new-trip-prompt {}
+
+  /*station index*/
+  h1.trip-index-page-title {}
+
+  .trip-info {
+    background-color: rgba(255,255,255,0.3);
+  }
+
+  div.trip-info:hover {
+    background-color: rgba(255,255,255,0.7);
+  }
+  h2.trip-name {}
+  .trip-id {}
+
+  p.trip-city {}
+  p.trip-coordinates {}
+
+  /*station show*/
+  .show-trip-id {}
+  .show-trip-dock-count {}
+  .show-station-installation-date {}
+
+  .show-station-city {}
+  .show-station-coordinates {}
+
+  /*station edit*/
+  .edit-station-page-title {}
+
+
+
+/*~~~~~~~~ MEDIA QUERIES ~~~~~~~~~*/
+
+  @media screen and (max-width: 993px) {
+    .wrapper {
+      width: 80%;
+    }
+  }

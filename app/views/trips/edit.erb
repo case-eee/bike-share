@@ -1,0 +1,43 @@
+<div class="wrapp
+<h1 class="edit-station-page-title">Edit Trip</h1>
+<form action="/trips/<%= @trip.id %>" method="post">
+  <input type="hidden" name="_method" value="PUT" />
+  <div class="form-group">
+    <input  class="form-control" type="integer" name="trip[duration_in_seconds]" value="<%= @trip.duration_in_seconds %>"/>
+  </div>
+  <div class="form-group">
+    <input  class="form-control" type="date" name="trip[start_date]" value="<%= @trip.start_date %>">
+  </div>
+  <div class="form-group">
+      <input  class="form-control" type="date" name="trip[end_date]" value="<%= @trip.end_date %>" placeholder="<%= @trip.end_date %>">
+    </div>
+  <div class="form-group">
+    <input class"form-control" type="text" name="start_station[name]" list="stations" placeholder="<%= @stations.find(@trip.start_station_id).name %>" >
+    <datalist id="stations"> <% @stations.each do |station| %>
+      <option value="<%= station.name %>" id="<%= station.name %>"/>
+        <% end %>
+    </datalist>
+  </div>
+  <div class="form-group">
+    <input class"form-control" type="text" name="end_station[name]" list="stations" placeholder="<%= @stations.find(@trip.start_station_id).name %>">
+    <datalist id="stations"> <% @stations.each do |station| %>
+      <option value="<%= station.name %>" id="<%= station.name %>"/>
+        <% end %>
+    </datalist>
+  </div>
+  <div class="form-group">
+    <input  class="form-control" type="integer" name="trip[bike_id]" value="<%= @trip.bike_id %>" placeholder="<%= @trip.bike_id %>">
+  </div>
+  <div class="form-group">
+    <input class"form-control" type="text" name="subscription[name]" list="subscriptions" placeholder="<%= @subscriptions.find(@trip.subscription_id).name %>">
+    <datalist id="subcriptions"> <% @subscriptions.each do |subscription| %>
+      <option value="<%= subscription.name %>" id="<%= subscription.name %>"/>
+      <% end %>
+    </datalist>
+  </div>
+  <div class="form-group">
+    <input  class="form-control" type="integer" name="trip[zipcode]" value="<%= (@trip.zipcode).zipcode %>">
+  </div>
+    <input  class="btn btn-update button" type="submit" value="Update station"/>
+</form>
+</div>

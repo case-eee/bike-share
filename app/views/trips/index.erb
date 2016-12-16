@@ -1,0 +1,42 @@
+<table class="table">
+  <thead>
+    <tr>
+      <th>Trip ID</th>
+      <th>Duration (in seconds)</th>
+      <th>Start Date</th>
+      <th>Start Station ID</th>
+      <th>End Date</th>
+      <th>End Station Id</th>
+      <th>Bike ID</th>
+      <th>Subscription Type</th>
+      <th>Zip Code</th>
+      <th>Delete</th>
+      <th>Update</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <!-- <% count = 0 %> -->
+    <th scope="row" id="total entries"></th>
+    <%  @trips.each do |trip| %>
+    <tr>
+      <td><%= trip.id %></td>
+      <td><%= trip.duration_in_seconds%></td>
+      <td><%= trip.start_date%></td>
+      <td><%= @stations.find_by(id: trip.start_station_id).name%></td>
+      <td><%= trip.end_date%></td>
+      <td><%= @stations.find_by(id: trip.end_station_id).name%></td>
+      <td><%= trip.bike_id%></td>
+      <td><%= @subscriptions.find_by(id: trip.subscription_id).name%></td>
+      <td><%= @zipcodes.find_by(id: trip.zipcode_id).zipcode%></td>
+      <td><form id="trip_<%= trip.id %>" action="/trips/<%=trip.id%>" method="POST">
+        <input type="hidden" name="_method" value="DELETE">
+        <input id="delete_trip" name="button" type="submit" class="btn btn-delete button" value="Delete"/>
+      </form></td>
+      <td><a id="Update_<%= trip.id %>" name="button" class="btn btn-update button" href="/trips/<%=trip.id%>/edit"> Update Trip<a/></td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<%= will_paginate @trips %>

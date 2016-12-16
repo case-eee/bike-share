@@ -1,0 +1,44 @@
+<div class="wrapper">
+<h1>Create a New Trip</h1>
+
+<form action="/trips" method="post">
+  <div class="form-group">
+    <input type="integer" class="form-control" name="trip[duration_in_seconds]" placeholder="duration"/>
+  </div>
+  <div class="form-group">
+    <input type="Date" class="form-control" name="trip[start_date]" placeholder="start date"/>
+  </div>
+  <div class="form-group">
+    <input type="Date"  class="form-control" name="trip[end_date]" placeholder="end date"/>
+  </div>
+  <div class="form-group">
+    <input type="text" class="form-control" name="start_station[name]" list="stations" placeholder="start station">
+    <datalist id="stations"> <% @stations.each do |station| %>
+      <option value="<%= station.name %>" id="<%= station.name %>"/>
+      <% end %>
+    </datalist>
+  </div>
+  <div class="form-group">
+    <input type="text" class="form-control" name="end_station[name]" list="stations" placeholder="end station">
+    <datalist id="stations"> <% @stations.each do |station| %>
+      <option value="<%= station.name %>" id="<%= station.name %>"/>
+      <% end %>
+    </datalist>
+  </div>
+  <div class="form-group">
+    <input type="number" class="form-control" step="1" name="trip[bike_id]" placeholder="bike ID"/>
+  </div>
+  <div class="form-group">
+    <input type="text" class="form-control" name="subscription[name]" list="subscriptions" placeholder="subscription Type">
+    <datalist id="subcriptions"> <% @subscriptions.each do |subscription| %>
+      <option value="<%= subscription.name %>" id="<%= subscription.name %>"/>
+      <% end %>
+    </datalist>
+  </div>
+  <div class="form-group">
+    <input type="integer" class="form-control" name="trip[zipcode_id]" placeholder="zipcode">
+  </div>
+
+  <input class="button btn-update btn" type="submit" value="Submit"/>
+</form>
+</div>
