@@ -1,0 +1,71 @@
+header {
+  height: 50%;
+}
+
+button.navbar-toggler {
+  height: 20px ;
+  width: 20px;
+}
+
+body {
+  background-image: url("san_fran.jpg");
+  /*background-repeat: no-repeat;*/
+  background-size: cover;
+}
+
+div.table-responsive {
+  opacity: 0.9;
+}
+input {
+  color: black;
+}
+div.col-xs-10 {
+  color: black;
+
+}
+
+.will_pagination {
+  text-align: center;
+  padding: 0.3em;
+  cursor: default; }
+  .will_pagination a, .will_pagination span, .will_pagination em {
+    padding: 0.2em 0.5em; }
+    .will_pagination .disabled {
+      color: #080707;
+      font-weight: bold; }
+      .will_pagination .current {
+        font-style: normal;
+        font-weight: bold;
+        color: #b93853; }
+        .will_pagination a {
+          border: 1px solid #dddddd;
+          color: #0063dc;
+          text-decoration: none; }
+          .will_pagination a:hover, .will_pagination a:focus {
+            border-color: #003366;
+            background: #0063dc;
+            color: white; }
+            .will_pagination .page_info {
+              color: #080707;
+              font-weight: bold;
+              padding-top: 0.8em; }
+              .will_pagination .previous_page, .will_pagination .next_page {
+                border-width: 2px; }
+                .will_pagination .previous_page {
+                  margin-right: 1em; }
+                  .will_pagination .next_page {
+                    margin-left: 1em; }
+div.modal-content {
+  background-color: #f65252;
+}
+
+a {
+  color: black;
+  font-weight: bold;
+  font-size: 18px;
+}
+
+div.col-xs-10 {
+  color: #44d099;
+  font-weight: bold;
+}

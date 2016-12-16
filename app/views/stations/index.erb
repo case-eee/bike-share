@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+  <link rel="stylesheet" href="application.css">
+  <title></title>
+</head>
+<body>
+  <div class="table-responsive">
+  <table id='table_station' class="table table-condensed table-inverse">
+    <thead>
+      <tr>
+        <th>Station ID</th>
+        <th>Name</th>
+        <th>Dock Count</th>
+        <th>City</th>
+        <th>Installation Date</th>
+      </tr>
+    </thead>
+    <tbody>
+      <th scope="row" id="total entries"></th>
+      <% @stations.each do |station| %>
+      <tr>
+        <td><a href="/stations/<%= station.id %>"><%= station.id %></a></td>
+        <td><%= station.name %></td>
+        <td><%= station.dock_count%></td>
+        <td><%= station.city%></td>
+        <td><%= station.installation_date%></td>
+        <td>
+          <div class="btn-group" role="group">
+            <button>
+            <a href="/stations/<%= station.id %>">Details</a>
+            </button>
+          </div>
+        </td>
+        <td>
+          <form action="/stations/<%= station.id %>/edit">
+            <input type="submit" value="Edit"/>
+          </form>
+        </td>
+        <td>
+          <form action="/stations/<%= station.id %>" method="POST">
+            <input type="hidden" name="_method" value="DELETE">
+            <input type="submit" value="Delete"/>
+          </form>
+        </td>
+      </tr>
+      <% end %>
+    </tbody>
+  </table>
+  </div>
+  <div class="will_pagination">
+    <div class="page_info">
+      <%= page_entries_info @stations %>
+    </div>
+    <%= will_paginate @stations, :container => false %>
+  </div>
+</body>
+<!-- Latest compiled and minified JavaScript -->
+<link src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous">
+</html>

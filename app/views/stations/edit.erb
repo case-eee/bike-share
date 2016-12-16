@@ -1,0 +1,37 @@
+<h2>Update Station</h2>
+<form action="/stations/<%= @station.id %>" method="POST">
+  <input type="hidden" name="_method" value="PUT">
+  <div class="form-group row">
+    <label for="id" class="col-xs-2 col-form-label"></label>
+    <div class="col-xs-10">
+      ID<input class="form-control" type="text"id='station[id]' value="<%= @station.id %>" id="name">
+    </div>
+  </div>
+  <div class="form-group row">
+    <label for="name" class="col-xs-2 col-form-label"></label>
+    <div class="col-xs-10">
+      Name<input class="form-control" type="text"name='station[name]' value="<%= @station.name %>" id="name">
+    </div>
+  </div>
+  <div class="form-group row">
+    <label for="dock_count" class="col-xs-2 col-form-label"></label>
+    <div class="col-xs-10">
+      Start Date<input class="form-control" type="search" name='station[dock_count]' value="<%= @station.dock_count %>" id="dock_count">
+    </div>
+  </div>
+  <div class="form-group row">
+    <label for="city" class="col-xs-2 col-form-label"></label>
+    <div class="col-xs-10">
+      Start Station Name<input class="form-control" id="city"type="text" name='station[city]'value="<%= @station.city %>">
+    </div>
+  </div>
+  <div class="form-group row">
+    <label for="installation_date" class="col-xs-2 col-form-label"></label>
+    <div class="col-xs-10">
+      End Date<input class="form-control" id="installation_date"type="text" name='station[installation_date]' value="<%= @station.installation_date %>">
+    </div>
+  </div>
+<div class="offset-sm-2 col-sm-10">
+  <button type="submit" class="btn btn-primary">Update</button>
+</div>
+</form>

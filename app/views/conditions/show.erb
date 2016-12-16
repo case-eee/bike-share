@@ -1,0 +1,14 @@
+<h1>Conditions for <%= @condition.date %></h1>
+<!-- <h3>Date: <%= @condition.date %></h3> -->
+<h3>ID: <%= @condition.id %></h3>
+<h3>Max Temperature: <%= @condition.max_temperature_f%></h3>
+<h3>Mean Temperature:<%= @condition.mean_temperature_f%> </h3>
+<h3>Min Temperature: <%= @condition.min_temperature_f %></h3>
+<h3>Mean Humidity: <%= @condition.mean_humidity %> </h3>
+<h3>Mean Visibility (Miles): <%= @condition.mean_visibility_miles %></h3>
+<h3>Mean Wind Speed (mph): <%= @condition.mean_wind_speed_mph%></h3>
+<h3>Precipitation (inches): <%= @condition.precipitation_inches%></h3>
+<form action="/conditions/<%= @condition.id %>" method="post">
+<input type="hidden" name="_method" value="DELETE">
+<input type="submit" value="Delete"/>
+</form>
