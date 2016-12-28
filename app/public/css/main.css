@@ -136,3 +136,8 @@ form > select {
 .glyphicon {
   font-size: 80px;
 }
+
+.footer {
+  background:black;
+  padding:5px;
+}
