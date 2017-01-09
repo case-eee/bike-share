@@ -8,7 +8,6 @@ require './app/models/condition'
 require 'pry'
 
 #create_stations
-byebug
 CSV.foreach('db/csv/station.csv', :headers=> true) do |row|
   puts "row: #{row}"
   city = City.find_or_create_by(name: row[5])
