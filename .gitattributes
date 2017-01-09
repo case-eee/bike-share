@@ -1,3 +1,0 @@
-*/csv/station.csv filter=lfs diff=lfs merge=lfs -text
-*/csv/trip.csv filter=lfs diff=lfs merge=lfs -text
-*/csv/weather.csv filter=lfs diff=lfs merge=lfs -text
