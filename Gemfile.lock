@@ -16,6 +16,7 @@ GEM
       public_suffix (~> 2.0, >= 2.0.2)
     arel (7.1.4)
     bond (0.5.1)
+    byebug (9.0.6)
     capybara (2.10.1)
       addressable
       mime-types (>= 1.16)
@@ -104,6 +105,7 @@ PLATFORMS
 
 DEPENDENCIES
   activerecord
+  byebug
   capybara
   database_cleaner
   font-awesome-less
