@@ -8,6 +8,7 @@ gem "rb-readline"
 gem 'smarter_csv'
 gem 'font-awesome-less'
 gem 'pry'
+gem 'byebug'
 
 group :development, :test do
   gem 'shotgun'
