@@ -11,7 +11,6 @@ require 'pry'
 CSV.foreach('db/csv/station.csv', :headers=> true) do |row|
   puts "row: #{row}"
   city = City.find_or_create_by(name: row[5])
-  byebug
   installation_date = Date.strptime(row[6], '%m/%d/%Y')
   Station.create({id: row[0],
                   name: row[1],
