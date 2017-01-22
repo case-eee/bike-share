@@ -9,7 +9,6 @@ require 'pry'
 
 #create_stations
 CSV.foreach('db/csv/station.csv', :headers=> true) do |row|
-  puts "row: #{row}"
   city = City.find_or_create_by(name: row[5])
   installation_date = Date.strptime(row[6], '%m/%d/%Y')
   Station.create({id: row[0],
@@ -23,6 +22,7 @@ end
 
 #create_weathers
 SmarterCSV.process('db/csv/weather.csv').each do |row|
+  puts "row: #{row}"
   row[:date] = Date.strptime(row[:date], '%m/%d/%Y')
   Condition.create(row) if row[:zip_code] == 94107
 end
