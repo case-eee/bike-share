@@ -1,4 +1,4 @@
-require 'CSV'
+require 'csv'
 require 'smarter_csv'
 require "sinatra/activerecord"
 require './app/models/station'
