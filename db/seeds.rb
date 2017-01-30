@@ -33,15 +33,15 @@ end
 #   row[:end_date] = Date.strptime(row[:end_date], '%m/%d/%Y')
 
 #create_trips
-  Trip.create(duration: row[:duration],
-              start_date_time: row[:start_date],
-              start_date: row[:start_date],
-              start_station_id: row[:start_station_id],
-              end_date_time: row[:end_date],
-              end_date: row[:end_date],
-              end_station_id: row[:end_station_id],
-              bike_id: row[:bike_id],
-              subscription_type: row[:subscription_type],
-              zip_code: row[:zip_code])
-end
+#   Trip.create(duration: row[:duration],
+#               start_date_time: row[:start_date],
+#               start_date: row[:start_date],
+#               start_station_id: row[:start_station_id],
+#               end_date_time: row[:end_date],
+#               end_date: row[:end_date],
+#               end_station_id: row[:end_station_id],
+#               bike_id: row[:bike_id],
+#               subscription_type: row[:subscription_type],
+#               zip_code: row[:zip_code])
+# end
 
