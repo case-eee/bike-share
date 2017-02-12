@@ -35,8 +35,9 @@ end
 #create_weathers
 CSV.foreach('db/csv/weather.csv').each do |row|
   puts "weather row: #{row}"
+  weather_date = Date.strptime(row[0], '%m/%d/%Y')
   if row[23] == 94107
-    Condition.create({  date: Date.strptime(row[0], '%m/%d/%Y')
+    Condition.create({  date: weather_date,
                         max_temperature_f: row[1],
                         mean_temperature_f: row[2],
                         min_temperature_f: row[3],
@@ -69,12 +70,14 @@ end
 
 CSV.foreach('db/csv/trip.csv').each do |row|
   puts "trip row: #{row}"
+  trip_start_date = Date.strptime(row[2], '%m/%d/%Y')
+  trip_end_date = Date.strptime(row[5], '%m/%d/%Y')
   Trip.create({ id: row[0],
                 duraction: row[1],
-                start_date: Date.strptime(row[2], '%m/%d/%Y'),
+                start_date: trip_start_date,
                 start_station_name: row[3],
                 start_station_id: row[4],
-                end_date:  Date.strptime(row[5], '%m/%d/%Y'),
+                end_date: trip_end_date,
                 end_station_name: row[6],
                 end_station_id: row[7],
                 bike_id: row[8],
