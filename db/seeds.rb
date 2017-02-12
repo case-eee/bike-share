@@ -32,6 +32,23 @@ end
 #   Condition.create(row) if row[:zip_code] == 94107
 # end
 
+CSV.foreach('db/csv/trip.csv').each do |row|
+  puts "trip row: #{row}"
+  trip_start_date = Date.strptime(row[2], '%m/%d/%Y')
+  trip_end_date = Date.strptime(row[5], '%m/%d/%Y')
+  Trip.create({ id: row[0],
+                duraction: row[1],
+                start_date: trip_start_date,
+                start_station_name: row[3],
+                start_station_id: row[4],
+                end_date: trip_end_date,
+                end_station_name: row[6],
+                end_station_id: row[7],
+                bike_id: row[8],
+                subscription_type: row[9],
+                zip_code: row[10]
+  })
+end
 #create_weathers
 CSV.foreach('db/csv/weather.csv').each do |row|
   puts "weather row: #{row}"
@@ -68,23 +85,6 @@ end
 
 # id,duration,start_date,start_station_name,start_station_id,end_date,end_station_name,end_station_id,bike_id,subscription_type,zip_code
 
-CSV.foreach('db/csv/trip.csv').each do |row|
-  puts "trip row: #{row}"
-  trip_start_date = Date.strptime(row[2], '%m/%d/%Y')
-  trip_end_date = Date.strptime(row[5], '%m/%d/%Y')
-  Trip.create({ id: row[0],
-                duraction: row[1],
-                start_date: trip_start_date,
-                start_station_name: row[3],
-                start_station_id: row[4],
-                end_date: trip_end_date,
-                end_station_name: row[6],
-                end_station_id: row[7],
-                bike_id: row[8],
-                subscription_type: row[9],
-                zip_code: row[10]
-  })
-end
 # #create_conditions
 # SmarterCSV.process('db/csv/trip.csv').each do |row|
 #   row[:start_date] = Date.strptime(row[:start_date], '%m/%d/%Y')
