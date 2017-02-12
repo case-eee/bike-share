@@ -20,7 +20,7 @@ CSV.foreach('db/csv/station.csv', :headers=> true) do |row|
                   city_id: city.id})
 end
 
-create_weathers
+#create_weathers
 SmarterCSV.process('db/csv/weather.csv').each do |row|
   puts "row: #{row}"
   row[:date] = Date.strptime(row[:date], '%m/%d/%Y')
