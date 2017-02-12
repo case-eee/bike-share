@@ -20,12 +20,12 @@ CSV.foreach('db/csv/station.csv', :headers=> true) do |row|
                   city_id: city.id})
 end
 
-#create_weathers
-# SmarterCSV.process('db/csv/weather.csv').each do |row|
-#   puts "row: #{row}"
-#   row[:date] = Date.strptime(row[:date], '%m/%d/%Y')
-#   Condition.create(row) if row[:zip_code] == 94107
-# end
+create_weathers
+SmarterCSV.process('db/csv/weather.csv').each do |row|
+  puts "row: #{row}"
+  row[:date] = Date.strptime(row[:date], '%m/%d/%Y')
+  Condition.create(row) if row[:zip_code] == 94107
+end
 
 # #create_conditions
 # SmarterCSV.process('db/csv/trip.csv').each do |row|
