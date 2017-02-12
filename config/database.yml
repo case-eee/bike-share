@@ -12,5 +12,5 @@ test:
 
 production:
   adapter: postgresql
-  database: bike-share-production
+  database: postgresql-crystalline-46988
 
