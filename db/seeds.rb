@@ -32,7 +32,7 @@ end
 #   Condition.create(row) if row[:zip_code] == 94107
 # end
 
-CSV.foreach('db/csv/trip.csv').each do |row|
+CSV.foreach('db/csv/trip_file.csv').each do |row|
   puts "trip row: #{row}"
   trip_start_date = Date.strptime(row[2], '%m/%d/%Y')
   trip_end_date = Date.strptime(row[5], '%m/%d/%Y')
