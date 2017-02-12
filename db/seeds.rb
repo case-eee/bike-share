@@ -20,13 +20,68 @@ CSV.foreach('db/csv/station.csv', :headers=> true) do |row|
                   city_id: city.id})
 end
 
+# date,max_temperature_f,mean_temperature_f,min_temperature_f,max_dew_point_f,mean_dew_point_f,
+# min_dew_point_f,max_humidity,mean_humidity,min_humidity,max_sea_level_pressure_inches,
+# mean_sea_level_pressure_inches,min_sea_level_pressure_inches,max_visibility_miles,
+# mean_visibility_miles,min_visibility_miles,max_wind_speed_mph,mean_wind_speed_mph,
+# max_gust_speed_mph,precipitation_inches,cloud_cover,events,wind_dir_degrees,zip_code
+
+# SmarterCSV.process('db/csv/weather.csv').each do |row|
+#   puts "row: #{row}"
+#   row[:date] = Date.strptime(row[:date], '%m/%d/%Y')
+#   Condition.create(row) if row[:zip_code] == 94107
+# end
+
 #create_weathers
-SmarterCSV.process('db/csv/weather.csv').each do |row|
-  puts "row: #{row}"
-  row[:date] = Date.strptime(row[:date], '%m/%d/%Y')
-  Condition.create(row) if row[:zip_code] == 94107
+CSV.foreach('db/csv/weather.csv').each do |row|
+  puts "weather row: #{row}"
+  if row[23] == 94107
+    Condition.create({  date: Date.strptime(row[0], '%m/%d/%Y')
+                        max_temperature_f: row[1],
+                        mean_temperature_f: row[2],
+                        min_temperature_f: row[3],
+                        max_dew_point_f: row[4],
+                        mean_dew_point_f: row[5],
+                        min_dew_point_f: row[6],
+                        max_humidity: row[7],
+                        mean_humidity: row[8],
+                        min_humidity: row[9],
+                        max_sea_level_pressure_inches: row[10],
+                        mean_sea_level_pressure_inches: row[11],
+                        min_sea_level_pressure_inches: row[12],
+                        max_visibility_miles: row[13],
+                        mean_visibility_miles: row[14],
+                        min_visibility_miles: row[15],
+                        max_wind_speed_mph: row[16],
+                        mean_wind_speed_mph: row[17],
+                        max_gust_speed_mph: row[18],
+                        precipitation_inches: row[19],
+                        cloud_cover: row[20],
+                        events: row[21],
+                        wind_dir_degrees: row[22],
+                        zip_code: row[23]
+    })
+  end
 end
 
+
+# id,duration,start_date,start_station_name,start_station_id,end_date,end_station_name,end_station_id,bike_id,subscription_type,zip_code
+
+CSV.foreach('db/csv/trip.csv').each do |row|
+  puts "trip row: #{row}"
+  Trip.create({ id: row[0],
+                duraction: row[1],
+                start_date: Date.strptime(row[2], '%m/%d/%Y'),
+                start_station_name: row[3],
+                start_station_id: row[4],
+                end_date:  Date.strptime(row[5], '%m/%d/%Y'),
+                end_station_name: row[6],
+                end_station_id: row[7],
+                bike_id: row[8],
+                subscription_type: row[9],
+                zip_code: row[10]
+  })
+end
 # #create_conditions
 # SmarterCSV.process('db/csv/trip.csv').each do |row|
 #   row[:start_date] = Date.strptime(row[:start_date], '%m/%d/%Y')
