@@ -12,5 +12,5 @@ test:
 
 production:
   adapter: postgresql
-  database: postgresql-crystalline-46988
-
+  database: bike-share-production
+  host: ENV['DATABASE_URL']
