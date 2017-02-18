@@ -11,3 +11,4 @@ test:
 production:
   adapter: postgresql
   database: bike-share-production
+  url:  <%= ENV["DATABASE_URL"] %>
