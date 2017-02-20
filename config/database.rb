@@ -1,4 +1,4 @@
-configure :production, :development do 
+
   # set the database based on the current environment
   database_name = "bike-share-#{BikeShareApp.environment}"
   db = URI.parse(ENV['DATABASE_URL'] || "postgres://localhost/#{database_name}")
@@ -13,4 +13,3 @@ configure :production, :development do
     :database => "#{database_name}",
     :encoding => 'utf8'
   )
-end
