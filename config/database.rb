@@ -10,7 +10,7 @@ configure :production, :development do
     :port     => db.port,
     :username => db.user,
     :password => db.password,
-    :database => db.path[1..-1],
+    :database => ENV['DATABASE_URL'],
     :encoding => 'utf8'
   )
 end
