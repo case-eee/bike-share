@@ -1,0 +1,13 @@
+<h1>Edit a Trip</h1>
+<form action="/trips/<%= @trip.id %>" method="POST" style="width:60%;text-align:right;">
+  <input class="edit_or_new_form" type="hidden" name="_method" value="PUT">
+  <p>duration : <input class="edit_or_new_form" type="float" name="trip[duration]" value="<%= @trip.duration%>"></p><br>
+  <p>start_station_id : <input class="edit_or_new_form" type="float" name="trip[start_station_id]" value="<%= @trip.start_station_id %>"></p><br>
+  <p>end_station_id : <input class="edit_or_new_form" type="float" name="trip[end_station_id]" value="<%= @trip.end_station_id%>"></p><br>
+  <p>start_date : <input class="edit_or_new_form" type="datetime" name="trip[start_date]" value="<%= @trip.start_date%>"></p><br>
+  <p>end_date : <input class="edit_or_new_form" type="datetime" name="trip[end_date]" value="<%= @trip.end_date %>"></p><br>
+  <p>bike_id : <input class="edit_or_new_form" type="float" name="trip[bike_id]" value="<%= @trip.bike_id %>"></p><br>
+  <p>subscription_type : <input class="edit_or_new_form" type="text" name="trip[subscription_type]" value="<%= @trip.subscription_type %>"></p><br>
+  <p>zip_code : <input class="edit_or_new_form" type="float" name="trip[zip_code]" value="<%= @trip.zip_code %>"></p><br>
+  <input class="edit_or_new_form" type="submit" value="Update Trip">
+</form>

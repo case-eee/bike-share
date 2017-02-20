@@ -1,0 +1,32 @@
+<div class="titled">
+  <h1>All Trips</h1>
+  <form action="/trips/new" method="GET">
+    <input type="submit" value="Create"/>
+  </form>
+</div>
+
+<% @current_trips.each do |trip| %>
+  <div class="station_object col-md-4">
+    <h1>start_date : <%= trip.start_date %></h1>
+    <p>start_station_id : <%= trip.start_station_id %></p>
+    <p>end_station_id : <%= trip.end_station_id %></p>
+    <div class="button_row">
+      <form class="col-md-4 delete_trip" action="/trips/<%= trip.id %>" method="POST">
+        <input type="hidden" name="_method" value="DELETE">
+        <input type="submit" value="Delete">
+      </form>
+      <a class="col-md-4" href="/trips/<%= trip.id %>/edit">Edit</a>
+      <a class="col-md-4" href="/trips/<%= trip.id %>">See</a>
+    </div>
+  </div>
+<% end %>
+
+<% unless @number < 1 %>
+  <a href="/trips?number= <%= @number - 1 %>"> <span class="glyphicon glyphicon-chevron-left"></span> </a>
+<% end %>
+
+<a href="/trips?number= <%= @number + 1 %>"> <span class="glyphicon glyphicon-chevron-right"></span> </a>
+
+
+
+

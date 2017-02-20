@@ -1,0 +1,9 @@
+<h1> Edit a Station </h1>
+<form action="/stations/<%= @station.id %>" method="POST" style="text-align:right;width:60%;">
+  <input class="edit_or_new_form" type="hidden" name="_method" value="PUT"><br>
+  name : <input class="edit_or_new_form" type="text" name="station[name]" value="<%=@station.name%>"><br>
+  dock_count : <input class="edit_or_new_form" type="integer" name="station[dock_count]" value="<%=@station.dock_count%>"><br>
+  city_id : <input class="edit_or_new_form" type="integer" name="station[city_id]" value="<%=@station.city_id%>"><br>
+  installation_date : <input class="edit_or_new_form" type="date" name="station[installation_date]" value="<%=@station.installation_date%>"><br>
+  <input class="edit_or_new_form" type="submit" value="Update Station">
+</form>

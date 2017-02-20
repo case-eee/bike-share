@@ -1,0 +1,29 @@
+<div class="titled">
+  <h1>All Conditions</h1>
+
+  <form action="/conditions/new" method="GET">
+    <input type="submit" value="Create a new condition"/>
+  </form>
+</div>
+<br>
+<% @conditions.each do |condition| %>
+  <div class="condition_object col-md-4">
+    <h1><%= condition.id %></h1>
+    <p>Date : <%= condition.date %></p>
+    <p>Max Temperature : <%= condition.max_temperature_f %></p>
+    <p>Mean Temperature : <%= condition.mean_temperature_f %></p>
+    <p>Min Temperature : <%= condition.min_temperature_f %></p>
+    <p>Mean Humidity : <%= condition.mean_humidity %></p>
+    <p>Mean Visibility : <%= condition.mean_visibility_miles %></p>
+    <p>Max Wind Speed : <%= condition.max_wind_speed_mph%></p>
+    <div class="button_row">
+      <a class="col-md-4" href="/conditions/<%= condition.id %>">Details</a>
+      <a class="col-md-4" href="/conditions/<%= condition.id %>/edit">Edit</a>
+      <form class="col-md-4 delete_condition" action="/conditions/<%= condition.id %>" method="POST">
+        <input type="hidden" name="_method" value="DELETE">
+        <input type="submit" value="Delete">
+      </form>
+    </div>
+  </div>
+<% end %>
+
