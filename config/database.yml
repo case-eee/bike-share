@@ -3,14 +3,11 @@
 development:
   adapter: postgresql
   database: bike-share-development
-  host: localhost
 
 test:
   adapter: postgresql
   database: bike-share-test
-  host: localhost
 
 production:
   adapter: postgresql
   database: bike-share-production
-

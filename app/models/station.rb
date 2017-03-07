@@ -1,5 +1,5 @@
 class Station < ActiveRecord::Base
-  validates :name, :dock_count, :city_id, :installation_date, presence: true
+  validates :name, :dock_count, :city_id, :installation_date, :lat, :long, presence: true
   has_many :trip_starts, :class_name => 'Trip', :foreign_key => 'start_station_id'
   has_many :trip_ends, :class_name => 'Trip', :foreign_key => 'end_station_id'
   belongs_to :city

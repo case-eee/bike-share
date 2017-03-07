@@ -1,4 +1,4 @@
-#require 'CSV'
+require 'csv'
 require 'smarter_csv'
 require "sinatra/activerecord"
 require './app/models/station'
@@ -9,7 +9,6 @@ require 'pry'
 
 #create_stations
 CSV.foreach('db/csv/station.csv', :headers=> true) do |row|
-  puts "row: #{row}"
   city = City.find_or_create_by(name: row[5])
   installation_date = Date.strptime(row[6], '%m/%d/%Y')
   Station.create({id: row[0],
@@ -21,18 +20,20 @@ CSV.foreach('db/csv/station.csv', :headers=> true) do |row|
                   city_id: city.id})
 end
 
-#create_weathers
-SmarterCSV.process('db/csv/weather.csv').each do |row|
+# create_weathers
+SmarterCSV.process('db/csv/weather_file.csv').each do |row|
+  puts "weather row: #{row}"
   row[:date] = Date.strptime(row[:date], '%m/%d/%Y')
   Condition.create(row) if row[:zip_code] == 94107
 end
 
 #create_conditions
-SmarterCSV.process('db/csv/trip.csv').each do |row|
+SmarterCSV.process('db/csv/trip_file.csv').each do |row|
+  puts "trip row: #{row}"
   row[:start_date] = Date.strptime(row[:start_date], '%m/%d/%Y')
   row[:end_date] = Date.strptime(row[:end_date], '%m/%d/%Y')
 
-#create_trips
+# create_trips
   Trip.create(duration: row[:duration],
               start_date_time: row[:start_date],
               start_date: row[:start_date],

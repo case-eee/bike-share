@@ -1,6 +1,6 @@
 # Bike Share
 
-We used Ruby, Sinatra, and Activerecord to build a site that analyzes bike share usage in San Francisco.
+We used Ruby, Sinatra, and Activerecord to build a website that analyzes bike share usage in San Francisco.
 
 ## Collecting the Data
 Our application collects data by utilizing:
@@ -8,6 +8,7 @@ Our application collects data by utilizing:
 1)  User input through our web app, on which a user can enter trip/station/weather information
 <br>
 2)  CSV files with historical information for stations, trips, and weather
+
 
 ## Analysis
 We started by analyzing the data from each table (stations, trips, and weather) seperately and then used their relationships to make connections and draw hypotheses based on what we found.
