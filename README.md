@@ -44,7 +44,6 @@ rspec
 * Sinatra and ERB templates
 * ActiveRecord
 * PostgreSQL
-* Javascript and Google Maps API
 * Rspec
 * Capybara
 
