@@ -14,7 +14,7 @@ We started by analyzing the data from each table (stations, trips, and weather) 
 
 ## Setup Instructions
 Run these commands in this order:
-'''
+```
 git clone https://github.com/DavidKnott/bike-share.git
 cd bike-share
 bundle
@@ -22,7 +22,7 @@ rails db:create
 rails db:migrate
 rails db:seed
 rails db:test:prepare
-'''
+```
 
 ## Deployment instructions
 To launch the project on local host, start up the rails server and visit the root path.
