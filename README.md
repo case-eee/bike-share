@@ -47,5 +47,8 @@ rspec
 * Rspec
 * Capybara
 
+## Data Disclaimer
+* Project was built using the full San Fran Bikeshare dataset. However, due to limits on database entries in a free Heroku app, not all the data was seeded. You can expect to see some null fields in the data analysis. 
+
 ## Project Team
 [Eric](https://github.com/cews7), [David](https://github.com/DavidKnott), [Nick](https://github.com/njgheorghita)
