@@ -11,7 +11,9 @@ Our application collects data by utilizing:
 
 
 ## Analysis
-We started by analyzing the data from each table (stations, trips, and weather) seperately and then used their relationships to make connections and draw hypotheses based on what we found.
+We started by analyzing the data from each table (stations, trips, and weather) seperately and then used their relationships to make connections and draw hypotheses based on what we found. Google maps is used to visually display available bike station locations & proximity. 
+
+The conditions table allows you to dynamically set the range and type of data to be displayed. 
 
 ## Setup Instructions
 Run these commands in this order:
@@ -48,7 +50,7 @@ rspec
 * Capybara
 
 ## Data Disclaimer
-* Project was built using the full San Fran Bikeshare dataset. However, due to limits on database entries in a free Heroku app, not all the data was seeded. You can expect to see some null fields in the data analysis. 
+* Project was built using the entire San Fran Bikeshare [dataset](http://www.bayareabikeshare.com/open-data). However, due to limits on database entries in a free Heroku app, not all the data was seeded. Expect to see some null fields in the data analysis. 
 
 ## Project Team
 [Eric](https://github.com/cews7), [David](https://github.com/DavidKnott), [Nick](https://github.com/njgheorghita)
